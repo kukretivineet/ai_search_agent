@@ -1,0 +1,39 @@
+.env
+.env.*
+.env.local
+.env.dev
+.env.prod
+archive/
+*.json
+!package.json
+!*.sample.json
+
+# Large dataset files
+archive_test/
+*.csv
+*.jsonl
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.dist/
+.venv/
+.env
+.env.*
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+
+# OS
+.DS_Store
+
+# Coverage
+htmlcov/
+.coverage*

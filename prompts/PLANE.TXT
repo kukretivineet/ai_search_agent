@@ -1,0 +1,205 @@
+Expanded Problem Statement – Generic E-commerce Semantic Search
+Scope update: The engine must work across all product categories— from fashion and electronics to home-decor, beauty, groceries, gift ideas, etc. User queries may mention color, size, material, occasion, recipient, budget, brand, delivery constraints, bundles, sustainability claims, refurbished status, warranties and more.
+ Examples:
+ • “red wireless mouse under ₹1 000”
+ • “gift for my mom who loves gardening”
+ • “eco-friendly wooden toys for a 2-year-old”
+ • “Samsung phone with 8 GB RAM and 5 G”
+ • “refurbished laptop for programming”
+1 ⃣ Language/Intent Challenges (Generic Catalog)
+Challenge
+What it Looks Like
+Why Keyword Fails
+Multi-facet constraints
+“4 K TV < ₹40 000, wall-mount included”
+Needs numeric range parsing, boolean filters.
+Recipient-based queries
+“gift for teen sister”
+“gift” has no direct SKU; engine must infer persona + interests.
+Attribute ambiguity
+“light running shoes” → weight, color, or luminosity?
+Pure token match can’t disambiguate.
+Cross-category synonyms
+“mobile”, “cell”, “smartphone”
+Requires domain-wide synonym graph.
+Conceptual queries
+“eco-friendly office supplies”
+Must map “eco-friendly” to product metadata flags.
+Bundled intents
+“gaming setup under 80 k”
+May imply multiple SKUs (monitor + keyboard + CPU).
+
+2 ⃣ Catalog & Metadata Requirements
+Universal Attribute Ontology – extend product schema with a superset of possible facets (price, color, size, power, audience, eco_cert, …).
+
+
+Dynamic Schema Adapter – JSON schema registry so new category attributes can be added without migrations.
+
+
+Attribute Extraction Service – NER/LLM pipeline that back-fills missing structured data from unstructured titles/descriptions (important for legacy SKUs).
+
+
+Synonym / Hypernym Graph – curate or auto-learn cross-category synonyms (e.g., “cell” ↔ “mobile phone”, “hoodie” ↔ “sweatshirt”). Store in Atlas Search “synonyms” collections.
+
+
+3 ⃣ End-to-End Retrieval Pipeline (Category-Agnostic)
+
+User Query
+  ├─► LLM Intent Parser
+  │     • Detect category candidates (electronics, fashion, gift, …)
+  │     • Extract facets → JSON {color:"red", price_max:1000, recipient:"mother", occasion:"birthday"}
+  │     • Identify query type: single-SKU vs bundle vs recommendation
+  ├─► Embedding Generator
+  │     • Sentence transformer tuned on multi-category e-commerce corpora
+  ├─► Retrieval Fan-out
+  │     • Vector Search on Atlas   (semantic)
+  │     • Text/BM25 Search         (exact terms / brand / spec codes)
+  │     • Structured Filter Query  (price < 1000, in_stock:true, eco_cert:true …)
+  │     • *Optional*: Graph/KG search for bundled-item suggestions
+  ├─► Score Fusion + Boost Rules
+  │     • Linear or learned-to-rank fusion: w₁·vector + w₂·bm25 + w₃·filter-quality + … 
+  ├─► 
+  └─► Result OrchestratorLLM/Cohere Re-rank
+        • Assemble single list or grouped bundles
+        • Return JSON to frontend
+
+Gift-Finder / Recipient Mode
+If parser detects recipient/occasion without explicit SKU, trigger a recommendation agent:
+“gift for my mother who likes gardening”
+   └─► Persona → {age_group:"45-60", hobbies:["gardening"]}
+   └─► Query taxonomy service → candidate categories (gardening kits, seed boxes, gloves)
+   └─► Run retrieval pipeline per category, aggregate 3–5 best SKUs with diversity re-rank
+
+4 ⃣ Approach Checklist for a “Powerful Agnostic Search”
+Layer
+What to Implement
+Notes
+A. Intent Parsing
+Few-shot GPT-4o-mini JSON extractor + Pydantic validation.
+Fallback rule-based NLU for hard constraints (numbers, currency, ≤, under, between…).
+Cache common queries.
+Unit tests per category.
+B. Universal Embeddings
+Use text-embedding-3-small or Cohere embed-v3 fine-tuned on retail data.
+Handles cross-category semantics.
+C. Attribute Filters
+Build dynamic MongoDB filter dict from parsed facets (price, brand, eco_cert).
+Keeps precision high.
+D. Retrieval Fusion
+Vector + BM25 + popularity + freshness scoring.
+Start with linear blend; later train LambdaMART.
+E. Reranking/Validation
+Cohere ReRank or local Mini-LM; reward attribute-match coverage.
+Shave cost by reranking only top-K.
+F. Bundle Generator
+If query type = “setup” / “gift”, call a secondary agent that composes complementary SKUs using association-rules or knn-graph.
+Surfaced as “Starter Pack” cards.
+G. Evaluation Framework
+RAGAS for LLM QA-style metrics plus classic IR metrics (NDCG, MRR).
+Create cross-category gold set.
+Fail CI if any metric drops.
+H. Feedback Loop
+Click-through + add-to-cart signals piped into BigQuery / Atlas.
+Train online boosts (DuelistBandit, Logistic Regression) over time.
+Improves without manual rules.
+I. Scalability / Ops
+Auto-embed new SKUs via Atlas Trigger, store in same doc.
+Zero-downtime index rebuilds by rolling index alias.
+Future-proof to 1 M+ SKUs.
+J. Governance
+Alert if LLM parser confidence < τ → fall back to keyword search to avoid silent failures.
+GDPR compliance on logs.
+
+
+How to Fold This into Your Existing 10-Day Plan
+
+Day
+Primary Goal
+      Deep-Dive Tasks & Deliverables (✓ = EOD artefact)
+1 Baseline & Metrics
+Establish a reference line to beat.
+• Wire a simple pipeline: query → embedding (OpenAI text-embedding) → $vectorSearch (top 20).
+• Hard-code facet filters (price, color) from regular-expressions; no re-rank yet.
+• Measure on 30 mixed-category queries:
+ – p95 latency – NDCG@10 – Recall@20.
+✓ Baseline report (baseline_metrics.md).
+2 Vector Index Tuning
+Max recall without blowing up latency.
+• Experiment with Atlas parameters:
+ – similarity (cosine vs. dot-product) 
+ – numCandidates vs. topK.
+• Try opensearch-compatible HNSW config (higher m, efConstruction).
+✓ Notebook vector_index_ablation.ipynb with plots: recall vs. latency.
+3 Embedding Model Bake-off
+Find the best semantic fingerprint.
+• Compare 3 models:
+ 1. OpenAI text-embedding-3-small 
+ 2. Cohere embed-v3 
+ 3. open-source e5-mistral-instruct (via Ollama).
+• Embed query+catalog once each; store separate fields.
+✓ embedding_comparison.csv (NDCG, tokens/sec, cost/query).
+4 LLM Intent Agent v2
+Robust JSON parse of any query.
+• Prompt-engineer GPT-4o-mini to detect:
+ – Numeric ranges (under 1000, between 20-30 kg).
+ – Recipient & occasion (“gift for dad”, “ house-warming”).
+ – Boolean flags (eco-friendly, refurbished).
+• Add confidence score; if < 0.8 → fallback to regex filter only.
+✓ 50-query unit test (≥ 92 % correct parse).
+5 Hybrid Retrieval Agent
+Fuse BM25 + Vector like a pro.
+• Add Atlas compound text index (name, brand, specs).
+• Implement agent logic:
+ 1) Run vector & BM25 in parallel.
+ 2) Normalise scores.
+ 3) Weighted blend (start 0.6/0.4).
+• Autotune weights on dev set via grid-search.
+✓ hybrid_weights.json; IR lift ≥ +5 % NDCG over Day 1.
+6 Re-rank & Diversify
+Precision pop without heavy cost.
+• Pipe top 50 to Cohere ReRank v3; cache results per query hash.
+• Implement diversity re-rank (Maximal Marginal Relevance) to avoid near-duplicates (same color/size only).
+• A/B: Cohere vs. MiniLM rerank; measure quality-per-dollar.
+✓ rerank_eval.md with cost & quality deltas.
+7 Latency & Caching Sprint
+Hit sub-400 ms p95.
+• Add Redis layer:
+ – key: SHA256(query + locale) → cached results.
+ – TTL 24 h, LRU eviction.
+• Async embed + search using asyncio & motor.
+• Parallelize vector & BM25 calls.
+✓ latency_dashboard.png (Grafana export).
+8 Synonym & Attribute Graphs
+Boost long-tail understanding.
+• Curate synonym sets for top 300 tokens (“cell↔mobile”, “sofa↔couch”). Load into Atlas Search “synonyms”.
+• Build attribute inference micro-service: if query embeds “light” + “shoes” & weight< 400 g flag not found → penalize score.
+✓ PR with synonym JSON + attribute-inference code; measure +Recall@50.
+9 Evaluation Harness (RAGAS + Live Logs)
+Continuous relevance assurance.
+• Label 150 mixed-category queries with ideal top-5 SKUs (crowd or internal).
+• Add RAGAS retrieval metrics (faithfulness, context recall) to evaluate.py.
+• Ingest production logs; replay 500 most frequent queries nightly; track drift.
+✓ CI job that fails if NDCG@10 drops > 5 % or latency rises > 20 %.
+10 Benchmark, Docs & Next Steps
+Decide the winning configuration & set future roadmap.
+• Run final bake-off:
+ A) Vector-only (cheap) B) Hybrid C) Hybrid + ReRank (premium).
+• Record metrics, cost/query, infra footprint.
+• Produce Tech Decision Doc: which path for GA, rollback strategy.
+• List backlog: multi-lingual embeddings, vision-language search, personalisation bandits.
+✓ search_mvp_v1.pdf shared & walkthrough video recorded.
+
+
+Guiding Principles
+Dimension
+Good Practice
+Accuracy
+Always compare against Day-1 baseline; lock CI gates.
+Speed
+Parallelise, cache, avoid rerank when cosine > 0.92.
+Cost
+Track $/1 k queries per variant; aim < ₹0.30/query.
+Maintainability
+Each service (parser, embeddings, retrieval, rerank) behind its own FastAPI route with contract tests.
+
+

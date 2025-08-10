@@ -1,0 +1,241 @@
+﻿You are assisting in building the openai_embedding_text string for each product document to maximize recall/precision in MongoDB Atlas Vector Search.
+The corpus spans all e-commerce categories (fashion, electronics, home-decor, beauty, groceries, gifts, etc.). We use OpenAI text-embedding-3-small. The embedding text must be short, factual, consistent, and attribute-first (no marketing fluff).
+Primary Goal
+Create a deterministic function that builds openai_embedding_text from a product doc. The output should be a single line with key:value tokens in a fixed order, including only discriminative attributes.
+Input Document (example)
+A product looks like this (fields may vary by category):
+{
+  "_id": "893e6980-f2a0-531f-b056-34dd63fe912c",
+  "title": "Solid Men Blue Track Pants",
+  "brand": "York",
+  "category": "Clothing and Accessories",
+  "sub_category": "Bottomwear",
+  "description": "Yorker trackpants made from 100% rich combed cotton ... Proudly made in India",
+  "product_details": [
+    {"Style Code": "1005BLUE"},
+    {"Closure": "Drawstring, Elastic"},
+    {"Pockets": "Side Pockets"},
+    {"Fabric": "Cotton Blend"},
+    {"Pattern": "Solid"},
+    {"Color": "Blue"}
+  ],
+  "selling_price_numeric": 499,
+  "actual_price_numeric": 1499,
+  "out_of_stock": false,
+  "images": [ "...", "..." ]
+}
+
+
+
+
+Output Format (strict)
+Build a single string using this template (omit keys with missing values; keep order):
+{title} | brand:{brand_lc} | category:{category_main}>{category_leaf} | color:{color_lc} | material:{material_lc} | pattern:{pattern_lc} | size:{size_lc} | price_inr:{price_integer} | desc:{short_descriptor}
+
+
+Rules:
+* Fixed order exactly as above.
+
+* Omit any key: where value is missing (don’t leave placeholders).
+
+* Lowercase all attribute values except the original title (preserve its case).
+
+* Normalize categories:
+
+   * category_main = normalized high-level bucket (e.g., clothing_and_accessories).
+
+   * category_leaf = normalized sub_category (e.g., bottomwear).
+
+      * Numbers as numbers: price_inr:499 (no symbols/commas).
+
+      * Short descriptor: 8–12 informative words from description only (no slogans like “Proudly made in India” or boilerplate).
+
+      * No URLs, seller names, SKUs, or IDs in the embedding text.
+
+      * No marketing fluff; keep that for BM25 keyword search instead.
+
+Category-Agnostic Key Map
+         * Fashion/Clothing: color, material (fabric), pattern, size.
+
+         * Electronics (if present): use the same pattern but swap to meaningful keys, e.g., brand, category, color (if applicable), and add ram_gb:{int}, storage_gb:{int}, supports_5g:true, screen_size_in:{float}, but keep the same output order (title → brand → category → key attrs → price → desc). If a key doesn’t apply, omit it.
+
+         * Home-decor: color, material, possibly dimensions_cm:{LxWxH} (as one token), style:{modern|boho|...}.
+
+Normalization Rules
+            * Lowercase attributes and strip whitespace.
+
+            * Map product_details array (list of single-key objects) into a flat dict with lowercased keys:
+
+               * "Fabric" → material
+
+               * "Color" → color
+
+               * "Pattern" → pattern
+
+               * "Size" → size
+
+                  * Category normalization:
+
+                     * category_main = snake_case(lower(category)) e.g., "Clothing and Accessories" → clothing_and_accessories.
+
+                     * category_leaf = snake_case(lower(sub_category)).
+
+                        * Price:
+
+                           * Use selling_price_numeric (fallback price_inr if already present).
+
+                           * Integer only in output (int(price)).
+
+                              * Short descriptor:
+
+                                 * Strip boilerplate phrases like: proudly made in, great for all year, generic claims.
+
+                                 * Keep 8–12 informative words (e.g., “skin-friendly itch-free waistband breathable cotton”).
+Examples
+Input (above) → Output
+Solid Men Blue Track Pants | brand:york | category:clothing_and_accessories>bottomwear | color:blue | material:cotton blend | pattern:solid | price_inr:499 | desc:skin-friendly itch-free waistband breathable cotton
+
+
+Another (electronics)
+Galaxy M35 5G (8GB,128GB) | brand:samsung | category:electronics>phones | ram_gb:8 | storage_gb:128 | supports_5g:true | price_inr:17999 | desc:amoled display long battery fast charging
+
+
+(For electronics, keep order: title → brand → category → relevant attrs → price → desc. Omit fashion-only keys.)
+
+
+Do / Don’t Checklist
+Do
+                                    * Keep the string short, factual, and consistent.
+
+                                    * Use the same model (text-embedding-3-small) for queries and items.
+
+                                    * Rebuild the string and re-embed only when title/brand/category/attributes/price/desc change.
+
+Don’t
+                                       * Include currency symbols, commas, or units beyond what’s necessary (e.g., price_inr:14999).
+
+                                       * Include seller names, URLs, IDs, promotional phrases, or availability flags.
+
+                                       * Mix embeddings from different models without re-embedding the corpus.
+
+Required Deliverables from Copilot
+                                          1. A pure Python function build_embedding_text(doc: dict) -> str that:
+
+                                             * Flattens product_details to a dict.
+
+                                             * Normalizes category/attributes.
+
+                                             * Assembles the output string using the rules above.
+
+                                                2. Unit tests with at least 5 cases:
+
+                                                   * The track pants example.
+
+                                                   * An item missing pattern (ensure the key is omitted).
+
+                                                   * An electronics item with 5G/RAM/Storage.
+
+                                                   * A home-decor item with material and dimensions.
+
+                                                   * A document with messy casing/commas in price and extra fluff in description.
+
+                                                      3. An idempotent migration script that:
+
+                                                         * Iterates over products collection.
+
+                                                         * Computes openai_embedding_text with build_embedding_text.
+
+                                                         * Writes it back ($set), and only re-embeds when the generated string has changed.
+
+Reference Implementation (have Copilot generate/complete this)
+import re
+
+
+BOILERPLATE_PATTERNS = [
+    r"proudly made in [a-z\s]+",
+    r"great for all year( round)? use",
+    r"best in class",
+]
+
+
+def _to_snake(s: str) -> str:
+    s = s.strip().lower()
+    s = re.sub(r"[^a-z0-9]+", "_", s).strip("_")
+    return s
+
+
+def _pd_to_map(product_details):
+    out = {}
+    for kv in (product_details or []):
+        for k, v in kv.items():
+            out[k.strip().lower()] = str(v).strip()
+    return out
+
+
+def _clean_desc(text: str, max_words=12) -> str | None:
+    if not text: return None
+    t = text
+    for pat in BOILERPLATE_PATTERNS:
+        t = re.sub(pat, "", t, flags=re.I)
+    words = re.findall(r"[A-Za-z0-9%+\-']+", t.lower())
+    return " ".join(words[:max_words]) if words else None
+
+
+def build_embedding_text(doc: dict) -> str:
+    title = (doc.get("title") or "").strip()
+    brand = (doc.get("brand") or "").strip().lower() or None
+
+
+    # categories
+    category_main = _to_snake(doc.get("category") or "general")
+    category_leaf = _to_snake(doc.get("sub_category") or "") or None
+
+
+    # flatten product_details and map keys
+    pd = _pd_to_map(doc.get("product_details"))
+    color = (pd.get("color") or "").lower() or None
+    material = (pd.get("fabric") or pd.get("material") or "").lower() or None
+    pattern = (pd.get("pattern") or "").lower() or None
+    size = (pd.get("size") or "").lower() or None
+
+
+    # price
+    price = doc.get("selling_price_numeric") or doc.get("price_inr")
+    price = int(price) if isinstance(price, (int, float, str)) and str(price).strip() else None
+
+
+    # short descriptor
+    short_desc = _clean_desc(doc.get("description") or "")
+
+
+    parts = []
+    if title: parts.append(title)
+    if brand: parts.append(f"brand:{brand}")
+    if category_main and category_leaf:
+        parts.append(f"category:{category_main}>{category_leaf}")
+    elif category_main:
+        parts.append(f"category:{category_main}")
+    if color: parts.append(f"color:{color}")
+    if material: parts.append(f"material:{material}")
+    if pattern: parts.append(f"pattern:{pattern}")
+    if size: parts.append(f"size:{size}")
+    if price is not None: parts.append(f"price_inr:{price}")
+    if short_desc: parts.append(f"desc:{short_desc}")
+
+
+    return " | ".join(parts)
+
+
+Acceptance Criteria
+                                                            * Output strings are ≤ 200 characters in most cases and follow the fixed order.
+
+                                                            * Missing attributes are cleanly omitted (no dangling key:).
+
+                                                            * Unit tests pass and include edge cases (missing fields, noisy description).
+
+                                                            * Re-embedding is triggered only when the regenerated string changes.
+
+________________
+
+
+Follow this prompt exactly. Generate the function, tests, and a migration script stub that updates openai_embedding_text for all products.
