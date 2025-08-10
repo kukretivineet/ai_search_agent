@@ -4,12 +4,10 @@
 .env.dev
 .env.prod
 archive/
+archive_test/
 *.json
 !package.json
 !*.sample.json
-
-# Large dataset files
-archive_test/
 *.csv
 *.jsonl
 
