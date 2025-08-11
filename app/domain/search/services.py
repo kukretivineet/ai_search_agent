@@ -109,6 +109,9 @@ class SearchDomainService:
         """
         query_parts = []
         
+        # Use rephrased query if available (from LLM) or fall back to keywords
+        search_query = search_intent.get('rephrased_query', search_intent['original_query'])
+        
         # Add keyword search (regex-based to avoid text index requirement)
         if search_intent['keywords']:
             keyword_filters = []
@@ -163,11 +166,11 @@ class SearchDomainService:
         if query_parts:
             return {'$and': query_parts} if len(query_parts) > 1 else query_parts[0]
         else:
-            # Fallback to regex search on title and description
+            # Fallback to regex search on title and description using best available query
             return {
                 '$or': [
-                    {'title': {'$regex': search_intent['original_query'], '$options': 'i'}},
-                    {'description': {'$regex': search_intent['original_query'], '$options': 'i'}}
+                    {'title': {'$regex': search_query, '$options': 'i'}},
+                    {'description': {'$regex': search_query, '$options': 'i'}}
                 ]
             }
     
@@ -313,6 +316,18 @@ class SearchDomainService:
                 if ok:
                     score += 0.2
         
+        # LLM-enhanced scoring for gifting context
+        if search_intent.get('filters', {}).get('gifting'):
+            max_score += 0.15
+            # Boost gift-appropriate items (jewelry, accessories, etc.)
+            gift_keywords = ['gift', 'present', 'jewelry', 'accessories', 'watch', 'perfume']
+            for gift_keyword in gift_keywords:
+                if (gift_keyword in title or 
+                    gift_keyword in document.get('description', '').lower() or
+                    gift_keyword in doc_category):
+                    score += 0.15
+                    break
+        
         # Normalize score
         return score / max_score if max_score > 0 else 0.0
     
@@ -359,3 +374,44 @@ class SearchDomainService:
             validation['query_type'] = 'price'
         
         return validation
+    
+    def calculate_pagination(
+        self, 
+        page: int, 
+        page_size: int, 
+        total: int
+    ) -> Dict[str, Any]:
+        """
+        Calculate pagination metadata
+        
+        Args:
+            page: Current page number (1-based)
+            page_size: Number of items per page
+            total: Total number of items
+            
+        Returns:
+            Pagination metadata
+        """
+        # Ensure valid inputs
+        page = max(1, page)
+        page_size = max(1, min(100, page_size))  # Cap at 100 items per page
+        
+        total_pages = (total + page_size - 1) // page_size if total > 0 else 1
+        has_next = page < total_pages
+        has_prev = page > 1
+        
+        # Calculate start and end indices for current page
+        start_idx = (page - 1) * page_size
+        end_idx = min(start_idx + page_size, total)
+        
+        return {
+            'page': page,
+            'page_size': page_size,
+            'total': total,
+            'total_pages': total_pages,
+            'has_next': has_next,
+            'has_prev': has_prev,
+            'start_idx': start_idx,
+            'end_idx': end_idx,
+            'returned': max(0, end_idx - start_idx)
+        }

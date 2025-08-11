@@ -286,8 +286,8 @@
       </div>
     </section>
 
-    <!-- Suggested Queries Section - Hidden initially, shown after search -->
-    <section id="suggestedQueriesSection" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 hidden">
+    <!-- Suggested Queries Section -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
       <div class="animate-slide-up" style="animation-delay: 0.3s;">
         <h2 class="text-2xl font-semibold text-center mb-8 text-slate-800 dark:text-slate-200">
           Try these searches
@@ -393,8 +393,8 @@
       </div>
     </section>
 
-    <!-- API Documentation Section - Hidden initially, shown after search -->
-    <section id="apiDocumentationSection" class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 hidden">
+    <!-- API Documentation Section -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
       <div class="animate-slide-up" style="animation-delay: 0.4s;">
         <div class="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 rounded-3xl p-8 shadow-soft">
           <div class="flex items-center justify-between flex-wrap gap-6">
@@ -502,12 +502,6 @@
       searchBtn.disabled = true;
       searchBtn.innerHTML = '<svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg><span class="ml-2">Searching...</span>';
 
-      // Hide suggestion and API sections during search
-      const suggestionsSection = document.getElementById('suggestedQueriesSection');
-      const apiSection = document.getElementById('apiDocumentationSection');
-      if (suggestionsSection) suggestionsSection.classList.add('hidden');
-      if (apiSection) apiSection.classList.add('hidden');
-
       // Show skeletons
       setBusy(true);
       resultsDiv.innerHTML = createSkeletonLoaders();
@@ -517,7 +511,7 @@
       fetch('/api/search/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query, limit: 12, page: 1, use_reranking: useReranking, mode: searchMode })
+        body: JSON.stringify({ query, limit: 12, use_reranking: useReranking, mode: searchMode })
       })
       .then(r => r.json())
       .then(data => {
@@ -526,8 +520,6 @@
           data.execution_time = (performance.now() - start) / 1000;
         }
         data.search_mode = searchMode;
-        // Store current search params for pagination
-        window.currentSearch = { query, mode: searchMode, useReranking };
         showResults(data);
       })
       .catch(err => {
@@ -586,21 +578,15 @@
       }
 
       const count = data.results.length;
-      const total = data.total || count;
-      const page = data.page || 1;
-      const totalPages = data.total_pages || 1;
-      const hasNext = data.has_next || false;
-      const hasPrev = data.has_prev || false;
       const modeBadge = data.search_mode === 'vector' ? 'Semantic' : (data.search_mode === 'text' ? 'Keyword' : 'Hybrid');
       
       const header = `
         <div class="mb-8 animate-slide-up text-center">
-          <h2 class="text-3xl font-bold mb-2 text-slate-900 dark:text-slate-100">Found ${total} products</h2>
+          <h2 class="text-3xl font-bold mb-2 text-slate-900 dark:text-slate-100">Found ${count} products</h2>
           <p class="text-slate-600 dark:text-slate-400">
             <span class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary font-medium mr-3">${modeBadge} mode</span>
             ${data.reranked ? '<span class="inline-flex items-center gap-1"><svg class="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> AI Reranked</span>' : 'Standard ranking'}
             ${data.execution_time ? ` • ${Number(data.execution_time).toFixed(2)}s` : ''}
-            <br><span class="text-sm text-slate-500 dark:text-slate-400">Page ${page} of ${totalPages}</span>
           </p>
         </div>`;
 
@@ -608,69 +594,12 @@
       const gridClose = '</div>';
       const cards = data.results.map(createProductCard).join('');
 
-      // Pagination controls
-      const paginationControls = `
-        <div class="mt-12 flex flex-col items-center space-y-4">
-          <div class="flex items-center justify-center space-x-4">
-            ${hasPrev ? `
-              <button onclick="loadPage(${page - 1})" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-200 dark:hover:bg-slate-600 focus:outline-none focus:ring-4 focus:ring-slate-300/30 transition-all duration-200">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-                Previous
-              </button>
-            ` : ''}
-            
-            <span class="px-4 py-2 text-slate-600 dark:text-slate-400 font-medium">
-              Page ${page} of ${totalPages}
-            </span>
-            
-            ${hasNext ? `
-              <button onclick="loadPage(${page + 1})" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-medium hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-primary/30 transition-all duration-200 shadow-soft hover:shadow-medium">
-                Next
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </button>
-            ` : ''}
-          </div>
-          
-          ${hasNext ? `
-            <button onclick="loadMoreResults()" class="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-accent text-white font-medium hover:bg-accent-dark focus:outline-none focus:ring-4 focus:ring-accent/30 transition-all duration-200 shadow-soft hover:shadow-medium">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-              </svg>
-              Load More Results
-            </button>
-          ` : ''}
-        </div>
-      `;
-
-      resultsDiv.innerHTML = header + gridOpen + cards + gridClose + paginationControls;
-
-      // Store current pagination state
-      window.currentPagination = { page, total, totalPages, hasNext, hasPrev };
+      resultsDiv.innerHTML = header + gridOpen + cards + gridClose;
 
       // Staggered reveal
       resultsDiv.querySelectorAll('.product-card').forEach((card, i) => {
         card.style.animation = `slide-up 0.4s ease-out ${i * 50}ms both`;
       });
-
-      // Show the suggestion queries and API documentation sections after results
-      setTimeout(() => {
-        const suggestionsSection = document.getElementById('suggestedQueriesSection');
-        const apiSection = document.getElementById('apiDocumentationSection');
-        
-        if (suggestionsSection) {
-          suggestionsSection.classList.remove('hidden');
-          suggestionsSection.classList.add('animate-slide-up');
-        }
-        
-        if (apiSection) {
-          apiSection.classList.remove('hidden');
-          apiSection.classList.add('animate-slide-up');
-        }
-      }, 800); // Delay to show after results are rendered
     }
 
     // Product card
@@ -786,184 +715,6 @@
       toast.textContent = message;
       document.body.appendChild(toast);
       setTimeout(() => toast.remove(), 3000);
-    }
-
-    // Pagination functions
-    function loadPage(page) {
-      if (!window.currentSearch) {
-        showNotification('No active search to paginate', 'warning');
-        return;
-      }
-
-      const { query, mode, useReranking } = window.currentSearch;
-      
-      // Show loading indicator
-      const resultsDiv = document.getElementById('results');
-      const loader = document.createElement('div');
-      loader.className = 'fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex items-center justify-center';
-      loader.innerHTML = `
-        <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-strong">
-          <div class="flex items-center gap-3">
-            <svg class="w-6 h-6 animate-spin text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-            </svg>
-            <span class="text-slate-900 dark:text-slate-100 font-medium">Loading page ${page}...</span>
-          </div>
-        </div>
-      `;
-      document.body.appendChild(loader);
-
-      fetch('/api/search/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          query, 
-          limit: 12, 
-          page, 
-          use_reranking: useReranking, 
-          mode 
-        })
-      })
-      .then(r => r.json())
-      .then(data => {
-        data.search_mode = mode;
-        showResults(data);
-        // Scroll to top of results
-        resultsDiv.scrollIntoView({ behavior: 'smooth' });
-      })
-      .catch(err => {
-        console.error(err);
-        showError('Failed to load page. Please try again.');
-      })
-      .finally(() => {
-        loader.remove();
-      });
-    }
-
-    function loadMoreResults() {
-      if (!window.currentSearch || !window.currentPagination) {
-        showNotification('No active search to load more results', 'warning');
-        return;
-      }
-
-      const { query, mode, useReranking } = window.currentSearch;
-      const { page, hasNext } = window.currentPagination;
-      
-      if (!hasNext) {
-        showNotification('No more results to load', 'info');
-        return;
-      }
-
-      const nextPage = page + 1;
-      const resultsDiv = document.getElementById('results');
-      
-      // Add loading indicator to the bottom
-      const loadingIndicator = document.createElement('div');
-      loadingIndicator.id = 'loading-more';
-      loadingIndicator.className = 'mt-8 flex items-center justify-center';
-      loadingIndicator.innerHTML = `
-        <div class="flex items-center gap-3 bg-white dark:bg-slate-800 px-6 py-4 rounded-2xl shadow-soft border border-slate-200/50 dark:border-slate-700/50">
-          <svg class="w-5 h-5 animate-spin text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-          </svg>
-          <span class="text-slate-900 dark:text-slate-100 font-medium">Loading more results...</span>
-        </div>
-      `;
-      resultsDiv.appendChild(loadingIndicator);
-
-      fetch('/api/search/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          query, 
-          limit: 12, 
-          page: nextPage, 
-          use_reranking: useReranking, 
-          mode 
-        })
-      })
-      .then(r => r.json())
-      .then(data => {
-        loadingIndicator.remove();
-        
-        if (data.results && data.results.length > 0) {
-          // Find the existing grid and append new cards
-          const existingGrid = resultsDiv.querySelector('.grid');
-          if (existingGrid) {
-            const newCards = data.results.map(createProductCard).join('');
-            existingGrid.insertAdjacentHTML('beforeend', newCards);
-            
-            // Update pagination controls
-            const hasNext = data.has_next || false;
-            const hasPrev = data.has_prev || false;
-            const newPage = data.page || nextPage;
-            const totalPages = data.total_pages || 1;
-            
-            // Remove old pagination controls
-            const oldPagination = resultsDiv.querySelector('.mt-12');
-            if (oldPagination) oldPagination.remove();
-            
-            // Add new pagination controls
-            const paginationControls = `
-              <div class="mt-12 flex flex-col items-center space-y-4">
-                <div class="flex items-center justify-center space-x-4">
-                  ${hasPrev ? `
-                    <button onclick="loadPage(${newPage - 1})" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium hover:bg-slate-200 dark:hover:bg-slate-600 focus:outline-none focus:ring-4 focus:ring-slate-300/30 transition-all duration-200">
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                      </svg>
-                      Previous
-                    </button>
-                  ` : ''}
-                  
-                  <span class="px-4 py-2 text-slate-600 dark:text-slate-400 font-medium">
-                    Page ${newPage} of ${totalPages}
-                  </span>
-                  
-                  ${hasNext ? `
-                    <button onclick="loadPage(${newPage + 1})" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-primary text-white font-medium hover:bg-primary-dark focus:outline-none focus:ring-4 focus:ring-primary/30 transition-all duration-200 shadow-soft hover:shadow-medium">
-                      Next
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                      </svg>
-                    </button>
-                  ` : ''}
-                </div>
-                
-                ${hasNext ? `
-                  <button onclick="loadMoreResults()" class="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-accent text-white font-medium hover:bg-accent-dark focus:outline-none focus:ring-4 focus:ring-accent/30 transition-all duration-200 shadow-soft hover:shadow-medium">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                    Load More Results
-                  </button>
-                ` : ''}
-              </div>
-            `;
-            resultsDiv.insertAdjacentHTML('beforeend', paginationControls);
-            
-            // Update pagination state
-            window.currentPagination = { page: newPage, total: data.total, totalPages, hasNext, hasPrev };
-            
-            // Animate new cards
-            const newCardElements = Array.from(existingGrid.children).slice(-data.results.length);
-            newCardElements.forEach((card, i) => {
-              card.style.animation = `slide-up 0.4s ease-out ${i * 50}ms both`;
-            });
-            
-            showNotification(`Loaded ${data.results.length} more results`, 'success');
-          } else {
-            showError('Unable to append results. Please refresh and try again.');
-          }
-        } else {
-          showNotification('No more results found', 'info');
-        }
-      })
-      .catch(err => {
-        loadingIndicator.remove();
-        console.error(err);
-        showError('Failed to load more results. Please try again.');
-      });
     }
 
     // Keyboard shortcuts and initial focus

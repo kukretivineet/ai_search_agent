@@ -32,6 +32,15 @@ class Settings(BaseSettings):
     openai_api_key: str
     embedding_model: str = "text-embedding-3-small"
     embedding_dimension: int = 1536
+
+    # Intent/LLM
+    llm_intent_enabled: bool = True
+    llm_intent_model: str = "gpt-4o-mini"
+    llm_intent_confidence_threshold: float = 0.8
+
+    # Intent/LLM
+    llm_intent_enabled: bool = True
+    llm_intent_model: str = "gpt-4o-mini"
     
     # Processing
     default_batch_size: int = 1000

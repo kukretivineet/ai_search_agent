@@ -35,27 +35,31 @@ async def search_products(
     start_time = time.time()
     
     try:
-        # Execute search
-        results = await search_service.search(
+        # Execute paginated search
+        search_data = await search_service.search_paginated(
             query=request.query,
             mode=request.mode,
-            limit=request.limit,
+            page=request.page,
+            page_size=request.limit,
             use_reranking=request.use_reranking
         )
         
-        # Calculate pagination
-        total = len(results)
-        page_size = request.limit
-        total_pages = math.ceil(total / page_size) if total > 0 else 1
+        results = search_data.get("results", [])
+        total = search_data.get("total", 0)
         
-        # Apply pagination
-        start_idx = (request.page - 1) * page_size
-        end_idx = start_idx + page_size
-        paginated_results = results[start_idx:end_idx]
+        # Calculate pagination metadata using domain service
+        from app.domain.search.services import SearchDomainService
+        domain_service = SearchDomainService()
+        
+        pagination_info = domain_service.calculate_pagination(
+            page=request.page,
+            page_size=request.limit,
+            total=total
+        )
         
         # Convert to response format
         product_results = [
-            ProductResult(**product) for product in paginated_results
+            ProductResult(**product) for product in results
         ]
         
         execution_time = time.time() - start_time
@@ -63,15 +67,15 @@ async def search_products(
         return SearchResponse(
             results=product_results,
             total=total,
-            returned=len(product_results),
+            returned=pagination_info["returned"],
             query=request.query,
             mode=request.mode,
             execution_time=execution_time,
             reranked=request.use_reranking and len(results) > 0,
-            page=request.page,
-            total_pages=total_pages,
-            has_next=request.page < total_pages,
-            has_prev=request.page > 1
+            page=pagination_info["page"],
+            total_pages=pagination_info["total_pages"],
+            has_next=pagination_info["has_next"],
+            has_prev=pagination_info["has_prev"]
         )
         
     except Exception as e:

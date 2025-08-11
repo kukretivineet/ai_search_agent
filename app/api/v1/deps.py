@@ -3,7 +3,7 @@ Dependency injection for DDD services and repositories.
 """
 
 import logging
-from typing import AsyncGenerator
+from typing import AsyncGenerator, Optional
 from fastapi import Depends, HTTPException, status
 from motor.motor_asyncio import AsyncIOMotorDatabase, AsyncIOMotorCollection
 
@@ -13,6 +13,7 @@ from app.repositories.product_repository import ProductRepository
 from app.services.simple_embedding_service import SimpleEmbeddingService
 from app.services.search_service import SearchService
 from app.services.reranker_service import RerankerService
+from app.services.intent_service import LLMIntentService
 from app.domain.search.services import SearchDomainService
 
 
@@ -107,11 +108,33 @@ async def get_search_domain_service() -> SearchDomainService:
     return SearchDomainService()
 
 
+async def get_intent_service(
+    settings: Settings = Depends(get_settings)
+) -> Optional[LLMIntentService]:
+    """Get LLM intent service instance.
+    
+    Args:
+        settings: Application settings
+        
+    Returns:
+        LLMIntentService instance or None if disabled
+    """
+    if not settings.llm_intent_enabled:
+        return None
+    
+    return LLMIntentService(
+        api_key=settings.openai_api_key,
+        model=settings.llm_intent_model
+    )
+
+
 async def get_search_service(
     product_repo: ProductRepository = Depends(get_product_repository),
     embedding_service: SimpleEmbeddingService = Depends(get_embedding_service),
     reranker_service: RerankerService = Depends(get_reranker_service),
-    domain_service: SearchDomainService = Depends(get_search_domain_service)
+    domain_service: SearchDomainService = Depends(get_search_domain_service),
+    intent_service: Optional[LLMIntentService] = Depends(get_intent_service),
+    settings: Settings = Depends(get_settings)
 ) -> SearchService:
     """Get search service instance with all dependencies injected.
     
@@ -128,7 +151,9 @@ async def get_search_service(
         product_repository=product_repo,
         domain_service=domain_service,
         embedding_service=embedding_service,
-        reranker_service=reranker_service
+        reranker_service=reranker_service,
+        intent_service=intent_service,
+        settings=settings
     )
     
     await search_service.initialize()

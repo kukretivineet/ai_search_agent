@@ -1,0 +1,167 @@
+﻿(1) which collections power the search, 
+(2) exactly which fields we’ll use from them, and 
+(3) a concrete plan to make the engine fast, accurate, and truly “generic” across categories.
+1) What to use from your MongoDB
+Core product source
+* salesproducts – your richest, canonical product docs: brand, name, category, flexible attributes[] (key/value), price ranges, currency, offers, FAQs, shipping, etc. This is the main index for semantic search.
+(It also tracks category, productCategory, countryOfOrigin, min/max price, unit price, paymentTerms, incoterms, lead times, isCustomizable, etc.)
+Some product docs also include globalRatings (avg + count) that you can use for ranking.
+
+* liveproducts – the published/approved subset (same shape as salesproducts for pricing/offers/facets). Use this for the customer-facing index if you want only live inventory.
+
+Taxonomy & facets
+   * categories, subcategories, productcategories – hierarchical taxonomy (e.g., “Electronics” → “Smartphones”). Great for filters and boosting.
+
+   * filters – pre-built facets like countries, supplier features, category selector—handy for assembling your filter UI quickly.
+
+Commerce context
+      * exchangerates – normalize any currency to INR for “under ₹X” filters/sorts.
+
+      * rfqcarts – variant shapes show how attributes/facets appear per variant (Color/Size/Brand, MOQ, etc.). Useful to model variant-level filters.
+
+      * businessprofiles – seller info (markets, accepted currency, lead times). Use for seller-country filters, lead-time filters, and trust badges.
+
+      * buyingrequests – power a “Looking for…” (RFQ) search mode separate from product search. Fields include desired price ranges, units, and categories.
+
+FYI, the database indeed contains all these collections (and more like selloffers, reviews, etc.).
+2) Fields to index (by use-case)
+Free text recall
+         * productName, detailedDescription, faqs[].question, faqs[].answer (semantic + keyword)
+
+Structured facets
+            * attributes[].key + attributes[].values[].name (Brand, Color, Material, Size, Screen Size, etc.)
+
+            * category.name, productCategory.name (taxonomy filters & boosts)
+
+            * countryOfOrigin.code/name (regional filters), internationalShipping (yes/no)
+
+            * isCustomizable, minOrderQuantity, moqUnit, paymentMethods, paymentTerms, incoterms
+
+            * dispatchLeadTime.min_day/max_day (delivery promises)
+
+Price & sorting
+               * pricing.unitPrice, pricing.minPrice, pricing.maxPrice, activeOffer.offerInfo.pricing.* (then convert via exchangerates)
+
+Quality & trust
+                  * globalRatings.averageRating/totalRatings (if present), seller’s mainMarkets / acceptedCurrency / averageLeadTime from businessprofiles.
+
+3) Build plan: fast + accurate hybrid search
+A. Data shaping & denormalization
+                     1. Flatten attributes
+
+                        * Create search_attributes.{key}: [values] (e.g., search_attributes.Color: ["red","black"]) from attributes[].key/values[].name. Keeps filters fast and consistent across categories.
+
+                           2. Canonical price in INR
+
+                              * Store price_inr.min/max/unit on each product using exchangerates at index time to serve “under ₹1,000” queries cheaply.
+
+                                 3. Taxonomy denorm
+
+                                    * Store category_path: ["Electronics","Smartphones"] using categories/productcategories for boosts and bread-crumb filters.
+
+                                       4. Live view
+
+                                          * If you only want published inventory, index from liveproducts; else use salesproducts and filter by publish flags.
+
+B. Indexing (MongoDB Atlas Search)
+                                             * Create one Atlas Search index (per collection you serve) with:
+
+                                                * Text: productName, detailedDescription, faqs.*, brandName, category.name, productCategory.name. Autocomplete analyzer for productName & brandName.
+
+                                                * Keyword/Facet: search_attributes.*, category_path, countryOfOrigin.code, isCustomizable, internationalShipping.
+
+                                                * Numeric: price_inr.*, minOrderQuantity, dispatchLeadTime.min_day/max_day.
+
+                                                * Object: activeOffer.offerInfo.* (optional boosts if a valid offer exists).
+
+C. Embeddings (semantic layer)
+                                                   * Compute an embedding vector for a product text blob:
+embed_text = [productName, brandName, category_path, attributes, top FAQs, detailedDescription]
+ Store it at embedding.
+
+                                                   * For queries, embed the user text and do ANN (e.g., Atlas Vector Search) side-by-side with keyword (BM25) → hybrid recall.
+
+                                                   * Keep vectors ~384–1024 dims (model-dependent) and shard the index by category if needed for scale.
+
+D. Query understanding
+                                                      * Parse facets: detect budget (₹/Rs, “under”, ranges), colors/sizes/materials, recipient (“for mom”, “for a 2-year-old”), occasion (“gardening”), brand (“Samsung”), constraints (refurbished, warranty, delivery time).
+
+                                                      * Normalize units: e.g., GB/RAM, inches/cm for screens, map to attributes keys you store (e.g., search_attributes."Screen Size Range").
+
+                                                      * Currency: convert max-budget to INR via exchangerates, then apply a numeric range filter on price_inr.min/max.
+
+E. Retrieval pipeline
+                                                         1. Stage 1 – Hybrid Recall:
+
+                                                            * Atlas $search: combine BM25 (over productName/description/FAQs) + kNN over embedding.
+
+                                                               2. Stage 2 – Facet filtering:
+
+                                                                  * Apply structured filters from the parsed query (category, brand, color, size, material, seller country, customizable, lead time, price range).
+
+                                                                  * Use your filters doc to drive UI facet lists consistently.
+
+                                                                     3. Stage 3 – Rerank:
+
+                                                                        * Use a cross-encoder (e.g., Cohere Rerank) with query × candidate snippets (name + 500 chars from description + top attributes).
+
+                                                                        * Add business boosts (e.g., in-stock, active offer, higher rating, local seller).
+
+                                                                           4. Stage 4 – Deduplicate & Diversify:
+
+                                                                              * Diversify by brand/attribute to avoid near-duplicate rows.
+
+F. Specialty modes
+                                                                                 * “Gift/recipient” mode → map recipient/age/occasion into “intent facets”; boost categories/tags likely relevant (e.g., gardening tools).
+
+                                                                                 * “Refurbished” → ensure it’s either an attribute flag or an indexable boolean; filter strictly if user explicitly asks.
+
+                                                                                 * “Warranty/Delivery constraints” → map to faqs[] fields or product attributes; add rules to surface items mentioning “warranty”, “same-day/3-day shipping”, etc.
+
+G. Speed knobs
+                                                                                    * Denorm fields (above) so filters are single-field lookups.
+
+                                                                                    * Compound indexes for fallback queries (e.g., {category.name, price_inr.min}) and for sort-by-price within category.
+
+                                                                                    * Partial indexes or separate “live” collection (liveproducts) to keep the serving index smaller.
+
+                                                                                    * Cache: cache popular queries and facet counts; pre-compute top-N per category for empty queries.
+
+H. Relevance eval
+                                                                                       * Create a labelled set from your examples (“red wireless mouse under ₹1,000”, “gift for mom who loves gardening”, “eco-friendly wooden toys for 2-year-old”, “Samsung phone 8GB RAM 5G”, “refurbished laptop for programming”). Measure: nDCG@10, Success@3, facet accuracy (did color/price apply?), and latency p95.
+
+4) How each example would map
+                                                                                          * “red wireless mouse under ₹1 000”
+
+                                                                                             * Text match: mouse wireless on name/desc; facets: search_attributes.Color=red; price filter: price_inr.max ≤ 1000.
+
+                                                                                                * “gift for my mom who loves gardening”
+
+                                                                                                   * Intent: recipient=adult female; theme=gardening → boost gardening categories/attributes; allow cross-category.
+
+                                                                                                      * “eco-friendly wooden toys for a 2-year-old”
+
+                                                                                                         * Attributes: Material=wood/wooden, sustainability tag in attributes/desc; age band facet inferred from attributes if present.
+
+                                                                                                            * “Samsung phone with 8 GB RAM and 5G”
+
+                                                                                                               * Brand facet: Brand=Samsung; attributes: RAM=8 GB, Network=5G (map to your attribute keys).
+
+                                                                                                                  * “refurbished laptop for programming”
+
+                                                                                                                     * Attribute/flag: Condition=Refurbished; text boost for “programming” in desc (developer keywords).
+
+5) Deliverables checklist (so we can execute quickly)
+                                                                                                                        1. ETL script to build search_attributes, price_inr, and category_path fields and write back to salesproducts / liveproducts.
+
+                                                                                                                        2. Atlas Search index JSON with analyzers (autocomplete + standard), facet mappings, numeric mappings.
+
+                                                                                                                        3. Embedding job to populate embedding for all products (batch + daily delta).
+
+                                                                                                                        4. Query parser (budget/units/colors/recipients/occasions/brands).
+
+                                                                                                                        5. Hybrid retrieval + rerank service (BM25 + ANN → Cohere Rerank).
+
+                                                                                                                        6. Facets API powered by filters + aggregated values from products.
+
+                                                                                                                        7. A/B + metrics dashboards (nDCG@10, CTR, conversion proxy, latency).
