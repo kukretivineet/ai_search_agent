@@ -35,3 +35,6 @@ __pycache__/
 # Coverage
 htmlcov/
 .coverage*
+
+
+prod_code/venv

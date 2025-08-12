@@ -51,6 +51,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -63,34 +64,34 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `allowedModules` | array<object> |  |
-| `allowedModules[].moduleDescription` | string | View dashboard |
-| `allowedModules[].moduleName` | string | Dashboard |
-| `allowedModules[].permissions` | object |  |
-| `allowedModules[].permissions.create` | boolean | False |
-| `allowedModules[].permissions.delete` | boolean | False |
-| `allowedModules[].permissions.edit` | boolean | False |
-| `allowedModules[].submodules` | array<object> |  |
-| `allowedModules[].submodules[].moduleDescription` | string | View onboarding approvals |
-| `allowedModules[].submodules[].moduleName` | string | Onboarding Approvals |
-| `allowedModules[].submodules[].permissions` | object |  |
-| `allowedModules[].submodules[].permissions.create` | boolean | False |
-| `allowedModules[].submodules[].permissions.delete` | boolean | False |
-| `allowedModules[].submodules[].permissions.edit` | boolean | False |
-| `createdAt` | date |  |
-| `groupDescription` | string | Read-only access to dashboard and reports |
-| `groupName` | string | View Only |
-| `isActive` | boolean | True |
-| `isDeleted` | boolean | False |
-| `metadata` | object |  |
-| `metadata.level` | string | low |
-| `tags` | array<string> |  |
-| `updatedAt` | date |  |
-| `users` | array (empty) |  |
+| Field                                              | Type          | Example                                   |
+| -------------------------------------------------- | ------------- | ----------------------------------------- |
+| `__v`                                              | integer       | 0                                         |
+| `_id`                                              | ObjectId      |                                           |
+| `allowedModules`                                   | array<object> |                                           |
+| `allowedModules[].moduleDescription`               | string        | View dashboard                            |
+| `allowedModules[].moduleName`                      | string        | Dashboard                                 |
+| `allowedModules[].permissions`                     | object        |                                           |
+| `allowedModules[].permissions.create`              | boolean       | False                                     |
+| `allowedModules[].permissions.delete`              | boolean       | False                                     |
+| `allowedModules[].permissions.edit`                | boolean       | False                                     |
+| `allowedModules[].submodules`                      | array<object> |                                           |
+| `allowedModules[].submodules[].moduleDescription`  | string        | View onboarding approvals                 |
+| `allowedModules[].submodules[].moduleName`         | string        | Onboarding Approvals                      |
+| `allowedModules[].submodules[].permissions`        | object        |                                           |
+| `allowedModules[].submodules[].permissions.create` | boolean       | False                                     |
+| `allowedModules[].submodules[].permissions.delete` | boolean       | False                                     |
+| `allowedModules[].submodules[].permissions.edit`   | boolean       | False                                     |
+| `createdAt`                                        | date          |                                           |
+| `groupDescription`                                 | string        | Read-only access to dashboard and reports |
+| `groupName`                                        | string        | View Only                                 |
+| `isActive`                                         | boolean       | True                                      |
+| `isDeleted`                                        | boolean       | False                                     |
+| `metadata`                                         | object        |                                           |
+| `metadata.level`                                   | string        | low                                       |
+| `tags`                                             | array<string> |                                           |
+| `updatedAt`                                        | date          |                                           |
+| `users`                                            | array (empty) |                                           |
 
 ### First Document (sanitized)
 
@@ -294,10 +295,7 @@
   ],
   "isActive": true,
   "isDeleted": false,
-  "tags": [
-    "super-admin",
-    "full-access"
-  ],
+  "tags": ["super-admin", "full-access"],
   "users": [],
   "metadata": {
     "level": "highest"
@@ -311,27 +309,33 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
 **groupName_1**
+
 - Type: Unique
 - Keys:
   - `groupName`: ascending
 
 **name_1**
+
 - Keys:
   - `name`: ascending
 
 **isActive_1**
+
 - Keys:
   - `isActive`: ascending
 
 **isDeleted_1**
+
 - Keys:
   - `isDeleted`: ascending
 
-**createdAt_-1**
+**createdAt\_-1**
+
 - Keys:
   - `createdAt`: descending
 
@@ -344,65 +348,65 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `activeSessions` | array (empty) |  |
-| `activityLog` | array<object> |  |
-| `activityLog[].action` | string | ACCOUNT_CREATED |
-| `activityLog[].description` | string | Account created via seed script |
-| `activityLog[].ipAddress` | string | 127.0.0.1 |
-| `activityLog[].status` | string | success |
-| `activityLog[].targetEntity` | string | Admin |
-| `activityLog[].targetId` | string | seed-script |
-| `activityLog[].timestamp` | date |  |
-| `activityLog[].userAgent` | string | Seed Script |
-| `assignments` | array (empty) |  |
-| `createdAt` | date |  |
-| `email` | string | support.admin@pepagora.com |
-| `isActive` | boolean | True |
-| `isBlocked` | boolean | False |
-| `isDeleted` | boolean | False |
-| `isEmailVerified` | boolean | True |
-| `isPhoneVerified` | boolean | True |
-| `isSuperAdmin` | boolean | False |
-| `isSuspended` | boolean | False |
-| `lastLoginAt` | date |  |
-| `lastPasswordChange` | date |  |
-| `metadata` | object |  |
-| `metadata.department` | string | Customer Support |
-| `metadata.level` | string | admin |
-| `notificationPreferences` | object |  |
-| `notificationPreferences.email` | boolean | True |
-| `notificationPreferences.inApp` | boolean | True |
-| `notificationPreferences.push` | boolean | True |
-| `notificationPreferences.sms` | boolean | True |
-| `password` | string |  |
-| `preferredLanguage` | string | en |
-| `profile` | object |  |
-| `profile.address` | object |  |
-| `profile.address.city` | string | Support City |
-| `profile.address.country` | string | USA |
-| `profile.address.state` | string | Support State |
-| `profile.address.street` | string | 654 Support Drive |
-| `profile.address.zipCode` | string | 56789 |
-| `profile.department` | string | Customer Support |
-| `profile.emergencyContact` | object |  |
-| `profile.emergencyContact.name` | string | Anna Support |
-| `profile.emergencyContact.phone` | string | +1234567899 |
-| `profile.emergencyContact.relationship` | string | Spouse |
-| `profile.employeeId` | string | EMP005 |
-| `profile.firstName` | string | Michael |
-| `profile.lastName` | string | Support |
-| `profile.phoneNumber` | string | +1234567898 |
-| `profile.position` | string | Support Administrator |
-| `tags` | array<string> |  |
-| `timezone` | string | America/Phoenix |
-| `twoFactorEnabled` | boolean | False |
-| `updatedAt` | date |  |
-| `userGroup` | ObjectId |  |
-| `username` | string | supportadmin |
+| Field                                   | Type          | Example                         |
+| --------------------------------------- | ------------- | ------------------------------- |
+| `__v`                                   | integer       | 0                               |
+| `_id`                                   | ObjectId      |                                 |
+| `activeSessions`                        | array (empty) |                                 |
+| `activityLog`                           | array<object> |                                 |
+| `activityLog[].action`                  | string        | ACCOUNT_CREATED                 |
+| `activityLog[].description`             | string        | Account created via seed script |
+| `activityLog[].ipAddress`               | string        | 127.0.0.1                       |
+| `activityLog[].status`                  | string        | success                         |
+| `activityLog[].targetEntity`            | string        | Admin                           |
+| `activityLog[].targetId`                | string        | seed-script                     |
+| `activityLog[].timestamp`               | date          |                                 |
+| `activityLog[].userAgent`               | string        | Seed Script                     |
+| `assignments`                           | array (empty) |                                 |
+| `createdAt`                             | date          |                                 |
+| `email`                                 | string        | support.admin@pepagora.com      |
+| `isActive`                              | boolean       | True                            |
+| `isBlocked`                             | boolean       | False                           |
+| `isDeleted`                             | boolean       | False                           |
+| `isEmailVerified`                       | boolean       | True                            |
+| `isPhoneVerified`                       | boolean       | True                            |
+| `isSuperAdmin`                          | boolean       | False                           |
+| `isSuspended`                           | boolean       | False                           |
+| `lastLoginAt`                           | date          |                                 |
+| `lastPasswordChange`                    | date          |                                 |
+| `metadata`                              | object        |                                 |
+| `metadata.department`                   | string        | Customer Support                |
+| `metadata.level`                        | string        | admin                           |
+| `notificationPreferences`               | object        |                                 |
+| `notificationPreferences.email`         | boolean       | True                            |
+| `notificationPreferences.inApp`         | boolean       | True                            |
+| `notificationPreferences.push`          | boolean       | True                            |
+| `notificationPreferences.sms`           | boolean       | True                            |
+| `password`                              | string        |                                 |
+| `preferredLanguage`                     | string        | en                              |
+| `profile`                               | object        |                                 |
+| `profile.address`                       | object        |                                 |
+| `profile.address.city`                  | string        | Support City                    |
+| `profile.address.country`               | string        | USA                             |
+| `profile.address.state`                 | string        | Support State                   |
+| `profile.address.street`                | string        | 654 Support Drive               |
+| `profile.address.zipCode`               | string        | 56789                           |
+| `profile.department`                    | string        | Customer Support                |
+| `profile.emergencyContact`              | object        |                                 |
+| `profile.emergencyContact.name`         | string        | Anna Support                    |
+| `profile.emergencyContact.phone`        | string        | +1234567899                     |
+| `profile.emergencyContact.relationship` | string        | Spouse                          |
+| `profile.employeeId`                    | string        | EMP005                          |
+| `profile.firstName`                     | string        | Michael                         |
+| `profile.lastName`                      | string        | Support                         |
+| `profile.phoneNumber`                   | string        | +1234567898                     |
+| `profile.position`                      | string        | Support Administrator           |
+| `tags`                                  | array<string> |                                 |
+| `timezone`                              | string        | America/Phoenix                 |
+| `twoFactorEnabled`                      | boolean       | False                           |
+| `updatedAt`                             | date          |                                 |
+| `userGroup`                             | ObjectId      |                                 |
+| `username`                              | string        | supportadmin                    |
 
 ### First Document (sanitized)
 
@@ -465,10 +469,7 @@
     "push": true,
     "inApp": true
   },
-  "tags": [
-    "super-admin",
-    "system"
-  ],
+  "tags": ["super-admin", "system"],
   "metadata": {
     "department": "IT",
     "level": "executive"
@@ -482,35 +483,43 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
 **email_1**
+
 - Type: Unique
 - Keys:
   - `email`: ascending
 
 **username_1**
+
 - Keys:
   - `username`: ascending
 
 **role_1**
+
 - Keys:
   - `role`: ascending
 
 **isActive_1**
+
 - Keys:
   - `isActive`: ascending
 
 **isDeleted_1**
+
 - Keys:
   - `isDeleted`: ascending
 
-**createdAt_-1**
+**createdAt\_-1**
+
 - Keys:
   - `createdAt`: descending
 
-**lastLoginAt_-1**
+**lastLoginAt\_-1**
+
 - Keys:
   - `lastLoginAt`: descending
 
@@ -523,71 +532,71 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `activeSessions` | array (empty) |  |
-| `activityLog` | array<object> |  |
-| `activityLog[].action` | string | ACCOUNT_CREATED |
-| `activityLog[].description` | string | Account created via seed script |
-| `activityLog[].ipAddress` | string | 127.0.0.1 |
-| `activityLog[].status` | string | success |
-| `activityLog[].targetEntity` | string | Admin |
-| `activityLog[].targetId` | string | seed-script |
-| `activityLog[].timestamp` | date |  |
-| `activityLog[].userAgent` | string | Seed Script |
-| `assignments` | array<object> |  |
-| `assignments[].items` | array<object> |  |
-| `assignments[].items[].assignedAt` | date |  |
-| `assignments[].items[].assignedBy` | ObjectId |  |
-| `assignments[].items[].id` | ObjectId |  |
-| `assignments[].items[].status` | string | pending |
-| `assignments[].subModuleName` | string | Onboarding Approvals |
-| `createdAt` | date |  |
-| `email` | string | content.manager@pepagora.com |
-| `isActive` | boolean | True |
-| `isBlocked` | boolean | False |
-| `isDeleted` | boolean | False |
-| `isEmailVerified` | boolean | True |
-| `isPhoneVerified` | boolean | True |
-| `isSuperAdmin` | boolean | False |
-| `isSuspended` | boolean | False |
-| `lastLoginAt` | date |  |
-| `lastPasswordChange` | date |  |
-| `metadata` | object |  |
-| `metadata.department` | string | Marketing |
-| `metadata.level` | string | manager |
-| `notificationPreferences` | object |  |
-| `notificationPreferences.email` | boolean | True |
-| `notificationPreferences.inApp` | boolean | True |
-| `notificationPreferences.push` | boolean | True |
-| `notificationPreferences.sms` | boolean | False |
-| `password` | string |  |
-| `preferredLanguage` | string | en |
-| `profile` | object |  |
-| `profile.address` | object |  |
-| `profile.address.city` | string | Content City |
-| `profile.address.country` | string | USA |
-| `profile.address.state` | string | Content State |
-| `profile.address.street` | string | 456 Content Avenue |
-| `profile.address.zipCode` | string | 23456 |
-| `profile.department` | string | Marketing |
-| `profile.emergencyContact` | object |  |
-| `profile.emergencyContact.name` | string | Mike Content |
-| `profile.emergencyContact.phone` | string | +1234567893 |
-| `profile.emergencyContact.relationship` | string | Spouse |
-| `profile.employeeId` | string | EMP002 |
-| `profile.firstName` | string | Sarah |
-| `profile.lastName` | string | Content |
-| `profile.phoneNumber` | string | +1234567892 |
-| `profile.position` | string | Content Manager |
-| `tags` | array<string> |  |
-| `timezone` | string | America/Chicago |
-| `twoFactorEnabled` | boolean | False |
-| `updatedAt` | date |  |
-| `userGroup` | ObjectId |  |
-| `username` | string | contentmanager |
+| Field                                   | Type          | Example                         |
+| --------------------------------------- | ------------- | ------------------------------- |
+| `__v`                                   | integer       | 0                               |
+| `_id`                                   | ObjectId      |                                 |
+| `activeSessions`                        | array (empty) |                                 |
+| `activityLog`                           | array<object> |                                 |
+| `activityLog[].action`                  | string        | ACCOUNT_CREATED                 |
+| `activityLog[].description`             | string        | Account created via seed script |
+| `activityLog[].ipAddress`               | string        | 127.0.0.1                       |
+| `activityLog[].status`                  | string        | success                         |
+| `activityLog[].targetEntity`            | string        | Admin                           |
+| `activityLog[].targetId`                | string        | seed-script                     |
+| `activityLog[].timestamp`               | date          |                                 |
+| `activityLog[].userAgent`               | string        | Seed Script                     |
+| `assignments`                           | array<object> |                                 |
+| `assignments[].items`                   | array<object> |                                 |
+| `assignments[].items[].assignedAt`      | date          |                                 |
+| `assignments[].items[].assignedBy`      | ObjectId      |                                 |
+| `assignments[].items[].id`              | ObjectId      |                                 |
+| `assignments[].items[].status`          | string        | pending                         |
+| `assignments[].subModuleName`           | string        | Onboarding Approvals            |
+| `createdAt`                             | date          |                                 |
+| `email`                                 | string        | content.manager@pepagora.com    |
+| `isActive`                              | boolean       | True                            |
+| `isBlocked`                             | boolean       | False                           |
+| `isDeleted`                             | boolean       | False                           |
+| `isEmailVerified`                       | boolean       | True                            |
+| `isPhoneVerified`                       | boolean       | True                            |
+| `isSuperAdmin`                          | boolean       | False                           |
+| `isSuspended`                           | boolean       | False                           |
+| `lastLoginAt`                           | date          |                                 |
+| `lastPasswordChange`                    | date          |                                 |
+| `metadata`                              | object        |                                 |
+| `metadata.department`                   | string        | Marketing                       |
+| `metadata.level`                        | string        | manager                         |
+| `notificationPreferences`               | object        |                                 |
+| `notificationPreferences.email`         | boolean       | True                            |
+| `notificationPreferences.inApp`         | boolean       | True                            |
+| `notificationPreferences.push`          | boolean       | True                            |
+| `notificationPreferences.sms`           | boolean       | False                           |
+| `password`                              | string        |                                 |
+| `preferredLanguage`                     | string        | en                              |
+| `profile`                               | object        |                                 |
+| `profile.address`                       | object        |                                 |
+| `profile.address.city`                  | string        | Content City                    |
+| `profile.address.country`               | string        | USA                             |
+| `profile.address.state`                 | string        | Content State                   |
+| `profile.address.street`                | string        | 456 Content Avenue              |
+| `profile.address.zipCode`               | string        | 23456                           |
+| `profile.department`                    | string        | Marketing                       |
+| `profile.emergencyContact`              | object        |                                 |
+| `profile.emergencyContact.name`         | string        | Mike Content                    |
+| `profile.emergencyContact.phone`        | string        | +1234567893                     |
+| `profile.emergencyContact.relationship` | string        | Spouse                          |
+| `profile.employeeId`                    | string        | EMP002                          |
+| `profile.firstName`                     | string        | Sarah                           |
+| `profile.lastName`                      | string        | Content                         |
+| `profile.phoneNumber`                   | string        | +1234567892                     |
+| `profile.position`                      | string        | Content Manager                 |
+| `tags`                                  | array<string> |                                 |
+| `timezone`                              | string        | America/Chicago                 |
+| `twoFactorEnabled`                      | boolean       | False                           |
+| `updatedAt`                             | date          |                                 |
+| `userGroup`                             | ObjectId      |                                 |
+| `username`                              | string        | contentmanager                  |
 
 ### First Document (sanitized)
 
@@ -806,10 +815,7 @@
     "push": true,
     "inApp": true
   },
-  "tags": [
-    "super-admin",
-    "system"
-  ],
+  "tags": ["super-admin", "system"],
   "metadata": {
     "department": "IT",
     "level": "executive"
@@ -823,35 +829,43 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
 **email_1**
+
 - Type: Unique
 - Keys:
   - `email`: ascending
 
 **username_1**
+
 - Keys:
   - `username`: ascending
 
 **role_1**
+
 - Keys:
   - `role`: ascending
 
 **isActive_1**
+
 - Keys:
   - `isActive`: ascending
 
 **isDeleted_1**
+
 - Keys:
   - `isDeleted`: ascending
 
-**createdAt_-1**
+**createdAt\_-1**
+
 - Keys:
   - `createdAt`: descending
 
-**lastLoginAt_-1**
+**lastLoginAt\_-1**
+
 - Keys:
   - `lastLoginAt`: descending
 
@@ -865,6 +879,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -877,29 +892,29 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `billingAddress` | object |  |
-| `billingAddress.addressLine` | string | 1 street |
-| `billingAddress.city` | string | Ghormach |
-| `billingAddress.country` | object |  |
-| `billingAddress.country.code` | string | AF |
-| `billingAddress.country.name` | string | Afghanistan |
-| `billingAddress.pincode` | string | 123468 |
-| `billingAddress.state` | string | Badghis |
-| `businessName` | string | My Business Pvt Ltd |
-| `cardExpiredDate` | date |  |
-| `cardHolderName` | string | John Doe |
-| `cardNo` | string | 4111111111111111 |
-| `createdAt` | date |  |
-| `createdBy` | ObjectId |  |
-| `cvv` | string | 123 |
-| `isCompliantWithRBIGuidelines` | boolean | False |
-| `name` | string | David |
-| `payments` | array<ObjectId> | array (empty) |  |
-| `updatedAt` | date |  |
+| Field                          | Type            | Example             |
+| ------------------------------ | --------------- | ------------------- | --- |
+| `__v`                          | integer         | 0                   |
+| `_id`                          | ObjectId        |                     |
+| `billingAddress`               | object          |                     |
+| `billingAddress.addressLine`   | string          | 1 street            |
+| `billingAddress.city`          | string          | Ghormach            |
+| `billingAddress.country`       | object          |                     |
+| `billingAddress.country.code`  | string          | AF                  |
+| `billingAddress.country.name`  | string          | Afghanistan         |
+| `billingAddress.pincode`       | string          | 123468              |
+| `billingAddress.state`         | string          | Badghis             |
+| `businessName`                 | string          | My Business Pvt Ltd |
+| `cardExpiredDate`              | date            |                     |
+| `cardHolderName`               | string          | John Doe            |
+| `cardNo`                       | string          | 4111111111111111    |
+| `createdAt`                    | date            |                     |
+| `createdBy`                    | ObjectId        |                     |
+| `cvv`                          | string          | 123                 |
+| `isCompliantWithRBIGuidelines` | boolean         | False               |
+| `name`                         | string          | David               |
+| `payments`                     | array<ObjectId> | array (empty)       |     |
+| `updatedAt`                    | date            |                     |
 
 ### First Document (sanitized)
 
@@ -922,9 +937,7 @@
   "createdAt": "2025-08-08T12:00:58.234000",
   "isCompliantWithRBIGuidelines": true,
   "name": "connector01",
-  "payments": [
-    "6895f7a16e675d454fa8761b"
-  ],
+  "payments": ["6895f7a16e675d454fa8761b"],
   "updatedAt": "2025-08-09T14:19:31.958000",
   "cardExpiredDate": "[REDACTED]",
   "cardHolderName": "[REDACTED]",
@@ -936,6 +949,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -948,253 +962,253 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `BusinessVerifyStatus` | string | Pending |
-| `IdentityVerifyStatus` | string | Pending |
-| `PANNo` | string | asefsefewf |
-| `VATNo` | string |  |
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `acceptedCurrency` | array<object> |  |
-| `acceptedCurrency[].code` | string | INR |
-| `acceptedCurrency[].name` | string | Indian Rupee |
-| `acceptedCurrency[].symbol` | string | ₹ |
-| `annualOutputValue` | string | Less than $1M |
-| `annualProductionCapacity` | array<object> | array (empty) |  |
-| `annualProductionCapacity[].product` | string | Widgets |
-| `annualProductionCapacity[].quantity` | integer | 10000 |
-| `annualProductionCapacity[].unit` | string | pieces |
-| `annualTurnover` | string | Below ₹25 Lakhs |
-| `averageLeadTime` | object |  |
-| `averageLeadTime.unit` | string | days |
-| `averageLeadTime.value` | integer | 10 |
-| `awards` | array<object> | array (empty) |  |
-| `awards[].image` | object |  |
-| `awards[].image.alt` | string | Best Manufacturer Award |
-| `awards[].image.exten` | string | png |
-| `awards[].image.size` | integer | 896000 |
-| `awards[].image.src` | string | https://www.example.com/award1.png |
-| `awards[].name` | string | Best Manufacturer 2023 |
-| `awards[].year` | integer | 2023 |
-| `brochures` | array<object> | array (empty) |  |
-| `brochures[].alt` | string | assets/fSRxOPN5JG2NrwX09ZEqn.pdf |
-| `brochures[].exten` | string | application/pdf |
-| `brochures[].size` | integer | 28117 |
-| `brochures[].src` | string | assets/fSRxOPN5JG2NrwX09ZEqn.pdf |
-| `businessAddress` | object |  |
-| `businessAddress.addressLine` | string | 123 MG Road |
-| `businessAddress.city` | string | Bangalore |
-| `businessAddress.country` | object |  |
-| `businessAddress.country.code` | string | IN |
-| `businessAddress.country.name` | string | India |
-| `businessAddress.pinCode` | string | integer | 560001 |
-| `businessAddress.pincode` | string | 654321 |
-| `businessAddress.state` | string | Karnataka |
-| `businessEmail` | string | info@abcexports.com |
-| `businessLocation` | object |  |
-| `businessLocation.code` | string | DE |
-| `businessLocation.name` | string | Germany |
-| `businessName` | string | vel logistics Pvt Ltd |
-| `businessPhoneNo` | string | object | +91-9876543210 |
-| `businessPhoneNo.countryCode` | string | +91 |
-| `businessPhoneNo.number` | string | 9888888888 |
-| `businessTaxInfo` | array<object> | array (empty) |  |
-| `businessTaxInfo[].taxes` | array<object> |  |
-| `businessTaxInfo[].taxes[].country` | string | India |
-| `businessTaxInfo[].taxes[].currency` | string | INR |
-| `businessTaxInfo[].taxes[].default_tax_rates` | string | 5 |
-| `businessTaxInfo[].taxes[].tax_id_label` | string | GSTIN |
-| `businessTaxInfo[].taxes[].tax_types` | string | GST |
-| `businessType` | string | register |
-| `businessTypeSpecific` | string | array (empty) | array<string> | Manufacturer |
-| `certificates` | array<object> | array (empty) |  |
-| `certificates[].image` | object |  |
-| `certificates[].image.alt` | string | ISO 9001:2015 Certification |
-| `certificates[].image.exten` | string | png |
-| `certificates[].image.size` | integer | 1280000 |
-| `certificates[].image.src` | string | https://www.example.com/iso-cert.png |
-| `certificates[].name` | string | ISO 9001:2015 |
-| `companyLogo` | object |  |
-| `companyLogo.alt` | string | assets/t21dk0r_xfEZaBCPFyTUP.png |
-| `companyLogo.exten` | string | image/png |
-| `companyLogo.size` | integer | 1541 |
-| `companyLogo.src` | string | assets/t21dk0r_xfEZaBCPFyTUP.png |
-| `companyRegisterNumber` | string | REG1234567 |
-| `companyVideo` | object |  |
-| `companyVideo.alt` | string | Front view of the product |
-| `companyVideo.exten` | string | jpg |
-| `companyVideo.size` | integer | 204800 |
-| `companyVideo.src` | string | https://example.com/image.jpg |
-| `companyVideoLink` | string | https://www.youtube.com/watch?v=example123 |
-| `contractManufacturing` | array<string> |  |
-| `createdAt` | date |  |
-| `createdBy` | string | ObjectId | 685e356012c0e23e441a681d |
-| `dataPrivacySettings` | object |  |
-| `dataPrivacySettings.consentToProcessData` | boolean | True |
-| `dataPrivacySettings.dataForAnalytics` | boolean | True |
-| `dataPrivacySettings.shareWithTrustedPartners` | boolean | True |
-| `deliveryTerm` | array (empty) | array<string> |  |
-| `exportPercent` | integer | 50 |
-| `factoryDivision` | array<object> | array (empty) |  |
-| `factoryDivision[].address` | object |  |
-| `factoryDivision[].address.addressLine` | string | 123 Main St |
-| `factoryDivision[].address.city` | string | Chennai |
-| `factoryDivision[].address.country` | object |  |
-| `factoryDivision[].address.country.code` | string | IN |
-| `factoryDivision[].address.country.name` | string | India |
-| `factoryDivision[].address.pinCode` | string | 600001 |
-| `factoryDivision[].address.state` | string | Tamil Nadu |
-| `factoryDivision[].businessAddress` | object |  |
-| `factoryDivision[].businessAddress.addressLine` | string | 789 Factory Zone |
-| `factoryDivision[].businessAddress.city` | string | Bangalore |
-| `factoryDivision[].businessAddress.country` | object |  |
-| `factoryDivision[].businessAddress.country.code` | string | IN |
-| `factoryDivision[].businessAddress.country.name` | string | India |
-| `factoryDivision[].businessAddress.pinCode` | string | 560001 |
-| `factoryDivision[].businessAddress.state` | string | Karnataka |
-| `factoryDivision[].companyName` | string | Pepagora Manufacturing Pvt Ltd |
-| `factoryDivision[].contactName` | string | Arun Kumar |
-| `factoryDivision[].divisionName` | string | Electrical Components Division |
-| `factoryDivision[].googleMapLink` | string | https://goo.gl/maps/xyz123 |
-| `factoryDivision[].phoneNumber` | string | object | 9876543210 |
-| `factoryDivision[].phoneNumber.countryCode` | string | 91 |
-| `factoryDivision[].phoneNumber.number` | string | 5434534543 |
-| `gstNo` | string | gst-98986y87 |
-| `iecDoc` | object |  |
-| `iecDoc.alt` | string | assets/-SrR8aTL28n-ZY2e675Q8.pdf |
-| `iecDoc.exten` | string | application/pdf |
-| `iecDoc.size` | integer | 142786 |
-| `iecDoc.src` | string | assets/-SrR8aTL28n-ZY2e675Q8.pdf |
-| `iecNumber` | string | 7895412 |
-| `industry` | array<object> | array (empty) | object |  |
-| `industry._id` | string | 67f76dccf90b509ffc2f69aa |
-| `industry.name` | string | Food |
-| `industry.uniqueId` | string | CAc92f6ff90f |
-| `industry[]._id` | string | 67f514f976706f860309ebeb |
-| `industry[].name` | string | Fashion |
-| `industry[].uniqueId` | string | CA6c3cab3c96 |
-| `infrastructureImg` | array<object> | array (empty) |  |
-| `infrastructureImg[].alt` | string | Front view of the product |
-| `infrastructureImg[].exten` | string | jpg |
-| `infrastructureImg[].name` | string | Factory Building |
-| `infrastructureImg[].size` | integer | 204800 |
-| `infrastructureImg[].src` | string | https://example.com/image.jpg |
-| `infrastructureImg[].url` | string | https://www.example.com/infrastructure.jpg |
-| `infrastructureOverview` | string | Infrastructure overview description |
-| `kybVerification` | object |  |
-| `kybVerification.businessAddressProof` | object |  |
-| `kybVerification.businessAddressProof.document` | object |  |
-| `kybVerification.businessAddressProof.document.alt` | string | assets/fgGIYxsxOuscdtqpMBX4p.png |
-| `kybVerification.businessAddressProof.document.exten` | string | image/png |
-| `kybVerification.businessAddressProof.document.size` | integer | 41696 |
-| `kybVerification.businessAddressProof.document.src` | string | assets/fgGIYxsxOuscdtqpMBX4p.png |
-| `kybVerification.businessAddressProof.documentType` | string | Pancard |
-| `kybVerification.businessRegistration` | object |  |
-| `kybVerification.businessRegistration.documentId` | string | 851212809284 |
-| `kybVerification.businessRegistration.documentType` | string | Aadhar |
-| `kybVerification.taxIdVerification` | object |  |
-| `kybVerification.taxIdVerification.document` | object |  |
-| `kybVerification.taxIdVerification.document.alt` | string | assets/fkXBux4bIEU272LhruQ-s.png |
-| `kybVerification.taxIdVerification.document.exten` | string | image/png |
-| `kybVerification.taxIdVerification.document.size` | integer | 41696 |
-| `kybVerification.taxIdVerification.document.src` | string | assets/fkXBux4bIEU272LhruQ-s.png |
-| `kybVerification.taxIdVerification.documentType` | string | Aadharcard |
-| `kycStatus` | string | Pending |
-| `kycVerification` | object |  |
-| `kycVerification.addressVerification` | object |  |
-| `kycVerification.addressVerification.document` | object |  |
-| `kycVerification.addressVerification.document.alt` | string | assets/Um9IC8XCigagLeT0TsoSy.pdf |
-| `kycVerification.addressVerification.document.exten` | string | application/pdf |
-| `kycVerification.addressVerification.document.size` | integer | 5195548 |
-| `kycVerification.addressVerification.document.src` | string | assets/Um9IC8XCigagLeT0TsoSy.pdf |
-| `kycVerification.addressVerification.documentType` | string | Pancard |
-| `kycVerification.identityVerification` | object |  |
-| `kycVerification.identityVerification.document` | object |  |
-| `kycVerification.identityVerification.document.alt` | string | assets/ZgE56bFPnMVkhkTCARhEf.jpg |
-| `kycVerification.identityVerification.document.exten` | string | image/jpeg |
-| `kycVerification.identityVerification.document.size` | integer | 22817 |
-| `kycVerification.identityVerification.document.src` | string | assets/ZgE56bFPnMVkhkTCARhEf.jpg |
-| `kycVerification.identityVerification.documentType` | string | Aadharcard |
-| `languageSpoken` | array (empty) | array<string> |  |
-| `legalBusinessName` | string | ABC Exports Pvt. Ltd. |
-| `legalOwnerName` | string | Velu |
-| `legalStatus` | string | register |
-| `mainMarkets` | array<object> |  |
-| `mainMarkets[].code` | string | IN |
-| `mainMarkets[].name` | string | India |
-| `mainProducts` | array (empty) | array<string> |  |
-| `minOrderValue` | object |  |
-| `minOrderValue.currency` | object |  |
-| `minOrderValue.currency.code` | string | USD |
-| `minOrderValue.currency.name` | string | United States Dollar |
-| `minOrderValue.currency.symbol` | string | $ |
-| `minOrderValue.value` | integer | 500 |
-| `mobileNumber` | string | 9876543210 |
-| `msmeNo` | string |  |
-| `nearestPort` | string | Poombuhar |
-| `noOfEmployees` | string | 1-10 |
-| `noOfProductionLines` | integer | 3 |
-| `noOfQcStaff` | string | integer | 10 |
-| `noOfRdStaff` | string | integer | 5 |
-| `otherBrands` | array<object> | array (empty) |  |
-| `otherBrands[].image` | object |  |
-| `otherBrands[].image.alt` | string | Partner Brand X Logo |
-| `otherBrands[].image.exten` | string | png |
-| `otherBrands[].image.size` | integer | 640000 |
-| `otherBrands[].image.src` | string | https://www.example.com/partner-brand-x.png |
-| `otherBrands[].name` | string | Partner Brand X |
-| `otherPaymentMethod` | string | UPI |
-| `ownBrands` | array<object> | array (empty) |  |
-| `ownBrands[].image` | object |  |
-| `ownBrands[].image.alt` | string | Brand A Logo |
-| `ownBrands[].image.exten` | string | png |
-| `ownBrands[].image.size` | integer | 512000 |
-| `ownBrands[].image.src` | string | https://www.example.com/brand-a-logo.png |
-| `ownBrands[].name` | string | Brand A |
-| `paymentMethods` | array (empty) | array<string> |  |
-| `paymentTerms` | string | ADVANCE_100 |
-| `productBrief` | string | dadsad |
-| `productionFacilities` | string | Automated assembly lines, quality control labs |
-| `shippingAddress` | object |  |
-| `shippingAddress.addressLine` | string | 141 |
-| `shippingAddress.city` | string | Coimbatore |
-| `shippingAddress.country` | object |  |
-| `shippingAddress.country.code` | string | IN |
-| `shippingAddress.country.name` | string | India |
-| `shippingAddress.pinCode` | string | 641001 |
-| `shippingAddress.state` | string | Tamil Nadu |
-| `shippingMethod` | array (empty) | array<string> |  |
-| `socialMediaLinks` | object |  |
-| `socialMediaLinks.facebook` | string |  |
-| `socialMediaLinks.instagram` | string |  |
-| `socialMediaLinks.linkedin` | string |  |
-| `socialMediaLinks.youtube` | string |  |
-| `stageStatus` | object |  |
-| `stageStatus.Additional` | string | active |
-| `stageStatus.AdditionalFactoryDetails` | string | pending |
-| `stageStatus.AdditionalTradeDetails` | string | pending |
-| `stageStatus.BrandingMedia` | string | pending |
-| `stageStatus.BusinessDetails` | string | active |
-| `stageStatus.CompanyRegistrationDetails` | string | active |
-| `stageStatus.FactoryWarehouseDetails` | string | active |
-| `stageStatus.MarketLogistics` | string | pending |
-| `stageStatus.ShippingPaymentTerms` | string | pending |
-| `stageStatus.TaxIdentityVerification` | string | active |
-| `timeZone` | string | Asia/Kolkata |
-| `totalFactorySize` | string | Below 1000 sqm |
-| `updatedAt` | date |  |
-| `updatedBy` | string | ObjectId | 685b8a51a8f68cc8e3c2008a |
-| `warehouseCertification` | object |  |
-| `warehouseCertification.alt` | string | Front view of the product |
-| `warehouseCertification.exten` | string | jpg |
-| `warehouseCertification.name` | string | ISO 9001 |
-| `warehouseCertification.size` | integer | 204800 |
-| `warehouseCertification.src` | string | https://example.com/image.jpg |
-| `warehouseCertification.url` | string | https://www.example.com/cert.jpg |
-| `warehouseStorageArea` | string | <1000 sqft |
-| `website` | string | https://abcexports.com |
-| `yearOfEstablishment` | integer | 2012 |
+| Field                                                 | Type          | Example                                        |
+| ----------------------------------------------------- | ------------- | ---------------------------------------------- | ------------------------ | ------------ |
+| `BusinessVerifyStatus`                                | string        | Pending                                        |
+| `IdentityVerifyStatus`                                | string        | Pending                                        |
+| `PANNo`                                               | string        | asefsefewf                                     |
+| `VATNo`                                               | string        |                                                |
+| `__v`                                                 | integer       | 0                                              |
+| `_id`                                                 | ObjectId      |                                                |
+| `acceptedCurrency`                                    | array<object> |                                                |
+| `acceptedCurrency[].code`                             | string        | INR                                            |
+| `acceptedCurrency[].name`                             | string        | Indian Rupee                                   |
+| `acceptedCurrency[].symbol`                           | string        | ₹                                              |
+| `annualOutputValue`                                   | string        | Less than $1M                                  |
+| `annualProductionCapacity`                            | array<object> | array (empty)                                  |                          |
+| `annualProductionCapacity[].product`                  | string        | Widgets                                        |
+| `annualProductionCapacity[].quantity`                 | integer       | 10000                                          |
+| `annualProductionCapacity[].unit`                     | string        | pieces                                         |
+| `annualTurnover`                                      | string        | Below ₹25 Lakhs                                |
+| `averageLeadTime`                                     | object        |                                                |
+| `averageLeadTime.unit`                                | string        | days                                           |
+| `averageLeadTime.value`                               | integer       | 10                                             |
+| `awards`                                              | array<object> | array (empty)                                  |                          |
+| `awards[].image`                                      | object        |                                                |
+| `awards[].image.alt`                                  | string        | Best Manufacturer Award                        |
+| `awards[].image.exten`                                | string        | png                                            |
+| `awards[].image.size`                                 | integer       | 896000                                         |
+| `awards[].image.src`                                  | string        | https://www.example.com/award1.png             |
+| `awards[].name`                                       | string        | Best Manufacturer 2023                         |
+| `awards[].year`                                       | integer       | 2023                                           |
+| `brochures`                                           | array<object> | array (empty)                                  |                          |
+| `brochures[].alt`                                     | string        | assets/fSRxOPN5JG2NrwX09ZEqn.pdf               |
+| `brochures[].exten`                                   | string        | application/pdf                                |
+| `brochures[].size`                                    | integer       | 28117                                          |
+| `brochures[].src`                                     | string        | assets/fSRxOPN5JG2NrwX09ZEqn.pdf               |
+| `businessAddress`                                     | object        |                                                |
+| `businessAddress.addressLine`                         | string        | 123 MG Road                                    |
+| `businessAddress.city`                                | string        | Bangalore                                      |
+| `businessAddress.country`                             | object        |                                                |
+| `businessAddress.country.code`                        | string        | IN                                             |
+| `businessAddress.country.name`                        | string        | India                                          |
+| `businessAddress.pinCode`                             | string        | integer                                        | 560001                   |
+| `businessAddress.pincode`                             | string        | 654321                                         |
+| `businessAddress.state`                               | string        | Karnataka                                      |
+| `businessEmail`                                       | string        | info@abcexports.com                            |
+| `businessLocation`                                    | object        |                                                |
+| `businessLocation.code`                               | string        | DE                                             |
+| `businessLocation.name`                               | string        | Germany                                        |
+| `businessName`                                        | string        | vel logistics Pvt Ltd                          |
+| `businessPhoneNo`                                     | string        | object                                         | +91-9876543210           |
+| `businessPhoneNo.countryCode`                         | string        | +91                                            |
+| `businessPhoneNo.number`                              | string        | 9888888888                                     |
+| `businessTaxInfo`                                     | array<object> | array (empty)                                  |                          |
+| `businessTaxInfo[].taxes`                             | array<object> |                                                |
+| `businessTaxInfo[].taxes[].country`                   | string        | India                                          |
+| `businessTaxInfo[].taxes[].currency`                  | string        | INR                                            |
+| `businessTaxInfo[].taxes[].default_tax_rates`         | string        | 5                                              |
+| `businessTaxInfo[].taxes[].tax_id_label`              | string        | GSTIN                                          |
+| `businessTaxInfo[].taxes[].tax_types`                 | string        | GST                                            |
+| `businessType`                                        | string        | register                                       |
+| `businessTypeSpecific`                                | string        | array (empty)                                  | array<string>            | Manufacturer |
+| `certificates`                                        | array<object> | array (empty)                                  |                          |
+| `certificates[].image`                                | object        |                                                |
+| `certificates[].image.alt`                            | string        | ISO 9001:2015 Certification                    |
+| `certificates[].image.exten`                          | string        | png                                            |
+| `certificates[].image.size`                           | integer       | 1280000                                        |
+| `certificates[].image.src`                            | string        | https://www.example.com/iso-cert.png           |
+| `certificates[].name`                                 | string        | ISO 9001:2015                                  |
+| `companyLogo`                                         | object        |                                                |
+| `companyLogo.alt`                                     | string        | assets/t21dk0r_xfEZaBCPFyTUP.png               |
+| `companyLogo.exten`                                   | string        | image/png                                      |
+| `companyLogo.size`                                    | integer       | 1541                                           |
+| `companyLogo.src`                                     | string        | assets/t21dk0r_xfEZaBCPFyTUP.png               |
+| `companyRegisterNumber`                               | string        | REG1234567                                     |
+| `companyVideo`                                        | object        |                                                |
+| `companyVideo.alt`                                    | string        | Front view of the product                      |
+| `companyVideo.exten`                                  | string        | jpg                                            |
+| `companyVideo.size`                                   | integer       | 204800                                         |
+| `companyVideo.src`                                    | string        | https://example.com/image.jpg                  |
+| `companyVideoLink`                                    | string        | https://www.youtube.com/watch?v=example123     |
+| `contractManufacturing`                               | array<string> |                                                |
+| `createdAt`                                           | date          |                                                |
+| `createdBy`                                           | string        | ObjectId                                       | 685e356012c0e23e441a681d |
+| `dataPrivacySettings`                                 | object        |                                                |
+| `dataPrivacySettings.consentToProcessData`            | boolean       | True                                           |
+| `dataPrivacySettings.dataForAnalytics`                | boolean       | True                                           |
+| `dataPrivacySettings.shareWithTrustedPartners`        | boolean       | True                                           |
+| `deliveryTerm`                                        | array (empty) | array<string>                                  |                          |
+| `exportPercent`                                       | integer       | 50                                             |
+| `factoryDivision`                                     | array<object> | array (empty)                                  |                          |
+| `factoryDivision[].address`                           | object        |                                                |
+| `factoryDivision[].address.addressLine`               | string        | 123 Main St                                    |
+| `factoryDivision[].address.city`                      | string        | Chennai                                        |
+| `factoryDivision[].address.country`                   | object        |                                                |
+| `factoryDivision[].address.country.code`              | string        | IN                                             |
+| `factoryDivision[].address.country.name`              | string        | India                                          |
+| `factoryDivision[].address.pinCode`                   | string        | 600001                                         |
+| `factoryDivision[].address.state`                     | string        | Tamil Nadu                                     |
+| `factoryDivision[].businessAddress`                   | object        |                                                |
+| `factoryDivision[].businessAddress.addressLine`       | string        | 789 Factory Zone                               |
+| `factoryDivision[].businessAddress.city`              | string        | Bangalore                                      |
+| `factoryDivision[].businessAddress.country`           | object        |                                                |
+| `factoryDivision[].businessAddress.country.code`      | string        | IN                                             |
+| `factoryDivision[].businessAddress.country.name`      | string        | India                                          |
+| `factoryDivision[].businessAddress.pinCode`           | string        | 560001                                         |
+| `factoryDivision[].businessAddress.state`             | string        | Karnataka                                      |
+| `factoryDivision[].companyName`                       | string        | Pepagora Manufacturing Pvt Ltd                 |
+| `factoryDivision[].contactName`                       | string        | Arun Kumar                                     |
+| `factoryDivision[].divisionName`                      | string        | Electrical Components Division                 |
+| `factoryDivision[].googleMapLink`                     | string        | https://goo.gl/maps/xyz123                     |
+| `factoryDivision[].phoneNumber`                       | string        | object                                         | 9876543210               |
+| `factoryDivision[].phoneNumber.countryCode`           | string        | 91                                             |
+| `factoryDivision[].phoneNumber.number`                | string        | 5434534543                                     |
+| `gstNo`                                               | string        | gst-98986y87                                   |
+| `iecDoc`                                              | object        |                                                |
+| `iecDoc.alt`                                          | string        | assets/-SrR8aTL28n-ZY2e675Q8.pdf               |
+| `iecDoc.exten`                                        | string        | application/pdf                                |
+| `iecDoc.size`                                         | integer       | 142786                                         |
+| `iecDoc.src`                                          | string        | assets/-SrR8aTL28n-ZY2e675Q8.pdf               |
+| `iecNumber`                                           | string        | 7895412                                        |
+| `industry`                                            | array<object> | array (empty)                                  | object                   |              |
+| `industry._id`                                        | string        | 67f76dccf90b509ffc2f69aa                       |
+| `industry.name`                                       | string        | Food                                           |
+| `industry.uniqueId`                                   | string        | CAc92f6ff90f                                   |
+| `industry[]._id`                                      | string        | 67f514f976706f860309ebeb                       |
+| `industry[].name`                                     | string        | Fashion                                        |
+| `industry[].uniqueId`                                 | string        | CA6c3cab3c96                                   |
+| `infrastructureImg`                                   | array<object> | array (empty)                                  |                          |
+| `infrastructureImg[].alt`                             | string        | Front view of the product                      |
+| `infrastructureImg[].exten`                           | string        | jpg                                            |
+| `infrastructureImg[].name`                            | string        | Factory Building                               |
+| `infrastructureImg[].size`                            | integer       | 204800                                         |
+| `infrastructureImg[].src`                             | string        | https://example.com/image.jpg                  |
+| `infrastructureImg[].url`                             | string        | https://www.example.com/infrastructure.jpg     |
+| `infrastructureOverview`                              | string        | Infrastructure overview description            |
+| `kybVerification`                                     | object        |                                                |
+| `kybVerification.businessAddressProof`                | object        |                                                |
+| `kybVerification.businessAddressProof.document`       | object        |                                                |
+| `kybVerification.businessAddressProof.document.alt`   | string        | assets/fgGIYxsxOuscdtqpMBX4p.png               |
+| `kybVerification.businessAddressProof.document.exten` | string        | image/png                                      |
+| `kybVerification.businessAddressProof.document.size`  | integer       | 41696                                          |
+| `kybVerification.businessAddressProof.document.src`   | string        | assets/fgGIYxsxOuscdtqpMBX4p.png               |
+| `kybVerification.businessAddressProof.documentType`   | string        | Pancard                                        |
+| `kybVerification.businessRegistration`                | object        |                                                |
+| `kybVerification.businessRegistration.documentId`     | string        | 851212809284                                   |
+| `kybVerification.businessRegistration.documentType`   | string        | Aadhar                                         |
+| `kybVerification.taxIdVerification`                   | object        |                                                |
+| `kybVerification.taxIdVerification.document`          | object        |                                                |
+| `kybVerification.taxIdVerification.document.alt`      | string        | assets/fkXBux4bIEU272LhruQ-s.png               |
+| `kybVerification.taxIdVerification.document.exten`    | string        | image/png                                      |
+| `kybVerification.taxIdVerification.document.size`     | integer       | 41696                                          |
+| `kybVerification.taxIdVerification.document.src`      | string        | assets/fkXBux4bIEU272LhruQ-s.png               |
+| `kybVerification.taxIdVerification.documentType`      | string        | Aadharcard                                     |
+| `kycStatus`                                           | string        | Pending                                        |
+| `kycVerification`                                     | object        |                                                |
+| `kycVerification.addressVerification`                 | object        |                                                |
+| `kycVerification.addressVerification.document`        | object        |                                                |
+| `kycVerification.addressVerification.document.alt`    | string        | assets/Um9IC8XCigagLeT0TsoSy.pdf               |
+| `kycVerification.addressVerification.document.exten`  | string        | application/pdf                                |
+| `kycVerification.addressVerification.document.size`   | integer       | 5195548                                        |
+| `kycVerification.addressVerification.document.src`    | string        | assets/Um9IC8XCigagLeT0TsoSy.pdf               |
+| `kycVerification.addressVerification.documentType`    | string        | Pancard                                        |
+| `kycVerification.identityVerification`                | object        |                                                |
+| `kycVerification.identityVerification.document`       | object        |                                                |
+| `kycVerification.identityVerification.document.alt`   | string        | assets/ZgE56bFPnMVkhkTCARhEf.jpg               |
+| `kycVerification.identityVerification.document.exten` | string        | image/jpeg                                     |
+| `kycVerification.identityVerification.document.size`  | integer       | 22817                                          |
+| `kycVerification.identityVerification.document.src`   | string        | assets/ZgE56bFPnMVkhkTCARhEf.jpg               |
+| `kycVerification.identityVerification.documentType`   | string        | Aadharcard                                     |
+| `languageSpoken`                                      | array (empty) | array<string>                                  |                          |
+| `legalBusinessName`                                   | string        | ABC Exports Pvt. Ltd.                          |
+| `legalOwnerName`                                      | string        | Velu                                           |
+| `legalStatus`                                         | string        | register                                       |
+| `mainMarkets`                                         | array<object> |                                                |
+| `mainMarkets[].code`                                  | string        | IN                                             |
+| `mainMarkets[].name`                                  | string        | India                                          |
+| `mainProducts`                                        | array (empty) | array<string>                                  |                          |
+| `minOrderValue`                                       | object        |                                                |
+| `minOrderValue.currency`                              | object        |                                                |
+| `minOrderValue.currency.code`                         | string        | USD                                            |
+| `minOrderValue.currency.name`                         | string        | United States Dollar                           |
+| `minOrderValue.currency.symbol`                       | string        | $                                              |
+| `minOrderValue.value`                                 | integer       | 500                                            |
+| `mobileNumber`                                        | string        | 9876543210                                     |
+| `msmeNo`                                              | string        |                                                |
+| `nearestPort`                                         | string        | Poombuhar                                      |
+| `noOfEmployees`                                       | string        | 1-10                                           |
+| `noOfProductionLines`                                 | integer       | 3                                              |
+| `noOfQcStaff`                                         | string        | integer                                        | 10                       |
+| `noOfRdStaff`                                         | string        | integer                                        | 5                        |
+| `otherBrands`                                         | array<object> | array (empty)                                  |                          |
+| `otherBrands[].image`                                 | object        |                                                |
+| `otherBrands[].image.alt`                             | string        | Partner Brand X Logo                           |
+| `otherBrands[].image.exten`                           | string        | png                                            |
+| `otherBrands[].image.size`                            | integer       | 640000                                         |
+| `otherBrands[].image.src`                             | string        | https://www.example.com/partner-brand-x.png    |
+| `otherBrands[].name`                                  | string        | Partner Brand X                                |
+| `otherPaymentMethod`                                  | string        | UPI                                            |
+| `ownBrands`                                           | array<object> | array (empty)                                  |                          |
+| `ownBrands[].image`                                   | object        |                                                |
+| `ownBrands[].image.alt`                               | string        | Brand A Logo                                   |
+| `ownBrands[].image.exten`                             | string        | png                                            |
+| `ownBrands[].image.size`                              | integer       | 512000                                         |
+| `ownBrands[].image.src`                               | string        | https://www.example.com/brand-a-logo.png       |
+| `ownBrands[].name`                                    | string        | Brand A                                        |
+| `paymentMethods`                                      | array (empty) | array<string>                                  |                          |
+| `paymentTerms`                                        | string        | ADVANCE_100                                    |
+| `productBrief`                                        | string        | dadsad                                         |
+| `productionFacilities`                                | string        | Automated assembly lines, quality control labs |
+| `shippingAddress`                                     | object        |                                                |
+| `shippingAddress.addressLine`                         | string        | 141                                            |
+| `shippingAddress.city`                                | string        | Coimbatore                                     |
+| `shippingAddress.country`                             | object        |                                                |
+| `shippingAddress.country.code`                        | string        | IN                                             |
+| `shippingAddress.country.name`                        | string        | India                                          |
+| `shippingAddress.pinCode`                             | string        | 641001                                         |
+| `shippingAddress.state`                               | string        | Tamil Nadu                                     |
+| `shippingMethod`                                      | array (empty) | array<string>                                  |                          |
+| `socialMediaLinks`                                    | object        |                                                |
+| `socialMediaLinks.facebook`                           | string        |                                                |
+| `socialMediaLinks.instagram`                          | string        |                                                |
+| `socialMediaLinks.linkedin`                           | string        |                                                |
+| `socialMediaLinks.youtube`                            | string        |                                                |
+| `stageStatus`                                         | object        |                                                |
+| `stageStatus.Additional`                              | string        | active                                         |
+| `stageStatus.AdditionalFactoryDetails`                | string        | pending                                        |
+| `stageStatus.AdditionalTradeDetails`                  | string        | pending                                        |
+| `stageStatus.BrandingMedia`                           | string        | pending                                        |
+| `stageStatus.BusinessDetails`                         | string        | active                                         |
+| `stageStatus.CompanyRegistrationDetails`              | string        | active                                         |
+| `stageStatus.FactoryWarehouseDetails`                 | string        | active                                         |
+| `stageStatus.MarketLogistics`                         | string        | pending                                        |
+| `stageStatus.ShippingPaymentTerms`                    | string        | pending                                        |
+| `stageStatus.TaxIdentityVerification`                 | string        | active                                         |
+| `timeZone`                                            | string        | Asia/Kolkata                                   |
+| `totalFactorySize`                                    | string        | Below 1000 sqm                                 |
+| `updatedAt`                                           | date          |                                                |
+| `updatedBy`                                           | string        | ObjectId                                       | 685b8a51a8f68cc8e3c2008a |
+| `warehouseCertification`                              | object        |                                                |
+| `warehouseCertification.alt`                          | string        | Front view of the product                      |
+| `warehouseCertification.exten`                        | string        | jpg                                            |
+| `warehouseCertification.name`                         | string        | ISO 9001                                       |
+| `warehouseCertification.size`                         | integer       | 204800                                         |
+| `warehouseCertification.src`                          | string        | https://example.com/image.jpg                  |
+| `warehouseCertification.url`                          | string        | https://www.example.com/cert.jpg               |
+| `warehouseStorageArea`                                | string        | <1000 sqft                                     |
+| `website`                                             | string        | https://abcexports.com                         |
+| `yearOfEstablishment`                                 | integer       | 2012                                           |
 
 ### First Document (sanitized)
 
@@ -1228,11 +1242,7 @@
   ],
   "yearOfEstablishment": 2012,
   "noOfEmployees": "11–25",
-  "mainProducts": [
-    "LED Bulbs",
-    "Cables",
-    "Switches"
-  ],
+  "mainProducts": ["LED Bulbs", "Cables", "Switches"],
   "stageStatus": {
     "BusinessDetails": "completed",
     "CompanyRegistrationDetails": "completed",
@@ -1250,9 +1260,7 @@
   "updatedBy": "685e3e9a909298eae0b63672",
   "companyRegisterNumber": "REG1234567",
   "gstNo": "gst-98986y87",
-  "contractManufacturing": [
-    "OEM Service"
-  ],
+  "contractManufacturing": ["OEM Service"],
   "annualOutputValue": "Less than $1M",
   "annualTurnover": "Below ₹25 Lakhs",
   "infrastructureImg": [
@@ -1415,17 +1423,9 @@
       "symbol": "$"
     }
   ],
-  "paymentMethods": [
-    "credit",
-    "paypal",
-    "cash"
-  ],
+  "paymentMethods": ["credit", "paypal", "cash"],
   "paymentTerms": "ADVANCE_100",
-  "shippingMethod": [
-    "Sea",
-    "Air",
-    "Courier"
-  ],
+  "shippingMethod": ["Sea", "Air", "Courier"],
   "averageLeadTime": {
     "value": 14,
     "unit": "days"
@@ -1438,11 +1438,7 @@
     "size": 204800
   },
   "iecNumber": "ABCD1234567E",
-  "languageSpoken": [
-    "English",
-    "Hindi",
-    "Tamil"
-  ],
+  "languageSpoken": ["English", "Hindi", "Tamil"],
   "minOrderValue": {
     "currency": {
       "code": "INR",
@@ -1458,10 +1454,12 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
 **createdBy_1**
+
 - Type: Unique
 - Keys:
   - `createdBy`: ascending
@@ -1475,117 +1473,117 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `additionalBuyingReqDetails` | string | tsetsetsfsdf sdf |
-| `analytics` | object |  |
-| `analytics._id` | ObjectId |  |
-| `analytics.impressions` | integer | 0 |
-| `analytics.quotesReceivedCount` | integer | 0 |
-| `analytics.views` | integer | 0 |
-| `annualPurchaseVolume` | object |  |
-| `annualPurchaseVolume.max` | string | 50000 |
-| `annualPurchaseVolume.min` | string | 10000 |
-| `assignTo` | ObjectId |  |
-| `cartId` | ObjectId |  |
-| `category` | object |  |
-| `category._id` | string | 67f514f976706f860309ebeb |
-| `category.name` | string | Fashion |
-| `category.uniqueId` | string | CA4fd69f0a69 |
-| `categorySuggestion` | object |  |
-| `categorySuggestion.industry` | string | Technology |
-| `categorySuggestion.reason` | string |  |
-| `categorySuggestion.suggestedCategory` | string | Smart Wearables |
-| `createdAt` | date |  |
-| `createdBy` | ObjectId |  |
-| `currency` | object |  |
-| `currency.code` | string | INR |
-| `currency.name` | string | Indian Rupee |
-| `currency.symbol` | string | ₹ |
-| `customizationRequired` | boolean | False |
-| `destinationPort` | string | Port of LA |
-| `estOrderQuantity` | integer | object | 0 |
-| `estOrderQuantity.quantity` | integer | 188 |
-| `estOrderQuantity.unit` | string | pieces |
-| `expectedDeliveryTime` | string | Express |
-| `hasVariants` | boolean | False |
-| `isApproved` | boolean | True |
-| `isArchived` | boolean | False |
-| `isDraft` | boolean | True |
-| `isRejected` | boolean | False |
-| `leads` | array (empty) |  |
-| `offerInfo` | object |  |
-| `offerInfo.currency` | object |  |
-| `offerInfo.currency.code` | string | INR |
-| `offerInfo.currency.name` | string | Indian Rupee |
-| `offerInfo.currency.symbol` | string | ₹ |
-| `offerInfo.discountPercent` | integer | 25 |
-| `offerInfo.maxQty` | integer | 100 |
-| `offerInfo.minQty` | integer | 55 |
-| `offerInfo.offerType` | string | fixedDiscount |
-| `offerInfo.pricing` | object |  |
-| `offerInfo.pricing.bulkPrices` | array<object> |  |
-| `offerInfo.pricing.bulkPrices[].maxQty` | integer | 200 |
-| `offerInfo.pricing.bulkPrices[].minQty` | integer | 100 |
-| `offerInfo.pricing.bulkPrices[].price` | integer | 375 |
-| `offerInfo.pricing.pricingType` | string | bulk |
-| `offerInfo.pricing.unit` | string | pieces |
-| `offerInfo.pricing.unitPrice` | number | 0.35 |
-| `offerInfo.unit` | string | pieces |
-| `paymentTerms` | string | Net 30 |
-| `preferredSourcingRegion` | string | Nearby |
-| `preferredUnitPrice` | object |  |
-| `preferredUnitPrice.currency` | object |  |
-| `preferredUnitPrice.currency.code` | string | INR |
-| `preferredUnitPrice.currency.name` | string | Indian Rupee |
-| `preferredUnitPrice.currency.symbol` | string | ₹ |
-| `preferredUnitPrice.priceRange` | object |  |
-| `preferredUnitPrice.priceRange.maxPrice` | integer | 8000 |
-| `preferredUnitPrice.priceRange.minPrice` | integer | 500 |
-| `pricing` | object |  |
-| `pricing.bulkPrices` | array<object> |  |
-| `pricing.bulkPrices[].maxQty` | integer | 500 |
-| `pricing.bulkPrices[].minQty` | integer | 100 |
-| `pricing.bulkPrices[].price` | integer | 10000 |
-| `pricing.maxPrice` | integer | 150 |
-| `pricing.minPrice` | integer | 100 |
-| `pricing.pricingType` | string | fixed |
-| `pricing.unit` | string | pieces |
-| `pricing.unitPrice` | integer | 10 |
-| `productCategory` | object |  |
-| `productCategory._id` | string | 67f5124876706f860309ebd3 |
-| `productCategory.name` | string | Shirts |
-| `productDescription` | string | This is a sample product description for testing. |
-| `productId` | ObjectId |  |
-| `productImage` | array<object> |  |
-| `productImage[].alt` | string | White Organic Cotton T-Shirt |
-| `productImage[].exten` | string | jpg |
-| `productImage[].size` | integer | 204800 |
-| `productImage[].src` | string | https://example.com/images/tshirt.jpg |
-| `productName` | string | black saree |
-| `quotesReceived` | array (empty) |  |
-| `rfqDescription` | string | <p>test</p> |
-| `rfqId` | string | RFQ85fd42fd96 |
-| `rfqTitle` | string | Mange Tout Gifts Trading LLC |
-| `sampleRequired` | boolean | False |
-| `selectedVariants` | array<object> | array (empty) |  |
-| `selectedVariants[]._id` | string | 68591ab1bba19d77016ac06e |
-| `selectedVariants[].quantity` | integer | 50 |
-| `shippingMethod` | array<string> |  |
-| `sourcingFrequency` | string | Monthly |
-| `status` | string | Approval Pending |
-| `subCategory` | object |  |
-| `subCategory._id` | string | 67f515a076706f860309ebf4 |
-| `subCategory.name` | string | Mobile Phonesdfs |
-| `subCategory.uniqueId` | string | SC80ef757705 |
-| `supplierId` | ObjectId |  |
-| `supplyContractType` | string | One Year Contract |
-| `totalOrderQuantity` | integer | 200 |
-| `type` | string | BR |
-| `updatedAt` | date |  |
-| `validityDate` | date |  |
+| Field                                    | Type          | Example                                           |
+| ---------------------------------------- | ------------- | ------------------------------------------------- | --- |
+| `__v`                                    | integer       | 0                                                 |
+| `_id`                                    | ObjectId      |                                                   |
+| `additionalBuyingReqDetails`             | string        | tsetsetsfsdf sdf                                  |
+| `analytics`                              | object        |                                                   |
+| `analytics._id`                          | ObjectId      |                                                   |
+| `analytics.impressions`                  | integer       | 0                                                 |
+| `analytics.quotesReceivedCount`          | integer       | 0                                                 |
+| `analytics.views`                        | integer       | 0                                                 |
+| `annualPurchaseVolume`                   | object        |                                                   |
+| `annualPurchaseVolume.max`               | string        | 50000                                             |
+| `annualPurchaseVolume.min`               | string        | 10000                                             |
+| `assignTo`                               | ObjectId      |                                                   |
+| `cartId`                                 | ObjectId      |                                                   |
+| `category`                               | object        |                                                   |
+| `category._id`                           | string        | 67f514f976706f860309ebeb                          |
+| `category.name`                          | string        | Fashion                                           |
+| `category.uniqueId`                      | string        | CA4fd69f0a69                                      |
+| `categorySuggestion`                     | object        |                                                   |
+| `categorySuggestion.industry`            | string        | Technology                                        |
+| `categorySuggestion.reason`              | string        |                                                   |
+| `categorySuggestion.suggestedCategory`   | string        | Smart Wearables                                   |
+| `createdAt`                              | date          |                                                   |
+| `createdBy`                              | ObjectId      |                                                   |
+| `currency`                               | object        |                                                   |
+| `currency.code`                          | string        | INR                                               |
+| `currency.name`                          | string        | Indian Rupee                                      |
+| `currency.symbol`                        | string        | ₹                                                 |
+| `customizationRequired`                  | boolean       | False                                             |
+| `destinationPort`                        | string        | Port of LA                                        |
+| `estOrderQuantity`                       | integer       | object                                            | 0   |
+| `estOrderQuantity.quantity`              | integer       | 188                                               |
+| `estOrderQuantity.unit`                  | string        | pieces                                            |
+| `expectedDeliveryTime`                   | string        | Express                                           |
+| `hasVariants`                            | boolean       | False                                             |
+| `isApproved`                             | boolean       | True                                              |
+| `isArchived`                             | boolean       | False                                             |
+| `isDraft`                                | boolean       | True                                              |
+| `isRejected`                             | boolean       | False                                             |
+| `leads`                                  | array (empty) |                                                   |
+| `offerInfo`                              | object        |                                                   |
+| `offerInfo.currency`                     | object        |                                                   |
+| `offerInfo.currency.code`                | string        | INR                                               |
+| `offerInfo.currency.name`                | string        | Indian Rupee                                      |
+| `offerInfo.currency.symbol`              | string        | ₹                                                 |
+| `offerInfo.discountPercent`              | integer       | 25                                                |
+| `offerInfo.maxQty`                       | integer       | 100                                               |
+| `offerInfo.minQty`                       | integer       | 55                                                |
+| `offerInfo.offerType`                    | string        | fixedDiscount                                     |
+| `offerInfo.pricing`                      | object        |                                                   |
+| `offerInfo.pricing.bulkPrices`           | array<object> |                                                   |
+| `offerInfo.pricing.bulkPrices[].maxQty`  | integer       | 200                                               |
+| `offerInfo.pricing.bulkPrices[].minQty`  | integer       | 100                                               |
+| `offerInfo.pricing.bulkPrices[].price`   | integer       | 375                                               |
+| `offerInfo.pricing.pricingType`          | string        | bulk                                              |
+| `offerInfo.pricing.unit`                 | string        | pieces                                            |
+| `offerInfo.pricing.unitPrice`            | number        | 0.35                                              |
+| `offerInfo.unit`                         | string        | pieces                                            |
+| `paymentTerms`                           | string        | Net 30                                            |
+| `preferredSourcingRegion`                | string        | Nearby                                            |
+| `preferredUnitPrice`                     | object        |                                                   |
+| `preferredUnitPrice.currency`            | object        |                                                   |
+| `preferredUnitPrice.currency.code`       | string        | INR                                               |
+| `preferredUnitPrice.currency.name`       | string        | Indian Rupee                                      |
+| `preferredUnitPrice.currency.symbol`     | string        | ₹                                                 |
+| `preferredUnitPrice.priceRange`          | object        |                                                   |
+| `preferredUnitPrice.priceRange.maxPrice` | integer       | 8000                                              |
+| `preferredUnitPrice.priceRange.minPrice` | integer       | 500                                               |
+| `pricing`                                | object        |                                                   |
+| `pricing.bulkPrices`                     | array<object> |                                                   |
+| `pricing.bulkPrices[].maxQty`            | integer       | 500                                               |
+| `pricing.bulkPrices[].minQty`            | integer       | 100                                               |
+| `pricing.bulkPrices[].price`             | integer       | 10000                                             |
+| `pricing.maxPrice`                       | integer       | 150                                               |
+| `pricing.minPrice`                       | integer       | 100                                               |
+| `pricing.pricingType`                    | string        | fixed                                             |
+| `pricing.unit`                           | string        | pieces                                            |
+| `pricing.unitPrice`                      | integer       | 10                                                |
+| `productCategory`                        | object        |                                                   |
+| `productCategory._id`                    | string        | 67f5124876706f860309ebd3                          |
+| `productCategory.name`                   | string        | Shirts                                            |
+| `productDescription`                     | string        | This is a sample product description for testing. |
+| `productId`                              | ObjectId      |                                                   |
+| `productImage`                           | array<object> |                                                   |
+| `productImage[].alt`                     | string        | White Organic Cotton T-Shirt                      |
+| `productImage[].exten`                   | string        | jpg                                               |
+| `productImage[].size`                    | integer       | 204800                                            |
+| `productImage[].src`                     | string        | https://example.com/images/tshirt.jpg             |
+| `productName`                            | string        | black saree                                       |
+| `quotesReceived`                         | array (empty) |                                                   |
+| `rfqDescription`                         | string        | <p>test</p>                                       |
+| `rfqId`                                  | string        | RFQ85fd42fd96                                     |
+| `rfqTitle`                               | string        | Mange Tout Gifts Trading LLC                      |
+| `sampleRequired`                         | boolean       | False                                             |
+| `selectedVariants`                       | array<object> | array (empty)                                     |     |
+| `selectedVariants[]._id`                 | string        | 68591ab1bba19d77016ac06e                          |
+| `selectedVariants[].quantity`            | integer       | 50                                                |
+| `shippingMethod`                         | array<string> |                                                   |
+| `sourcingFrequency`                      | string        | Monthly                                           |
+| `status`                                 | string        | Approval Pending                                  |
+| `subCategory`                            | object        |                                                   |
+| `subCategory._id`                        | string        | 67f515a076706f860309ebf4                          |
+| `subCategory.name`                       | string        | Mobile Phonesdfs                                  |
+| `subCategory.uniqueId`                   | string        | SC80ef757705                                      |
+| `supplierId`                             | ObjectId      |                                                   |
+| `supplyContractType`                     | string        | One Year Contract                                 |
+| `totalOrderQuantity`                     | integer       | 200                                               |
+| `type`                                   | string        | BR                                                |
+| `updatedAt`                              | date          |                                                   |
+| `validityDate`                           | date          |                                                   |
 
 ### First Document (sanitized)
 
@@ -1647,6 +1645,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -1659,38 +1658,38 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 1 |
-| `_id` | ObjectId |  |
-| `analytics` | object |  |
-| `analytics.shares` | integer | 0 |
-| `analytics.views` | integer | 0 |
-| `businessType` | string | unregister |
-| `businessTypeSpecific` | array<string> |  |
-| `catalogStage` | object |  |
-| `catalogStage.homepage` | string | completed |
-| `catalogStage.products` | string | completed |
-| `createdAt` | date |  |
-| `createdBy` | ObjectId |  |
-| `impression` | integer | 0 |
-| `impressionIPs` | array (empty) |  |
-| `industry` | string | object | apparel |
-| `industry._id` | string | 67f76dccf90b509ffc2f69aa |
-| `industry.liveUrl` | string | Food_CAc92f6ff90f |
-| `industry.name` | string | Food |
-| `industry.uniqueId` | string | CAc92f6ff90f |
-| `isCatalogPublished` | boolean | False |
-| `ownerName` | string | ABC Pvt Ltd |
-| `productIds` | array (empty) |  |
-| `status` | string | pending |
-| `subDomain` | string | abc-store |
-| `updatedAt` | date |  |
-| `viewedIPs` | array<object> |  |
-| `viewedIPs[]._id` | ObjectId |  |
-| `viewedIPs[].ip` | string | ::1 |
-| `viewedIPs[].viewedAt` | date |  |
-| `views` | integer | 1 |
+| Field                   | Type          | Example                  |
+| ----------------------- | ------------- | ------------------------ | ------- |
+| `__v`                   | integer       | 1                        |
+| `_id`                   | ObjectId      |                          |
+| `analytics`             | object        |                          |
+| `analytics.shares`      | integer       | 0                        |
+| `analytics.views`       | integer       | 0                        |
+| `businessType`          | string        | unregister               |
+| `businessTypeSpecific`  | array<string> |                          |
+| `catalogStage`          | object        |                          |
+| `catalogStage.homepage` | string        | completed                |
+| `catalogStage.products` | string        | completed                |
+| `createdAt`             | date          |                          |
+| `createdBy`             | ObjectId      |                          |
+| `impression`            | integer       | 0                        |
+| `impressionIPs`         | array (empty) |                          |
+| `industry`              | string        | object                   | apparel |
+| `industry._id`          | string        | 67f76dccf90b509ffc2f69aa |
+| `industry.liveUrl`      | string        | Food_CAc92f6ff90f        |
+| `industry.name`         | string        | Food                     |
+| `industry.uniqueId`     | string        | CAc92f6ff90f             |
+| `isCatalogPublished`    | boolean       | False                    |
+| `ownerName`             | string        | ABC Pvt Ltd              |
+| `productIds`            | array (empty) |                          |
+| `status`                | string        | pending                  |
+| `subDomain`             | string        | abc-store                |
+| `updatedAt`             | date          |                          |
+| `viewedIPs`             | array<object> |                          |
+| `viewedIPs[]._id`       | ObjectId      |                          |
+| `viewedIPs[].ip`        | string        | ::1                      |
+| `viewedIPs[].viewedAt`  | date          |                          |
+| `views`                 | integer       | 1                        |
 
 ### First Document (sanitized)
 
@@ -1700,9 +1699,7 @@
   "subDomain": "palpx",
   "createdBy": "6868e10b3369cbe111a62ce3",
   "ownerName": "palpx",
-  "businessTypeSpecific": [
-    "Manufacturer"
-  ],
+  "businessTypeSpecific": ["Manufacturer"],
   "businessType": "register",
   "industry": "apparel",
   "status": "pending",
@@ -1724,10 +1721,12 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
 **subDomain_1**
+
 - Type: Unique
 - Keys:
   - `subDomain`: ascending
@@ -1741,10 +1740,10 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
+| Field | Type     | Example |
+| ----- | -------- | ------- |
+| `__v` | integer  | 0       |
+| `_id` | ObjectId |         |
 
 ### First Document (sanitized)
 
@@ -1758,6 +1757,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -1770,13 +1770,13 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `_id` | ObjectId |  |
-| `liveUrl` | string | Electronics_CAee40f0e5be |
-| `mappedChildren` | array<string> |  |
-| `name` | string | Electronics |
-| `uniqueId` | string | CAee40f0e5be |
+| Field            | Type          | Example                  |
+| ---------------- | ------------- | ------------------------ |
+| `_id`            | ObjectId      |                          |
+| `liveUrl`        | string        | Electronics_CAee40f0e5be |
+| `mappedChildren` | array<string> |                          |
+| `name`           | string        | Electronics              |
+| `uniqueId`       | string        | CAee40f0e5be             |
 
 ### First Document (sanitized)
 
@@ -1786,25 +1786,25 @@
   "uniqueId": "CAee40f0e5be",
   "liveUrl": "Electronics_CAee40f0e5be",
   "name": "Electronics",
-  "mappedChildren": [
-    "67f5154376706f860309ebf0",
-    "67f5158976706f860309ebf3"
-  ]
+  "mappedChildren": ["67f5154376706f860309ebf0", "67f5158976706f860309ebf3"]
 }
 ```
 
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
 **uniqueId_1**
+
 - Type: Unique
 - Keys:
   - `uniqueId`: ascending
 
 **liveUrl_1**
+
 - Type: Unique
 - Keys:
   - `liveUrl`: ascending
@@ -1818,20 +1818,20 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `authSession` | string |  |
-| `countryCode` | string | +91 |
-| `createdAt` | date |  |
-| `email` | string | pepagora.betaqa@gmail.com |
-| `emailOtpVerified` | boolean | True |
-| `expiry_date` | date |  |
-| `isVerifiedUser` | boolean | True |
-| `phoneNo` | string | 9597362973 |
-| `phoneOtpVerified` | boolean | False |
-| `updatedAt` | date |  |
+| Field              | Type     | Example                   |
+| ------------------ | -------- | ------------------------- |
+| `__v`              | integer  | 0                         |
+| `_id`              | ObjectId |                           |
+| `authSession`      | string   |                           |
+| `countryCode`      | string   | +91                       |
+| `createdAt`        | date     |                           |
+| `email`            | string   | pepagora.betaqa@gmail.com |
+| `emailOtpVerified` | boolean  | True                      |
+| `expiry_date`      | date     |                           |
+| `isVerifiedUser`   | boolean  | True                      |
+| `phoneNo`          | string   | 9597362973                |
+| `phoneOtpVerified` | boolean  | False                     |
+| `updatedAt`        | date     |                           |
 
 ### First Document (sanitized)
 
@@ -1855,6 +1855,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -1868,6 +1869,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -1880,33 +1882,33 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `companyName` | string | Braun Group |
-| `contactName` | string | umapreethi.s |
-| `country` | string | object | United States |
-| `country.code` | string | IN |
-| `country.name` | string | India |
-| `createdAt` | date |  |
-| `createdBy` | ObjectId |  |
-| `email` | string | umapreethi.s@solutionchamps.com |
-| `isArchived` | boolean | True |
-| `isDraft` | boolean | False |
-| `jobTitle` | string | Customer Web Supervisor |
-| `lastContactedAt` | date |  |
-| `lifeCycle` | string | lead |
-| `phoneNo` | string | 9940820162 |
-| `responses` | object |  |
-| `responses.leads` | array<ObjectId> | array (empty) |  |
-| `responses.quoteIds` | array (empty) |  |
-| `responses.threadIds` | array (empty) | array<string> |  |
-| `source` | string | Offline |
-| `status` | string | active |
-| `updatedAt` | date |  |
-| `user_id` | ObjectId |  |
-| `whatsAppNo` | string | 9861282119 |
+| Field                 | Type            | Example                         |
+| --------------------- | --------------- | ------------------------------- | ------------- |
+| `__v`                 | integer         | 0                               |
+| `_id`                 | ObjectId        |                                 |
+| `companyName`         | string          | Braun Group                     |
+| `contactName`         | string          | umapreethi.s                    |
+| `country`             | string          | object                          | United States |
+| `country.code`        | string          | IN                              |
+| `country.name`        | string          | India                           |
+| `createdAt`           | date            |                                 |
+| `createdBy`           | ObjectId        |                                 |
+| `email`               | string          | umapreethi.s@solutionchamps.com |
+| `isArchived`          | boolean         | True                            |
+| `isDraft`             | boolean         | False                           |
+| `jobTitle`            | string          | Customer Web Supervisor         |
+| `lastContactedAt`     | date            |                                 |
+| `lifeCycle`           | string          | lead                            |
+| `phoneNo`             | string          | 9940820162                      |
+| `responses`           | object          |                                 |
+| `responses.leads`     | array<ObjectId> | array (empty)                   |               |
+| `responses.quoteIds`  | array (empty)   |                                 |
+| `responses.threadIds` | array (empty)   | array<string>                   |               |
+| `source`              | string          | Offline                         |
+| `status`              | string          | active                          |
+| `updatedAt`           | date            |                                 |
+| `user_id`             | ObjectId        |                                 |
+| `whatsAppNo`          | string          | 9861282119                      |
 
 ### First Document (sanitized)
 
@@ -1931,9 +1933,7 @@
   "responses": {
     "leads": [],
     "quoteIds": [],
-    "threadIds": [
-      "686b498bfd8fa1f0d6bd0d0b"
-    ]
+    "threadIds": ["686b498bfd8fa1f0d6bd0d0b"]
   }
 }
 ```
@@ -1941,6 +1941,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -1953,19 +1954,19 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `catalogId` | ObjectId |  |
-| `country` | string | india |
-| `createdAt` | date |  |
-| `email` | string | ggf@dasd.com |
-| `isResponded` | boolean | False |
-| `message` | string | asdasd as asdsd sadasd sad sd |
-| `mobile` | string | 98467521305 |
-| `name` | string | velmurugan |
-| `updatedAt` | date |  |
+| Field         | Type     | Example                       |
+| ------------- | -------- | ----------------------------- |
+| `__v`         | integer  | 0                             |
+| `_id`         | ObjectId |                               |
+| `catalogId`   | ObjectId |                               |
+| `country`     | string   | india                         |
+| `createdAt`   | date     |                               |
+| `email`       | string   | ggf@dasd.com                  |
+| `isResponded` | boolean  | False                         |
+| `message`     | string   | asdasd as asdsd sadasd sad sd |
+| `mobile`      | string   | 98467521305                   |
+| `name`        | string   | velmurugan                    |
+| `updatedAt`   | date     |                               |
 
 ### First Document (sanitized)
 
@@ -1988,6 +1989,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -2000,185 +2002,185 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | string | singleton-exchange-rates |
-| `createdAt` | date |  |
-| `quotes` | object |  |
-| `quotes.USDAED` | number | 3.672985 |
-| `quotes.USDAFN` | number | 68.232749 |
-| `quotes.USDALL` | number | 83.558715 |
-| `quotes.USDAMD` | number | 383.502854 |
-| `quotes.USDANG` | number | 1.789699 |
-| `quotes.USDAOA` | number | 917.00015 |
-| `quotes.USDARS` | number | 1325.272673 |
-| `quotes.USDAUD` | number | 1.534295 |
-| `quotes.USDAWG` | number | 1.8025 |
-| `quotes.USDAZN` | number | 1.6975 |
-| `quotes.USDBAM` | number | 1.678726 |
-| `quotes.USDBBD` | number | 2.017189 |
-| `quotes.USDBDT` | number | 121.342432 |
-| `quotes.USDBGN` | number | 1.677841 |
-| `quotes.USDBHD` | number | 0.377014 |
-| `quotes.USDBIF` | number | 2978.990118 |
-| `quotes.USDBMD` | integer | 1 |
-| `quotes.USDBND` | number | 1.283861 |
-| `quotes.USDBOB` | number | 6.900991 |
-| `quotes.USDBRL` | number | 5.431197 |
-| `quotes.USDBSD` | number | 0.999064 |
-| `quotes.USDBTC` | number | 8.203109e-06 |
-| `quotes.USDBTN` | number | 87.452899 |
-| `quotes.USDBWP` | number | 13.442146 |
-| `quotes.USDBYN` | number | 3.297455 |
-| `quotes.USDBYR` | integer | 19600 |
-| `quotes.USDBZD` | number | 2.0068 |
-| `quotes.USDCAD` | number | 1.37663 |
-| `quotes.USDCDF` | number | 2889.999409 |
-| `quotes.USDCHF` | number | 0.807198 |
-| `quotes.USDCLF` | number | 0.024681 |
-| `quotes.USDCLP` | number | 968.209662 |
-| `quotes.USDCNH` | number | 7.18632 |
-| `quotes.USDCNY` | number | 7.181498 |
-| `quotes.USDCOP` | number | 4050.86 |
-| `quotes.USDCRC` | number | 506.224779 |
-| `quotes.USDCUC` | integer | 1 |
-| `quotes.USDCUP` | number | 26.5 |
-| `quotes.USDCVE` | number | 94.644007 |
-| `quotes.USDCZK` | number | 20.956033 |
-| `quotes.USDDJF` | number | 177.901416 |
-| `quotes.USDDKK` | number | 6.40227 |
-| `quotes.USDDOP` | number | 61.011419 |
-| `quotes.USDDZD` | number | 129.902425 |
-| `quotes.USDEGP` | number | 48.429098 |
-| `quotes.USDERN` | integer | 15 |
-| `quotes.USDETB` | number | 138.627715 |
-| `quotes.USDEUR` | number | 0.85776 |
-| `quotes.USDFJD` | number | 2.254898 |
-| `quotes.USDFKP` | number | 0.743585 |
-| `quotes.USDGBP` | number | 0.74297 |
-| `quotes.USDGEL` | number | 2.701691 |
-| `quotes.USDGGP` | number | 0.743585 |
-| `quotes.USDGHS` | number | 10.536887 |
-| `quotes.USDGIP` | number | 0.743585 |
-| `quotes.USDGMD` | number | 72.473275 |
-| `quotes.USDGNF` | number | 8663.249448 |
-| `quotes.USDGTQ` | number | 7.66319 |
-| `quotes.USDGYD` | number | 208.952405 |
-| `quotes.USDHKD` | number | 7.849925 |
-| `quotes.USDHNL` | number | 26.159526 |
-| `quotes.USDHRK` | number | 6.461703 |
-| `quotes.USDHTG` | number | 130.72148 |
-| `quotes.USDHUF` | number | 338.792497 |
-| `quotes.USDIDR` | number | 16266.8 |
-| `quotes.USDILS` | number | 3.41363 |
-| `quotes.USDIMP` | number | 0.743585 |
-| `quotes.USDINR` | number | 87.616203 |
-| `quotes.USDIQD` | number | 1308.355865 |
-| `quotes.USDIRR` | number | 42124.999512 |
-| `quotes.USDISK` | number | 122.630219 |
-| `quotes.USDJEP` | number | 0.743585 |
-| `quotes.USDJMD` | number | 159.95604 |
-| `quotes.USDJOD` | number | 0.708995 |
-| `quotes.USDJPY` | number | 147.562504 |
-| `quotes.USDKES` | number | 129.202654 |
-| `quotes.USDKGS` | number | 87.450101 |
-| `quotes.USDKHR` | number | 4001.940439 |
-| `quotes.USDKMF` | number | 422.150219 |
-| `quotes.USDKPW` | number | 900.000119 |
-| `quotes.USDKRW` | number | 1389.269868 |
-| `quotes.USDKWD` | number | 0.30553 |
-| `quotes.USDKYD` | number | 0.832325 |
-| `quotes.USDKZT` | number | 539.727909 |
-| `quotes.USDLAK` | number | 21608.514656 |
-| `quotes.USDLBP` | number | 89486.545642 |
-| `quotes.USDLKR` | number | 300.373375 |
-| `quotes.USDLRD` | number | 200.248916 |
-| `quotes.USDLSL` | number | 17.702931 |
-| `quotes.USDLTL` | number | 2.95274 |
-| `quotes.USDLVL` | number | 0.604889 |
-| `quotes.USDLYD` | number | 5.416892 |
-| `quotes.USDMAD` | number | 9.044505 |
-| `quotes.USDMDL` | number | 16.768379 |
-| `quotes.USDMGA` | number | 4408.879578 |
-| `quotes.USDMKD` | number | 52.719056 |
-| `quotes.USDMMK` | number | 2099.278286 |
-| `quotes.USDMNT` | number | 3593.667467 |
-| `quotes.USDMOP` | number | 8.075018 |
-| `quotes.USDMRU` | number | 39.850605 |
-| `quotes.USDMUR` | number | 45.38004 |
-| `quotes.USDMVR` | number | 15.403747 |
-| `quotes.USDMWK` | number | 1732.384873 |
-| `quotes.USDMXN` | number | 18.582685 |
-| `quotes.USDMYR` | number | 4.234027 |
-| `quotes.USDMZN` | number | 63.959659 |
-| `quotes.USDNAD` | number | 17.702931 |
-| `quotes.USDNGN` | number | 1531.680479 |
-| `quotes.USDNIO` | number | 36.765148 |
-| `quotes.USDNOK` | number | 10.27799 |
-| `quotes.USDNPR` | number | 139.966515 |
-| `quotes.USDNZD` | number | 1.682978 |
-| `quotes.USDOMR` | number | 0.384507 |
-| `quotes.USDPAB` | number | 0.998755 |
-| `quotes.USDPEN` | number | 3.535041 |
-| `quotes.USDPGK` | number | 4.213997 |
-| `quotes.USDPHP` | number | 57.003045 |
-| `quotes.USDPKR` | number | 283.47835 |
-| `quotes.USDPLN` | number | 3.644066 |
-| `quotes.USDPYG` | number | 7482.677794 |
-| `quotes.USDQAR` | number | 3.650401 |
-| `quotes.USDRON` | number | 4.348968 |
-| `quotes.USDRSD` | number | 100.467974 |
-| `quotes.USDRUB` | number | 79.875385 |
-| `quotes.USDRWF` | number | 1445.099361 |
-| `quotes.USDSAR` | number | 3.754749 |
-| `quotes.USDSBD` | number | 8.217066 |
-| `quotes.USDSCR` | number | 14.741998 |
-| `quotes.USDSDG` | number | 600.505228 |
-| `quotes.USDSEK` | number | 9.56741 |
-| `quotes.USDSGD` | number | 1.284025 |
-| `quotes.USDSHP` | number | 0.785843 |
-| `quotes.USDSLE` | number | 23.098543 |
-| `quotes.USDSLL` | number | 20969.503947 |
-| `quotes.USDSOS` | number | 570.964931 |
-| `quotes.USDSRD` | number | 37.279032 |
-| `quotes.USDSTD` | number | 20697.981008 |
-| `quotes.USDSTN` | number | 21.03564 |
-| `quotes.USDSVC` | number | 8.738681 |
-| `quotes.USDSYP` | number | 13001.771596 |
-| `quotes.USDSZL` | number | 17.701706 |
-| `quotes.USDTHB` | number | 32.346502 |
-| `quotes.USDTJS` | number | 9.328183 |
-| `quotes.USDTMT` | number | 3.51 |
-| `quotes.USDTND` | number | 2.928973 |
-| `quotes.USDTOP` | number | 2.342103 |
-| `quotes.USDTRY` | number | 40.71665 |
-| `quotes.USDTTD` | number | 6.779108 |
-| `quotes.USDTWD` | number | 29.927496 |
-| `quotes.USDTZS` | number | 2475.00017 |
-| `quotes.USDUAH` | number | 41.327043 |
-| `quotes.USDUGX` | number | 3563.795545 |
-| `quotes.USDUYU` | number | 40.075533 |
-| `quotes.USDUZS` | number | 12578.000944 |
-| `quotes.USDVES` | number | 128.74775 |
-| `quotes.USDVND` | number | 26226.5 |
-| `quotes.USDVUV` | number | 119.401149 |
-| `quotes.USDWST` | number | 2.653917 |
-| `quotes.USDXAF` | number | 563.200666 |
-| `quotes.USDXAG` | number | 0.026317 |
-| `quotes.USDXAU` | number | 0.000297 |
-| `quotes.USDXCD` | number | 2.70255 |
-| `quotes.USDXCG` | number | 1.800009 |
-| `quotes.USDXDR` | number | 0.700441 |
-| `quotes.USDXOF` | number | 563.203084 |
-| `quotes.USDXPF` | number | 102.364705 |
-| `quotes.USDYER` | number | 240.449827 |
-| `quotes.USDZAR` | number | 17.73076 |
-| `quotes.USDZMK` | number | 9001.196527 |
-| `quotes.USDZMW` | number | 23.152942 |
-| `quotes.USDZWL` | number | 321.999592 |
-| `source` | string | USD |
-| `updatedAt` | date |  |
+| Field           | Type    | Example                  |
+| --------------- | ------- | ------------------------ |
+| `__v`           | integer | 0                        |
+| `_id`           | string  | singleton-exchange-rates |
+| `createdAt`     | date    |                          |
+| `quotes`        | object  |                          |
+| `quotes.USDAED` | number  | 3.672985                 |
+| `quotes.USDAFN` | number  | 68.232749                |
+| `quotes.USDALL` | number  | 83.558715                |
+| `quotes.USDAMD` | number  | 383.502854               |
+| `quotes.USDANG` | number  | 1.789699                 |
+| `quotes.USDAOA` | number  | 917.00015                |
+| `quotes.USDARS` | number  | 1325.272673              |
+| `quotes.USDAUD` | number  | 1.534295                 |
+| `quotes.USDAWG` | number  | 1.8025                   |
+| `quotes.USDAZN` | number  | 1.6975                   |
+| `quotes.USDBAM` | number  | 1.678726                 |
+| `quotes.USDBBD` | number  | 2.017189                 |
+| `quotes.USDBDT` | number  | 121.342432               |
+| `quotes.USDBGN` | number  | 1.677841                 |
+| `quotes.USDBHD` | number  | 0.377014                 |
+| `quotes.USDBIF` | number  | 2978.990118              |
+| `quotes.USDBMD` | integer | 1                        |
+| `quotes.USDBND` | number  | 1.283861                 |
+| `quotes.USDBOB` | number  | 6.900991                 |
+| `quotes.USDBRL` | number  | 5.431197                 |
+| `quotes.USDBSD` | number  | 0.999064                 |
+| `quotes.USDBTC` | number  | 8.203109e-06             |
+| `quotes.USDBTN` | number  | 87.452899                |
+| `quotes.USDBWP` | number  | 13.442146                |
+| `quotes.USDBYN` | number  | 3.297455                 |
+| `quotes.USDBYR` | integer | 19600                    |
+| `quotes.USDBZD` | number  | 2.0068                   |
+| `quotes.USDCAD` | number  | 1.37663                  |
+| `quotes.USDCDF` | number  | 2889.999409              |
+| `quotes.USDCHF` | number  | 0.807198                 |
+| `quotes.USDCLF` | number  | 0.024681                 |
+| `quotes.USDCLP` | number  | 968.209662               |
+| `quotes.USDCNH` | number  | 7.18632                  |
+| `quotes.USDCNY` | number  | 7.181498                 |
+| `quotes.USDCOP` | number  | 4050.86                  |
+| `quotes.USDCRC` | number  | 506.224779               |
+| `quotes.USDCUC` | integer | 1                        |
+| `quotes.USDCUP` | number  | 26.5                     |
+| `quotes.USDCVE` | number  | 94.644007                |
+| `quotes.USDCZK` | number  | 20.956033                |
+| `quotes.USDDJF` | number  | 177.901416               |
+| `quotes.USDDKK` | number  | 6.40227                  |
+| `quotes.USDDOP` | number  | 61.011419                |
+| `quotes.USDDZD` | number  | 129.902425               |
+| `quotes.USDEGP` | number  | 48.429098                |
+| `quotes.USDERN` | integer | 15                       |
+| `quotes.USDETB` | number  | 138.627715               |
+| `quotes.USDEUR` | number  | 0.85776                  |
+| `quotes.USDFJD` | number  | 2.254898                 |
+| `quotes.USDFKP` | number  | 0.743585                 |
+| `quotes.USDGBP` | number  | 0.74297                  |
+| `quotes.USDGEL` | number  | 2.701691                 |
+| `quotes.USDGGP` | number  | 0.743585                 |
+| `quotes.USDGHS` | number  | 10.536887                |
+| `quotes.USDGIP` | number  | 0.743585                 |
+| `quotes.USDGMD` | number  | 72.473275                |
+| `quotes.USDGNF` | number  | 8663.249448              |
+| `quotes.USDGTQ` | number  | 7.66319                  |
+| `quotes.USDGYD` | number  | 208.952405               |
+| `quotes.USDHKD` | number  | 7.849925                 |
+| `quotes.USDHNL` | number  | 26.159526                |
+| `quotes.USDHRK` | number  | 6.461703                 |
+| `quotes.USDHTG` | number  | 130.72148                |
+| `quotes.USDHUF` | number  | 338.792497               |
+| `quotes.USDIDR` | number  | 16266.8                  |
+| `quotes.USDILS` | number  | 3.41363                  |
+| `quotes.USDIMP` | number  | 0.743585                 |
+| `quotes.USDINR` | number  | 87.616203                |
+| `quotes.USDIQD` | number  | 1308.355865              |
+| `quotes.USDIRR` | number  | 42124.999512             |
+| `quotes.USDISK` | number  | 122.630219               |
+| `quotes.USDJEP` | number  | 0.743585                 |
+| `quotes.USDJMD` | number  | 159.95604                |
+| `quotes.USDJOD` | number  | 0.708995                 |
+| `quotes.USDJPY` | number  | 147.562504               |
+| `quotes.USDKES` | number  | 129.202654               |
+| `quotes.USDKGS` | number  | 87.450101                |
+| `quotes.USDKHR` | number  | 4001.940439              |
+| `quotes.USDKMF` | number  | 422.150219               |
+| `quotes.USDKPW` | number  | 900.000119               |
+| `quotes.USDKRW` | number  | 1389.269868              |
+| `quotes.USDKWD` | number  | 0.30553                  |
+| `quotes.USDKYD` | number  | 0.832325                 |
+| `quotes.USDKZT` | number  | 539.727909               |
+| `quotes.USDLAK` | number  | 21608.514656             |
+| `quotes.USDLBP` | number  | 89486.545642             |
+| `quotes.USDLKR` | number  | 300.373375               |
+| `quotes.USDLRD` | number  | 200.248916               |
+| `quotes.USDLSL` | number  | 17.702931                |
+| `quotes.USDLTL` | number  | 2.95274                  |
+| `quotes.USDLVL` | number  | 0.604889                 |
+| `quotes.USDLYD` | number  | 5.416892                 |
+| `quotes.USDMAD` | number  | 9.044505                 |
+| `quotes.USDMDL` | number  | 16.768379                |
+| `quotes.USDMGA` | number  | 4408.879578              |
+| `quotes.USDMKD` | number  | 52.719056                |
+| `quotes.USDMMK` | number  | 2099.278286              |
+| `quotes.USDMNT` | number  | 3593.667467              |
+| `quotes.USDMOP` | number  | 8.075018                 |
+| `quotes.USDMRU` | number  | 39.850605                |
+| `quotes.USDMUR` | number  | 45.38004                 |
+| `quotes.USDMVR` | number  | 15.403747                |
+| `quotes.USDMWK` | number  | 1732.384873              |
+| `quotes.USDMXN` | number  | 18.582685                |
+| `quotes.USDMYR` | number  | 4.234027                 |
+| `quotes.USDMZN` | number  | 63.959659                |
+| `quotes.USDNAD` | number  | 17.702931                |
+| `quotes.USDNGN` | number  | 1531.680479              |
+| `quotes.USDNIO` | number  | 36.765148                |
+| `quotes.USDNOK` | number  | 10.27799                 |
+| `quotes.USDNPR` | number  | 139.966515               |
+| `quotes.USDNZD` | number  | 1.682978                 |
+| `quotes.USDOMR` | number  | 0.384507                 |
+| `quotes.USDPAB` | number  | 0.998755                 |
+| `quotes.USDPEN` | number  | 3.535041                 |
+| `quotes.USDPGK` | number  | 4.213997                 |
+| `quotes.USDPHP` | number  | 57.003045                |
+| `quotes.USDPKR` | number  | 283.47835                |
+| `quotes.USDPLN` | number  | 3.644066                 |
+| `quotes.USDPYG` | number  | 7482.677794              |
+| `quotes.USDQAR` | number  | 3.650401                 |
+| `quotes.USDRON` | number  | 4.348968                 |
+| `quotes.USDRSD` | number  | 100.467974               |
+| `quotes.USDRUB` | number  | 79.875385                |
+| `quotes.USDRWF` | number  | 1445.099361              |
+| `quotes.USDSAR` | number  | 3.754749                 |
+| `quotes.USDSBD` | number  | 8.217066                 |
+| `quotes.USDSCR` | number  | 14.741998                |
+| `quotes.USDSDG` | number  | 600.505228               |
+| `quotes.USDSEK` | number  | 9.56741                  |
+| `quotes.USDSGD` | number  | 1.284025                 |
+| `quotes.USDSHP` | number  | 0.785843                 |
+| `quotes.USDSLE` | number  | 23.098543                |
+| `quotes.USDSLL` | number  | 20969.503947             |
+| `quotes.USDSOS` | number  | 570.964931               |
+| `quotes.USDSRD` | number  | 37.279032                |
+| `quotes.USDSTD` | number  | 20697.981008             |
+| `quotes.USDSTN` | number  | 21.03564                 |
+| `quotes.USDSVC` | number  | 8.738681                 |
+| `quotes.USDSYP` | number  | 13001.771596             |
+| `quotes.USDSZL` | number  | 17.701706                |
+| `quotes.USDTHB` | number  | 32.346502                |
+| `quotes.USDTJS` | number  | 9.328183                 |
+| `quotes.USDTMT` | number  | 3.51                     |
+| `quotes.USDTND` | number  | 2.928973                 |
+| `quotes.USDTOP` | number  | 2.342103                 |
+| `quotes.USDTRY` | number  | 40.71665                 |
+| `quotes.USDTTD` | number  | 6.779108                 |
+| `quotes.USDTWD` | number  | 29.927496                |
+| `quotes.USDTZS` | number  | 2475.00017               |
+| `quotes.USDUAH` | number  | 41.327043                |
+| `quotes.USDUGX` | number  | 3563.795545              |
+| `quotes.USDUYU` | number  | 40.075533                |
+| `quotes.USDUZS` | number  | 12578.000944             |
+| `quotes.USDVES` | number  | 128.74775                |
+| `quotes.USDVND` | number  | 26226.5                  |
+| `quotes.USDVUV` | number  | 119.401149               |
+| `quotes.USDWST` | number  | 2.653917                 |
+| `quotes.USDXAF` | number  | 563.200666               |
+| `quotes.USDXAG` | number  | 0.026317                 |
+| `quotes.USDXAU` | number  | 0.000297                 |
+| `quotes.USDXCD` | number  | 2.70255                  |
+| `quotes.USDXCG` | number  | 1.800009                 |
+| `quotes.USDXDR` | number  | 0.700441                 |
+| `quotes.USDXOF` | number  | 563.203084               |
+| `quotes.USDXPF` | number  | 102.364705               |
+| `quotes.USDYER` | number  | 240.449827               |
+| `quotes.USDZAR` | number  | 17.73076                 |
+| `quotes.USDZMK` | number  | 9001.196527              |
+| `quotes.USDZMW` | number  | 23.152942                |
+| `quotes.USDZWL` | number  | 321.999592               |
+| `source`        | string  | USD                      |
+| `updatedAt`     | date    |                          |
 
 ### First Document (sanitized)
 
@@ -2208,7 +2210,7 @@
     "USDBOB": 6.900991,
     "USDBRL": 5.431197,
     "USDBSD": 0.999064,
-    "USDBTC": 8.203109e-06,
+    "USDBTC": 8.203109e-6,
     "USDBTN": 87.452899,
     "USDBWP": 13.442146,
     "USDBYN": 3.297455,
@@ -2368,6 +2370,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -2380,19 +2383,19 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `_id` | ObjectId |  |
-| `filters` | array<object> |  |
-| `filters[].key` | string | countries |
-| `filters[].title` | string | Supplier Country/Region |
-| `filters[].type` | string | common |
-| `filters[].value` | array<object> | array (empty) | array<object> | array<object> |  |
-| `filters[].value[].id` | integer | 1 |
-| `filters[].value[].title` | string | India |
-| `filters[].value[].value` | string | IN |
-| `mappedId` | string | 003 |
-| `type` | string | Products |
+| Field                     | Type          | Example                 |
+| ------------------------- | ------------- | ----------------------- | ------------- | ------------- | --- |
+| `_id`                     | ObjectId      |                         |
+| `filters`                 | array<object> |                         |
+| `filters[].key`           | string        | countries               |
+| `filters[].title`         | string        | Supplier Country/Region |
+| `filters[].type`          | string        | common                  |
+| `filters[].value`         | array<object> | array (empty)           | array<object> | array<object> |     |
+| `filters[].value[].id`    | integer       | 1                       |
+| `filters[].value[].title` | string        | India                   |
+| `filters[].value[].value` | string        | IN                      |
+| `mappedId`                | string        | 003                     |
+| `type`                    | string        | Products                |
 
 ### First Document (sanitized)
 
@@ -2459,6 +2462,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -2471,36 +2475,36 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `createdAt` | date |  |
-| `createdBy` | ObjectId |  |
-| `customerId` | ObjectId |  |
-| `interestProductIds` | array<ObjectId> | array (empty) |  |
-| `isArchived` | boolean | False |
-| `isDraft` | boolean | True |
-| `lastContact` | date |  |
-| `logs` | array (empty) |  |
-| `permission` | string | Allowed |
-| `pricing` | object |  |
-| `pricing.bulkPrices` | array<object> |  |
-| `pricing.bulkPrices[].maxQty` | integer | 500 |
-| `pricing.bulkPrices[].minQty` | integer | 100 |
-| `pricing.bulkPrices[].price` | integer | 1000 |
-| `pricing.maxPrice` | integer | 70 |
-| `pricing.minPrice` | integer | 50 |
-| `pricing.pricingType` | string | bulk |
-| `pricing.unit` | string | pieces |
-| `pricing.unitPrice` | integer | 50 |
-| `requirementDetails` | string |  |
-| `source` | string | Social Media |
-| `stage` | string | New Inquiry |
-| `status` | string | Not Connected |
-| `threadId` | array (empty) | array<string> |  |
-| `updatedAt` | date |  |
-| `user_id` | ObjectId |  |
+| Field                         | Type            | Example       |
+| ----------------------------- | --------------- | ------------- | --- |
+| `__v`                         | integer         | 0             |
+| `_id`                         | ObjectId        |               |
+| `createdAt`                   | date            |               |
+| `createdBy`                   | ObjectId        |               |
+| `customerId`                  | ObjectId        |               |
+| `interestProductIds`          | array<ObjectId> | array (empty) |     |
+| `isArchived`                  | boolean         | False         |
+| `isDraft`                     | boolean         | True          |
+| `lastContact`                 | date            |               |
+| `logs`                        | array (empty)   |               |
+| `permission`                  | string          | Allowed       |
+| `pricing`                     | object          |               |
+| `pricing.bulkPrices`          | array<object>   |               |
+| `pricing.bulkPrices[].maxQty` | integer         | 500           |
+| `pricing.bulkPrices[].minQty` | integer         | 100           |
+| `pricing.bulkPrices[].price`  | integer         | 1000          |
+| `pricing.maxPrice`            | integer         | 70            |
+| `pricing.minPrice`            | integer         | 50            |
+| `pricing.pricingType`         | string          | bulk          |
+| `pricing.unit`                | string          | pieces        |
+| `pricing.unitPrice`           | integer         | 50            |
+| `requirementDetails`          | string          |               |
+| `source`                      | string          | Social Media  |
+| `stage`                       | string          | New Inquiry   |
+| `status`                      | string          | Not Connected |
+| `threadId`                    | array (empty)   | array<string> |     |
+| `updatedAt`                   | date            |               |
+| `user_id`                     | ObjectId        |               |
 
 ### First Document (sanitized)
 
@@ -2533,6 +2537,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -2545,214 +2550,214 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `activeOffer` | object |  |
-| `activeOffer.expires` | date | null |  |
-| `activeOffer.isApproved` | boolean | False |
-| `activeOffer.offerId` | ObjectId |  |
-| `activeOffer.offerInfo` | null | object |  |
-| `activeOffer.offerInfo.buyQty` | integer | 5 |
-| `activeOffer.offerInfo.currency` | object |  |
-| `activeOffer.offerInfo.currency.code` | string | INR |
-| `activeOffer.offerInfo.currency.name` | string | Indian Rupee |
-| `activeOffer.offerInfo.currency.symbol` | string | ₹ |
-| `activeOffer.offerInfo.discountPercent` | integer | 5 |
-| `activeOffer.offerInfo.freeQty` | integer | 1 |
-| `activeOffer.offerInfo.maxQty` | integer | 100 |
-| `activeOffer.offerInfo.minOrderQuantity` | integer | 800 |
-| `activeOffer.offerInfo.minQty` | integer | 50 |
-| `activeOffer.offerInfo.offerType` | string | limitedTime |
-| `activeOffer.offerInfo.pricing` | object |  |
-| `activeOffer.offerInfo.pricing.bulkPrices` | array<object> |  |
-| `activeOffer.offerInfo.pricing.bulkPrices[].maxQty` | integer | 100 |
-| `activeOffer.offerInfo.pricing.bulkPrices[].minQty` | integer | 1 |
-| `activeOffer.offerInfo.pricing.bulkPrices[].price` | integer | number | integer | 1128 |
-| `activeOffer.offerInfo.pricing.maxPrice` | integer | 475 |
-| `activeOffer.offerInfo.pricing.minPrice` | integer | 95 |
-| `activeOffer.offerInfo.pricing.pricingType` | string | negotiable |
-| `activeOffer.offerInfo.pricing.unit` | string | boxes |
-| `activeOffer.offerInfo.pricing.unitPrice` | number | integer | 60000 |
-| `activeOffer.offerInfo.unit` | string | boxes |
-| `activeOffer.validOffer` | boolean | False |
-| `analytics` | object |  |
-| `analytics.clicks` | integer | 0 |
-| `analytics.likes` | integer | 0 |
-| `analytics.shares` | integer | 1 |
-| `analytics.views` | integer | 30 |
-| `attributes` | array<object> | array (empty) |  |
-| `attributes[].isSuggested` | boolean | False |
-| `attributes[].isValid` | integer | 2 |
-| `attributes[].key` | string | Color |
-| `attributes[].values` | array<object> | array (empty) |  |
-| `attributes[].values[].isRemoved` | boolean | False |
-| `attributes[].values[].isSelected` | boolean | True |
-| `attributes[].values[].name` | string | Red |
-| `brandName` | string | Ijoo |
-| `category` | object |  |
-| `category._id` | string | 67f514f976706f860309ebeb |
-| `category.name` | string | Fashion |
-| `category.uniqueId` | string | CA6c3cab3c96 |
-| `categorySuggestion` | object |  |
-| `categorySuggestion.industry` | string | business-services |
-| `categorySuggestion.reason` | string | I cannot find the category. |
-| `categorySuggestion.suggestedCategory` | string | Toys |
-| `certificates` | array<object> |  |
-| `certificates[].alt` | string | dummy |
-| `certificates[].exten` | string | pdf |
-| `certificates[].name` | string | Demo |
-| `certificates[].size` | integer | 13264 |
-| `certificates[].src` | string | assets/wZvN4JPHvRlVmAXSglQ_N.pdf |
-| `countryOfOrigin` | object |  |
-| `countryOfOrigin.code` | string | AX |
-| `countryOfOrigin.name` | string | Aland Islands |
-| `createdAt` | date |  |
-| `createdBy` | ObjectId |  |
-| `currency` | string | object | USD |
-| `currency.code` | string | INR |
-| `currency.name` | string | Indian Rupee |
-| `currency.symbol` | string | ₹ |
-| `customization` | array<string> |  |
-| `detailedDescription` | string | sarfwr |
-| `dispatchLeadTime` | object |  |
-| `dispatchLeadTime.max_day` | integer | 2 |
-| `dispatchLeadTime.min_day` | integer | 2 |
-| `faqs` | array<object> |  |
-| `faqs[].answer` | string | It takes 5-7 business days for standard shipping. |
-| `faqs[].question` | string | Does the laptop come with a warranty? |
-| `globalRatings` | object |  |
-| `globalRatings.averageRating` | integer | 4 |
-| `globalRatings.totalRatings` | integer | 2 |
-| `incoTerms` | string | FOB |
-| `internationalShipping` | string | no |
-| `isCustomizable` | boolean | False |
-| `liveUrl` | string | Shoe_BPeb59239566 |
-| `minOrderQuantity` | integer | 55 |
-| `moqUnit` | string | pieces |
-| `otherPaymentMethod` | string | UPI |
-| `paymentMethods` | array<string> |  |
-| `paymentTerms` | string | ADVANCE_50_DISPATCH_50 |
-| `portOfDispatch` | string | Thoothukudi |
-| `pricing` | object |  |
-| `pricing.bulkPrices` | array<object> |  |
-| `pricing.bulkPrices[].maxQty` | integer | 40 |
-| `pricing.bulkPrices[].minQty` | integer | 5 |
-| `pricing.bulkPrices[].price` | integer | 30 |
-| `pricing.maxPrice` | integer | 1000 |
-| `pricing.minPrice` | integer | 500 |
-| `pricing.pricingType` | string | fixed |
-| `pricing.unit` | string | boxes |
-| `pricing.unitPrice` | integer | 500 |
-| `productApplications` | string | erwertw4trw |
-| `productBrochure` | object |  |
-| `productBrochure.alt` | string | dummy |
-| `productBrochure.exten` | string | pdf |
-| `productBrochure.size` | integer | 13264 |
-| `productBrochure.src` | string | https://example.com/images/eco-bottle-blue.jpg |
-| `productCategory` | object |  |
-| `productCategory._id` | string | 67f5124876706f860309ebd7 |
-| `productCategory.name` | string | Watches |
-| `productDescription` | string | jsdfgeiygfefgeiufgegfewbfe |
-| `productGroup` | ObjectId |  |
-| `productImage` | array<object> |  |
-| `productImage[].alt` | string | andres-jasso-PqbL_mxmaUE-unsplash |
-| `productImage[].exten` | string | png |
-| `productImage[].size` | integer | 137885 |
-| `productImage[].src` | string | assets/Cz8F5rnA7fllX46iiEct_.jpg |
-| `productKeyword` | array (empty) | array<string> |  |
-| `productName` | string | Shoe |
-| `productVideo` | string | object | pathto video |
-| `productVideo.alt` | string |  |
-| `productVideo.exten` | string | mp4 |
-| `productVideo.size` | integer | 3485909 |
-| `productVideo.src` | string |  |
-| `productionCapacity` | object |  |
-| `productionCapacity.duration` | string | weekly |
-| `productionCapacity.quantity` | integer | 23 |
-| `productionCapacity.unit` | string | pieces |
-| `productionLeadTime` | object |  |
-| `productionLeadTime.max_day` | integer | 14 |
-| `productionLeadTime.max_quantity` | integer | 0 |
-| `productionLeadTime.min_day` | integer | 8 |
-| `productionLeadTime.min_quantity` | integer | 0 |
-| `productionLeadTime.unit` | string | unit |
-| `salesProductId` | ObjectId |  |
-| `samplesAvailability` | object |  |
-| `samplesAvailability.availabilityType` | string | free |
-| `samplesAvailability.sampleLeadTime` | object |  |
-| `samplesAvailability.sampleLeadTime._id` | string | 1-rr |
-| `samplesAvailability.sampleLeadTime.max_day` | integer | 7 |
-| `samplesAvailability.sampleLeadTime.min_day` | integer | 4 |
-| `samplesAvailability.sampleLeadTime.name` | string | 1-2 days |
-| `samplesAvailability.samplePrice` | integer | 10 |
-| `samplesAvailability.sampleUnit` | string | box |
-| `shipmentIdentifier` | string | 1212515 |
-| `shippingMethod` | array<string> |  |
-| `shippingQty` | integer | 65 |
-| `shippingUnit` | string | Carton |
-| `showcase` | boolean | False |
-| `skuCode` | string | SKU__0967 |
-| `status` | string | live |
-| `stockAvailability` | string | inStock |
-| `subCategory` | object |  |
-| `subCategory._id` | string | 67f515a976706f860309ebf5 |
-| `subCategory.name` | string | sports |
-| `subCategory.uniqueId` | string | SC6e16b67695 |
-| `uniqueId` | string | BPeb59239566 |
-| `updatedAt` | date |  |
-| `variantAttributes` | array<object> | array (empty) |  |
-| `variantAttributes[].key` | string | Color |
-| `variantAttributes[].values` | array<string> |  |
-| `variants` | array<object> | array (empty) |  |
-| `variants[]._id` | ObjectId |  |
-| `variants[].attributes` | object |  |
-| `variants[].attributes.Brand` | string | Samsung |
-| `variants[].attributes.Cocoa Content` | string | 70% Dark |
-| `variants[].attributes.Color` | string | Red |
-| `variants[].attributes.Color Options` | string | Black |
-| `variants[].attributes.Colour` | string | Red |
-| `variants[].attributes.Expect` | string | new |
-| `variants[].attributes.Flavor` | string | Chocolate Chip |
-| `variants[].attributes.Gender Suitability` | string | Unisex |
-| `variants[].attributes.Heel Size` | string | 5cm |
-| `variants[].attributes.Material` | string | Cotton |
-| `variants[].attributes.Material Type` | string | Suede |
-| `variants[].attributes.OS` | string | Andriod |
-| `variants[].attributes.Screen Size` | string | 13 inch |
-| `variants[].attributes.Screen Size Range` | string | 5 to 6 inches |
-| `variants[].attributes.Size` | string | 7 |
-| `variants[].attributes.Style` | string | Casual |
-| `variants[].attributes.Type` | string | Mangoose |
-| `variants[].attributes.color` | string | red |
-| `variants[].attributes.colour` | string | white + black |
-| `variants[].attributes.gun` | string | air gun |
-| `variants[].attributes.size` | string | lare |
-| `variants[].attributes.types` | string | type 1 |
-| `variants[].available` | boolean | True |
-| `variants[].isActive` | boolean | True |
-| `variants[].isDeleted` | boolean | False |
-| `variants[].minOrderQuantity` | integer | 23 |
-| `variants[].moqUnit` | string | pieces |
-| `variants[].pricing` | object |  |
-| `variants[].pricing.bulkPrices` | array<object> |  |
-| `variants[].pricing.bulkPrices[].maxQty` | integer | 70 |
-| `variants[].pricing.bulkPrices[].minQty` | integer | 40 |
-| `variants[].pricing.bulkPrices[].price` | integer | 2000 |
-| `variants[].pricing.maxPrice` | integer | 700 |
-| `variants[].pricing.minPrice` | integer | 500 |
-| `variants[].pricing.pricingType` | string | fixed |
-| `variants[].pricing.unit` | string | boxes |
-| `variants[].pricing.unitPrice` | integer | 500 |
-| `variants[].skuCode` | string | SKU_09 |
-| `variants[].variantImg` | array<object> | array (empty) | array (empty) | array<object> | array (empty) | array<object> | array (empty) |  |
-| `variants[].variantImg[].alt` | string | assets/vA-dZ63C4gk71FewoTybr.jpg |
-| `variants[].variantImg[].exten` | string | image/jpeg |
-| `variants[].variantImg[].size` | integer | 46505 |
-| `variants[].variantImg[].src` | string | assets/vA-dZ63C4gk71FewoTybr.jpg |
-| `variants[].variantName` | string | Red / 7 |
-| `youtubeUrl` | string |  |
+| Field                                               | Type          | Example                                           |
+| --------------------------------------------------- | ------------- | ------------------------------------------------- | ------------- | ------------- | ------------- | ------------- | ------------- | --- |
+| `__v`                                               | integer       | 0                                                 |
+| `_id`                                               | ObjectId      |                                                   |
+| `activeOffer`                                       | object        |                                                   |
+| `activeOffer.expires`                               | date          | null                                              |               |
+| `activeOffer.isApproved`                            | boolean       | False                                             |
+| `activeOffer.offerId`                               | ObjectId      |                                                   |
+| `activeOffer.offerInfo`                             | null          | object                                            |               |
+| `activeOffer.offerInfo.buyQty`                      | integer       | 5                                                 |
+| `activeOffer.offerInfo.currency`                    | object        |                                                   |
+| `activeOffer.offerInfo.currency.code`               | string        | INR                                               |
+| `activeOffer.offerInfo.currency.name`               | string        | Indian Rupee                                      |
+| `activeOffer.offerInfo.currency.symbol`             | string        | ₹                                                 |
+| `activeOffer.offerInfo.discountPercent`             | integer       | 5                                                 |
+| `activeOffer.offerInfo.freeQty`                     | integer       | 1                                                 |
+| `activeOffer.offerInfo.maxQty`                      | integer       | 100                                               |
+| `activeOffer.offerInfo.minOrderQuantity`            | integer       | 800                                               |
+| `activeOffer.offerInfo.minQty`                      | integer       | 50                                                |
+| `activeOffer.offerInfo.offerType`                   | string        | limitedTime                                       |
+| `activeOffer.offerInfo.pricing`                     | object        |                                                   |
+| `activeOffer.offerInfo.pricing.bulkPrices`          | array<object> |                                                   |
+| `activeOffer.offerInfo.pricing.bulkPrices[].maxQty` | integer       | 100                                               |
+| `activeOffer.offerInfo.pricing.bulkPrices[].minQty` | integer       | 1                                                 |
+| `activeOffer.offerInfo.pricing.bulkPrices[].price`  | integer       | number                                            | integer       | 1128          |
+| `activeOffer.offerInfo.pricing.maxPrice`            | integer       | 475                                               |
+| `activeOffer.offerInfo.pricing.minPrice`            | integer       | 95                                                |
+| `activeOffer.offerInfo.pricing.pricingType`         | string        | negotiable                                        |
+| `activeOffer.offerInfo.pricing.unit`                | string        | boxes                                             |
+| `activeOffer.offerInfo.pricing.unitPrice`           | number        | integer                                           | 60000         |
+| `activeOffer.offerInfo.unit`                        | string        | boxes                                             |
+| `activeOffer.validOffer`                            | boolean       | False                                             |
+| `analytics`                                         | object        |                                                   |
+| `analytics.clicks`                                  | integer       | 0                                                 |
+| `analytics.likes`                                   | integer       | 0                                                 |
+| `analytics.shares`                                  | integer       | 1                                                 |
+| `analytics.views`                                   | integer       | 30                                                |
+| `attributes`                                        | array<object> | array (empty)                                     |               |
+| `attributes[].isSuggested`                          | boolean       | False                                             |
+| `attributes[].isValid`                              | integer       | 2                                                 |
+| `attributes[].key`                                  | string        | Color                                             |
+| `attributes[].values`                               | array<object> | array (empty)                                     |               |
+| `attributes[].values[].isRemoved`                   | boolean       | False                                             |
+| `attributes[].values[].isSelected`                  | boolean       | True                                              |
+| `attributes[].values[].name`                        | string        | Red                                               |
+| `brandName`                                         | string        | Ijoo                                              |
+| `category`                                          | object        |                                                   |
+| `category._id`                                      | string        | 67f514f976706f860309ebeb                          |
+| `category.name`                                     | string        | Fashion                                           |
+| `category.uniqueId`                                 | string        | CA6c3cab3c96                                      |
+| `categorySuggestion`                                | object        |                                                   |
+| `categorySuggestion.industry`                       | string        | business-services                                 |
+| `categorySuggestion.reason`                         | string        | I cannot find the category.                       |
+| `categorySuggestion.suggestedCategory`              | string        | Toys                                              |
+| `certificates`                                      | array<object> |                                                   |
+| `certificates[].alt`                                | string        | dummy                                             |
+| `certificates[].exten`                              | string        | pdf                                               |
+| `certificates[].name`                               | string        | Demo                                              |
+| `certificates[].size`                               | integer       | 13264                                             |
+| `certificates[].src`                                | string        | assets/wZvN4JPHvRlVmAXSglQ_N.pdf                  |
+| `countryOfOrigin`                                   | object        |                                                   |
+| `countryOfOrigin.code`                              | string        | AX                                                |
+| `countryOfOrigin.name`                              | string        | Aland Islands                                     |
+| `createdAt`                                         | date          |                                                   |
+| `createdBy`                                         | ObjectId      |                                                   |
+| `currency`                                          | string        | object                                            | USD           |
+| `currency.code`                                     | string        | INR                                               |
+| `currency.name`                                     | string        | Indian Rupee                                      |
+| `currency.symbol`                                   | string        | ₹                                                 |
+| `customization`                                     | array<string> |                                                   |
+| `detailedDescription`                               | string        | sarfwr                                            |
+| `dispatchLeadTime`                                  | object        |                                                   |
+| `dispatchLeadTime.max_day`                          | integer       | 2                                                 |
+| `dispatchLeadTime.min_day`                          | integer       | 2                                                 |
+| `faqs`                                              | array<object> |                                                   |
+| `faqs[].answer`                                     | string        | It takes 5-7 business days for standard shipping. |
+| `faqs[].question`                                   | string        | Does the laptop come with a warranty?             |
+| `globalRatings`                                     | object        |                                                   |
+| `globalRatings.averageRating`                       | integer       | 4                                                 |
+| `globalRatings.totalRatings`                        | integer       | 2                                                 |
+| `incoTerms`                                         | string        | FOB                                               |
+| `internationalShipping`                             | string        | no                                                |
+| `isCustomizable`                                    | boolean       | False                                             |
+| `liveUrl`                                           | string        | Shoe_BPeb59239566                                 |
+| `minOrderQuantity`                                  | integer       | 55                                                |
+| `moqUnit`                                           | string        | pieces                                            |
+| `otherPaymentMethod`                                | string        | UPI                                               |
+| `paymentMethods`                                    | array<string> |                                                   |
+| `paymentTerms`                                      | string        | ADVANCE_50_DISPATCH_50                            |
+| `portOfDispatch`                                    | string        | Thoothukudi                                       |
+| `pricing`                                           | object        |                                                   |
+| `pricing.bulkPrices`                                | array<object> |                                                   |
+| `pricing.bulkPrices[].maxQty`                       | integer       | 40                                                |
+| `pricing.bulkPrices[].minQty`                       | integer       | 5                                                 |
+| `pricing.bulkPrices[].price`                        | integer       | 30                                                |
+| `pricing.maxPrice`                                  | integer       | 1000                                              |
+| `pricing.minPrice`                                  | integer       | 500                                               |
+| `pricing.pricingType`                               | string        | fixed                                             |
+| `pricing.unit`                                      | string        | boxes                                             |
+| `pricing.unitPrice`                                 | integer       | 500                                               |
+| `productApplications`                               | string        | erwertw4trw                                       |
+| `productBrochure`                                   | object        |                                                   |
+| `productBrochure.alt`                               | string        | dummy                                             |
+| `productBrochure.exten`                             | string        | pdf                                               |
+| `productBrochure.size`                              | integer       | 13264                                             |
+| `productBrochure.src`                               | string        | https://example.com/images/eco-bottle-blue.jpg    |
+| `productCategory`                                   | object        |                                                   |
+| `productCategory._id`                               | string        | 67f5124876706f860309ebd7                          |
+| `productCategory.name`                              | string        | Watches                                           |
+| `productDescription`                                | string        | jsdfgeiygfefgeiufgegfewbfe                        |
+| `productGroup`                                      | ObjectId      |                                                   |
+| `productImage`                                      | array<object> |                                                   |
+| `productImage[].alt`                                | string        | andres-jasso-PqbL_mxmaUE-unsplash                 |
+| `productImage[].exten`                              | string        | png                                               |
+| `productImage[].size`                               | integer       | 137885                                            |
+| `productImage[].src`                                | string        | assets/Cz8F5rnA7fllX46iiEct\_.jpg                 |
+| `productKeyword`                                    | array (empty) | array<string>                                     |               |
+| `productName`                                       | string        | Shoe                                              |
+| `productVideo`                                      | string        | object                                            | pathto video  |
+| `productVideo.alt`                                  | string        |                                                   |
+| `productVideo.exten`                                | string        | mp4                                               |
+| `productVideo.size`                                 | integer       | 3485909                                           |
+| `productVideo.src`                                  | string        |                                                   |
+| `productionCapacity`                                | object        |                                                   |
+| `productionCapacity.duration`                       | string        | weekly                                            |
+| `productionCapacity.quantity`                       | integer       | 23                                                |
+| `productionCapacity.unit`                           | string        | pieces                                            |
+| `productionLeadTime`                                | object        |                                                   |
+| `productionLeadTime.max_day`                        | integer       | 14                                                |
+| `productionLeadTime.max_quantity`                   | integer       | 0                                                 |
+| `productionLeadTime.min_day`                        | integer       | 8                                                 |
+| `productionLeadTime.min_quantity`                   | integer       | 0                                                 |
+| `productionLeadTime.unit`                           | string        | unit                                              |
+| `salesProductId`                                    | ObjectId      |                                                   |
+| `samplesAvailability`                               | object        |                                                   |
+| `samplesAvailability.availabilityType`              | string        | free                                              |
+| `samplesAvailability.sampleLeadTime`                | object        |                                                   |
+| `samplesAvailability.sampleLeadTime._id`            | string        | 1-rr                                              |
+| `samplesAvailability.sampleLeadTime.max_day`        | integer       | 7                                                 |
+| `samplesAvailability.sampleLeadTime.min_day`        | integer       | 4                                                 |
+| `samplesAvailability.sampleLeadTime.name`           | string        | 1-2 days                                          |
+| `samplesAvailability.samplePrice`                   | integer       | 10                                                |
+| `samplesAvailability.sampleUnit`                    | string        | box                                               |
+| `shipmentIdentifier`                                | string        | 1212515                                           |
+| `shippingMethod`                                    | array<string> |                                                   |
+| `shippingQty`                                       | integer       | 65                                                |
+| `shippingUnit`                                      | string        | Carton                                            |
+| `showcase`                                          | boolean       | False                                             |
+| `skuCode`                                           | string        | SKU\_\_0967                                       |
+| `status`                                            | string        | live                                              |
+| `stockAvailability`                                 | string        | inStock                                           |
+| `subCategory`                                       | object        |                                                   |
+| `subCategory._id`                                   | string        | 67f515a976706f860309ebf5                          |
+| `subCategory.name`                                  | string        | sports                                            |
+| `subCategory.uniqueId`                              | string        | SC6e16b67695                                      |
+| `uniqueId`                                          | string        | BPeb59239566                                      |
+| `updatedAt`                                         | date          |                                                   |
+| `variantAttributes`                                 | array<object> | array (empty)                                     |               |
+| `variantAttributes[].key`                           | string        | Color                                             |
+| `variantAttributes[].values`                        | array<string> |                                                   |
+| `variants`                                          | array<object> | array (empty)                                     |               |
+| `variants[]._id`                                    | ObjectId      |                                                   |
+| `variants[].attributes`                             | object        |                                                   |
+| `variants[].attributes.Brand`                       | string        | Samsung                                           |
+| `variants[].attributes.Cocoa Content`               | string        | 70% Dark                                          |
+| `variants[].attributes.Color`                       | string        | Red                                               |
+| `variants[].attributes.Color Options`               | string        | Black                                             |
+| `variants[].attributes.Colour`                      | string        | Red                                               |
+| `variants[].attributes.Expect`                      | string        | new                                               |
+| `variants[].attributes.Flavor`                      | string        | Chocolate Chip                                    |
+| `variants[].attributes.Gender Suitability`          | string        | Unisex                                            |
+| `variants[].attributes.Heel Size`                   | string        | 5cm                                               |
+| `variants[].attributes.Material`                    | string        | Cotton                                            |
+| `variants[].attributes.Material Type`               | string        | Suede                                             |
+| `variants[].attributes.OS`                          | string        | Andriod                                           |
+| `variants[].attributes.Screen Size`                 | string        | 13 inch                                           |
+| `variants[].attributes.Screen Size Range`           | string        | 5 to 6 inches                                     |
+| `variants[].attributes.Size`                        | string        | 7                                                 |
+| `variants[].attributes.Style`                       | string        | Casual                                            |
+| `variants[].attributes.Type`                        | string        | Mangoose                                          |
+| `variants[].attributes.color`                       | string        | red                                               |
+| `variants[].attributes.colour`                      | string        | white + black                                     |
+| `variants[].attributes.gun`                         | string        | air gun                                           |
+| `variants[].attributes.size`                        | string        | lare                                              |
+| `variants[].attributes.types`                       | string        | type 1                                            |
+| `variants[].available`                              | boolean       | True                                              |
+| `variants[].isActive`                               | boolean       | True                                              |
+| `variants[].isDeleted`                              | boolean       | False                                             |
+| `variants[].minOrderQuantity`                       | integer       | 23                                                |
+| `variants[].moqUnit`                                | string        | pieces                                            |
+| `variants[].pricing`                                | object        |                                                   |
+| `variants[].pricing.bulkPrices`                     | array<object> |                                                   |
+| `variants[].pricing.bulkPrices[].maxQty`            | integer       | 70                                                |
+| `variants[].pricing.bulkPrices[].minQty`            | integer       | 40                                                |
+| `variants[].pricing.bulkPrices[].price`             | integer       | 2000                                              |
+| `variants[].pricing.maxPrice`                       | integer       | 700                                               |
+| `variants[].pricing.minPrice`                       | integer       | 500                                               |
+| `variants[].pricing.pricingType`                    | string        | fixed                                             |
+| `variants[].pricing.unit`                           | string        | boxes                                             |
+| `variants[].pricing.unitPrice`                      | integer       | 500                                               |
+| `variants[].skuCode`                                | string        | SKU_09                                            |
+| `variants[].variantImg`                             | array<object> | array (empty)                                     | array (empty) | array<object> | array (empty) | array<object> | array (empty) |     |
+| `variants[].variantImg[].alt`                       | string        | assets/vA-dZ63C4gk71FewoTybr.jpg                  |
+| `variants[].variantImg[].exten`                     | string        | image/jpeg                                        |
+| `variants[].variantImg[].size`                      | integer       | 46505                                             |
+| `variants[].variantImg[].src`                       | string        | assets/vA-dZ63C4gk71FewoTybr.jpg                  |
+| `variants[].variantName`                            | string        | Red / 7                                           |
+| `youtubeUrl`                                        | string        |                                                   |
 
 ### First Document (sanitized)
 
@@ -2821,10 +2826,12 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
 **productName_text**
+
 - Keys:
   - `_fts`: text
   - `_ftsx`: ascending
@@ -2838,24 +2845,24 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `analytics` | object |  |
-| `analytics.shares` | integer | 0 |
-| `analytics.views` | integer | 0 |
-| `businessType` | string | unregistered |
-| `catalogName` | string | Techverse Catalog |
-| `createdAt` | date |  |
-| `industry` | array<string> |  |
-| `legalName` | string | Techverse Innovations |
-| `legalStatus` | string | sole_proprietorship |
-| `productIds` | array (empty) |  |
-| `status` | string | pending |
-| `subDomain` | string | techverse-innovations |
-| `updatedAt` | date |  |
-| `userId` | string | 685b8a51a8f68cc8e3c2008a |
+| Field              | Type          | Example                  |
+| ------------------ | ------------- | ------------------------ |
+| `__v`              | integer       | 0                        |
+| `_id`              | ObjectId      |                          |
+| `analytics`        | object        |                          |
+| `analytics.shares` | integer       | 0                        |
+| `analytics.views`  | integer       | 0                        |
+| `businessType`     | string        | unregistered             |
+| `catalogName`      | string        | Techverse Catalog        |
+| `createdAt`        | date          |                          |
+| `industry`         | array<string> |                          |
+| `legalName`        | string        | Techverse Innovations    |
+| `legalStatus`      | string        | sole_proprietorship      |
+| `productIds`       | array (empty) |                          |
+| `status`           | string        | pending                  |
+| `subDomain`        | string        | techverse-innovations    |
+| `updatedAt`        | date          |                          |
+| `userId`           | string        | 685b8a51a8f68cc8e3c2008a |
 
 ### First Document (sanitized)
 
@@ -2868,9 +2875,7 @@
   "legalName": "Techverse Innovations",
   "businessType": "unregistered",
   "legalStatus": "sole_proprietorship",
-  "industry": [
-    "technology, software"
-  ],
+  "industry": ["technology, software"],
   "status": "pending",
   "productIds": [],
   "analytics": {
@@ -2886,10 +2891,12 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
 **subDomain_1**
+
 - Type: Unique
 - Keys:
   - `subDomain`: ascending
@@ -2903,32 +2910,32 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `attachment` | array<object> | array (empty) |  |
-| `attachment[].alt` | string | image1.jpg |
-| `attachment[].extn` | string | jpg |
-| `attachment[].size` | integer | 4 |
-| `attachment[].src` | string | https://example.com/image1.jpg |
-| `bcc` | array (empty) | array<string> |  |
-| `cc` | array (empty) | array<string> |  |
-| `content` | string | product 123 |
-| `createdAt` | date |  |
-| `createdBy` | ObjectId |  |
-| `fav` | boolean | False |
-| `isArchive` | boolean | False |
-| `isDeleted` | boolean | False |
-| `pageType` | string | connect |
-| `reactions` | array (empty) |  |
-| `read` | boolean | False |
-| `subject` | string | Request |
-| `threadId` | string | 686658e3fecc2b65af6f3187 |
-| `to` | array (empty) | array<string> |  |
-| `type` | string | chat |
-| `updatedAt` | date |  |
-| `user_id` | ObjectId |  |
+| Field               | Type          | Example                        |
+| ------------------- | ------------- | ------------------------------ | --- |
+| `__v`               | integer       | 0                              |
+| `_id`               | ObjectId      |                                |
+| `attachment`        | array<object> | array (empty)                  |     |
+| `attachment[].alt`  | string        | image1.jpg                     |
+| `attachment[].extn` | string        | jpg                            |
+| `attachment[].size` | integer       | 4                              |
+| `attachment[].src`  | string        | https://example.com/image1.jpg |
+| `bcc`               | array (empty) | array<string>                  |     |
+| `cc`                | array (empty) | array<string>                  |     |
+| `content`           | string        | product 123                    |
+| `createdAt`         | date          |                                |
+| `createdBy`         | ObjectId      |                                |
+| `fav`               | boolean       | False                          |
+| `isArchive`         | boolean       | False                          |
+| `isDeleted`         | boolean       | False                          |
+| `pageType`          | string        | connect                        |
+| `reactions`         | array (empty) |                                |
+| `read`              | boolean       | False                          |
+| `subject`           | string        | Request                        |
+| `threadId`          | string        | 686658e3fecc2b65af6f3187       |
+| `to`                | array (empty) | array<string>                  |     |
+| `type`              | string        | chat                           |
+| `updatedAt`         | date          |                                |
+| `user_id`           | ObjectId      |                                |
 
 ### First Document (sanitized)
 
@@ -2964,6 +2971,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -2976,19 +2984,19 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `countryCode` | string | +91 |
-| `createdAt` | date |  |
-| `email` | string | antoraphael100@gmail.com |
-| `expiry_date` | date |  |
-| `otp` | string | 571393 |
-| `phoneNo` | string | 9894722519 |
-| `retryCount` | integer | 0 |
-| `updatedAt` | date |  |
-| `verified` | boolean | True |
+| Field         | Type     | Example                  |
+| ------------- | -------- | ------------------------ |
+| `__v`         | integer  | 0                        |
+| `_id`         | ObjectId |                          |
+| `countryCode` | string   | +91                      |
+| `createdAt`   | date     |                          |
+| `email`       | string   | antoraphael100@gmail.com |
+| `expiry_date` | date     |                          |
+| `otp`         | string   | 571393                   |
+| `phoneNo`     | string   | 9894722519               |
+| `retryCount`  | integer  | 0                        |
+| `updatedAt`   | date     |                          |
+| `verified`    | boolean  | True                     |
 
 ### First Document (sanitized)
 
@@ -3009,6 +3017,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -3021,20 +3030,20 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `_id` | ObjectId |  |
-| `createdBy` | ObjectId |  |
-| `invoice` | string | INV-2025-0001 |
-| `paymentDate` | date |  |
-| `paymentMethod` | object |  |
-| `paymentMethod.method` | string | card |
-| `paymentMethod.number` | string | 4111111111111111 |
-| `paymentResult` | object |  |
-| `paymentResult.statusMessage` | string | Payment successful |
-| `paymentResult.transactionId` | string | txn_1234567890 |
-| `paymentStatus` | string | paid |
-| `totalAmount` | string | 999.00 |
+| Field                         | Type     | Example            |
+| ----------------------------- | -------- | ------------------ |
+| `_id`                         | ObjectId |                    |
+| `createdBy`                   | ObjectId |                    |
+| `invoice`                     | string   | INV-2025-0001      |
+| `paymentDate`                 | date     |                    |
+| `paymentMethod`               | object   |                    |
+| `paymentMethod.method`        | string   | card               |
+| `paymentMethod.number`        | string   | 4111111111111111   |
+| `paymentResult`               | object   |                    |
+| `paymentResult.statusMessage` | string   | Payment successful |
+| `paymentResult.transactionId` | string   | txn_1234567890     |
+| `paymentStatus`               | string   | paid               |
+| `totalAmount`                 | string   | 999.00             |
 
 ### First Document (sanitized)
 
@@ -3060,6 +3069,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -3072,12 +3082,12 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `_id` | ObjectId |  |
-| `name` | string | Strategy Games |
-| `parentId` | string | 6620c91a1f1c8a9a1b1c1010 |
-| `uniqueId` | string | PRD-019 |
+| Field      | Type     | Example                  |
+| ---------- | -------- | ------------------------ |
+| `_id`      | ObjectId |                          |
+| `name`     | string   | Strategy Games           |
+| `parentId` | string   | 6620c91a1f1c8a9a1b1c1010 |
+| `uniqueId` | string   | PRD-019                  |
 
 ### First Document (sanitized)
 
@@ -3093,10 +3103,12 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
 **uniqueId_1**
+
 - Type: Unique
 - Keys:
   - `uniqueId`: ascending
@@ -3111,6 +3123,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -3123,21 +3136,21 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `createdAt` | date |  |
-| `remarks` | array<object> |  |
-| `remarks[]._id` | ObjectId |  |
-| `remarks[].createdAt` | date |  |
-| `remarks[].reason` | string | Wrong color/size |
-| `remarks[].remark` | string | d |
-| `remarks[].to` | string | test |
-| `remarks[].updatedAt` | date |  |
-| `type` | string | offer |
-| `typeId` | ObjectId |  |
-| `updatedAt` | date |  |
+| Field                 | Type          | Example          |
+| --------------------- | ------------- | ---------------- |
+| `__v`                 | integer       | 0                |
+| `_id`                 | ObjectId      |                  |
+| `createdAt`           | date          |                  |
+| `remarks`             | array<object> |                  |
+| `remarks[]._id`       | ObjectId      |                  |
+| `remarks[].createdAt` | date          |                  |
+| `remarks[].reason`    | string        | Wrong color/size |
+| `remarks[].remark`    | string        | d                |
+| `remarks[].to`        | string        | test             |
+| `remarks[].updatedAt` | date          |                  |
+| `type`                | string        | offer            |
+| `typeId`              | ObjectId      |                  |
+| `updatedAt`           | date          |                  |
 
 ### First Document (sanitized)
 
@@ -3173,6 +3186,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -3186,6 +3200,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -3198,55 +3213,55 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `createdAt` | date |  |
-| `createdBy` | ObjectId |  |
-| `isActive` | boolean | True |
-| `productId` | ObjectId |  |
-| `selectedVariants` | array<object> |  |
-| `selectedVariants[]._id` | string | 6870b86496c7dd13bd60101a |
-| `selectedVariants[].quantity` | integer | 50 |
-| `totalOrderQuantity` | integer | 50 |
-| `updatedAt` | date |  |
-| `variants` | array<object> |  |
-| `variants[]._id` | ObjectId |  |
-| `variants[].attributes` | object |  |
-| `variants[].attributes.Brand` | string | Samsung |
-| `variants[].attributes.Color` | string | red |
-| `variants[].attributes.Color Options` | string | Black |
-| `variants[].attributes.Material` | string | Cotton |
-| `variants[].attributes.Screen Size` | string | 13 inch |
-| `variants[].attributes.Screen Size Range` | string | 5 to 6 inches |
-| `variants[].attributes.Size` | string | 7 |
-| `variants[].attributes.Size Options` | string | US 7 |
-| `variants[].attributes.Style` | string | Sneakers |
-| `variants[].attributes.color` | string | red |
-| `variants[].attributes.features ` | string | 4g |
-| `variants[].available` | boolean | True |
-| `variants[].isActive` | boolean | True |
-| `variants[].isDeleted` | boolean | False |
-| `variants[].minOrderQuantity` | integer | 100 |
-| `variants[].moqUnit` | string | pieces |
-| `variants[].pricing` | object |  |
-| `variants[].pricing.bulkPrices` | array<object> |  |
-| `variants[].pricing.bulkPrices[].maxQty` | integer | 200 |
-| `variants[].pricing.bulkPrices[].minQty` | integer | 100 |
-| `variants[].pricing.bulkPrices[].price` | integer | 100 |
-| `variants[].pricing.maxPrice` | integer | 600 |
-| `variants[].pricing.minPrice` | integer | 500 |
-| `variants[].pricing.pricingType` | string | fixed |
-| `variants[].pricing.unit` | string | pieces |
-| `variants[].pricing.unitPrice` | integer | 10 |
-| `variants[].skuCode` | string | sdo0011 |
-| `variants[].variantImg` | array<object> | array<object> | array (empty) |  |
-| `variants[].variantImg[].alt` | string | Samsung-Mobile-Phone..._imresizer |
-| `variants[].variantImg[].exten` | string | jpg |
-| `variants[].variantImg[].size` | integer | 58460 |
-| `variants[].variantImg[].src` | string | assets/P8o2kMDTuATV5zxuIScId.jpg |
-| `variants[].variantName` | string | 4g |
+| Field                                     | Type          | Example                            |
+| ----------------------------------------- | ------------- | ---------------------------------- | ------------- | --- |
+| `__v`                                     | integer       | 0                                  |
+| `_id`                                     | ObjectId      |                                    |
+| `createdAt`                               | date          |                                    |
+| `createdBy`                               | ObjectId      |                                    |
+| `isActive`                                | boolean       | True                               |
+| `productId`                               | ObjectId      |                                    |
+| `selectedVariants`                        | array<object> |                                    |
+| `selectedVariants[]._id`                  | string        | 6870b86496c7dd13bd60101a           |
+| `selectedVariants[].quantity`             | integer       | 50                                 |
+| `totalOrderQuantity`                      | integer       | 50                                 |
+| `updatedAt`                               | date          |                                    |
+| `variants`                                | array<object> |                                    |
+| `variants[]._id`                          | ObjectId      |                                    |
+| `variants[].attributes`                   | object        |                                    |
+| `variants[].attributes.Brand`             | string        | Samsung                            |
+| `variants[].attributes.Color`             | string        | red                                |
+| `variants[].attributes.Color Options`     | string        | Black                              |
+| `variants[].attributes.Material`          | string        | Cotton                             |
+| `variants[].attributes.Screen Size`       | string        | 13 inch                            |
+| `variants[].attributes.Screen Size Range` | string        | 5 to 6 inches                      |
+| `variants[].attributes.Size`              | string        | 7                                  |
+| `variants[].attributes.Size Options`      | string        | US 7                               |
+| `variants[].attributes.Style`             | string        | Sneakers                           |
+| `variants[].attributes.color`             | string        | red                                |
+| `variants[].attributes.features `         | string        | 4g                                 |
+| `variants[].available`                    | boolean       | True                               |
+| `variants[].isActive`                     | boolean       | True                               |
+| `variants[].isDeleted`                    | boolean       | False                              |
+| `variants[].minOrderQuantity`             | integer       | 100                                |
+| `variants[].moqUnit`                      | string        | pieces                             |
+| `variants[].pricing`                      | object        |                                    |
+| `variants[].pricing.bulkPrices`           | array<object> |                                    |
+| `variants[].pricing.bulkPrices[].maxQty`  | integer       | 200                                |
+| `variants[].pricing.bulkPrices[].minQty`  | integer       | 100                                |
+| `variants[].pricing.bulkPrices[].price`   | integer       | 100                                |
+| `variants[].pricing.maxPrice`             | integer       | 600                                |
+| `variants[].pricing.minPrice`             | integer       | 500                                |
+| `variants[].pricing.pricingType`          | string        | fixed                              |
+| `variants[].pricing.unit`                 | string        | pieces                             |
+| `variants[].pricing.unitPrice`            | integer       | 10                                 |
+| `variants[].skuCode`                      | string        | sdo0011                            |
+| `variants[].variantImg`                   | array<object> | array<object>                      | array (empty) |     |
+| `variants[].variantImg[].alt`             | string        | Samsung-Mobile-Phone...\_imresizer |
+| `variants[].variantImg[].exten`           | string        | jpg                                |
+| `variants[].variantImg[].size`            | integer       | 58460                              |
+| `variants[].variantImg[].src`             | string        | assets/P8o2kMDTuATV5zxuIScId.jpg   |
+| `variants[].variantName`                  | string        | 4g                                 |
 
 ### First Document (sanitized)
 
@@ -3330,6 +3345,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -3343,6 +3359,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -3355,14 +3372,14 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `createdAt` | date |  |
-| `groupName` | string | CHARGER |
-| `mappedProductId` | array (empty) |  |
-| `updatedAt` | date |  |
+| Field             | Type          | Example |
+| ----------------- | ------------- | ------- |
+| `__v`             | integer       | 0       |
+| `_id`             | ObjectId      |         |
+| `createdAt`       | date          |         |
+| `groupName`       | string        | CHARGER |
+| `mappedProductId` | array (empty) |         |
+| `updatedAt`       | date          |         |
 
 ### First Document (sanitized)
 
@@ -3379,6 +3396,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -3391,20 +3409,20 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `createdAt` | date |  |
-| `createdBy` | ObjectId |  |
-| `default` | boolean | False |
-| `updatedAt` | date |  |
-| `value` | array<object> |  |
-| `value[].max_day` | integer | 3 |
-| `value[].max_quantity` | integer | 0 |
-| `value[].min_day` | integer | 1 |
-| `value[].min_quantity` | integer | 0 |
-| `value[].unit` | string | unit |
+| Field                  | Type          | Example |
+| ---------------------- | ------------- | ------- |
+| `__v`                  | integer       | 0       |
+| `_id`                  | ObjectId      |         |
+| `createdAt`            | date          |         |
+| `createdBy`            | ObjectId      |         |
+| `default`              | boolean       | False   |
+| `updatedAt`            | date          |         |
+| `value`                | array<object> |         |
+| `value[].max_day`      | integer       | 3       |
+| `value[].max_quantity` | integer       | 0       |
+| `value[].min_day`      | integer       | 1       |
+| `value[].min_quantity` | integer       | 0       |
+| `value[].unit`         | string        | unit    |
 
 ### First Document (sanitized)
 
@@ -3455,6 +3473,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -3467,204 +3486,204 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `activeOffer` | object |  |
-| `activeOffer.expires` | date |  |
-| `activeOffer.isApproved` | boolean | False |
-| `activeOffer.offerId` | ObjectId |  |
-| `activeOffer.offerInfo` | object |  |
-| `activeOffer.offerInfo.buyQty` | integer | 50 |
-| `activeOffer.offerInfo.currency` | string | object | INR |
-| `activeOffer.offerInfo.currency.code` | string | INR |
-| `activeOffer.offerInfo.currency.name` | string | Indian Rupee |
-| `activeOffer.offerInfo.currency.symbol` | string | ₹ |
-| `activeOffer.offerInfo.discountPercent` | integer | 25 |
-| `activeOffer.offerInfo.freeQty` | integer | 50 |
-| `activeOffer.offerInfo.maxQty` | integer | 100 |
-| `activeOffer.offerInfo.minOrderQuantity` | integer | 10 |
-| `activeOffer.offerInfo.minQty` | integer | 55 |
-| `activeOffer.offerInfo.offerType` | string | fixedDiscount |
-| `activeOffer.offerInfo.pricing` | object |  |
-| `activeOffer.offerInfo.pricing.bulkPrices` | array<object> |  |
-| `activeOffer.offerInfo.pricing.bulkPrices[].maxQty` | integer | 98 |
-| `activeOffer.offerInfo.pricing.bulkPrices[].minQty` | integer | 85 |
-| `activeOffer.offerInfo.pricing.bulkPrices[].price` | number | integer | 57.75 |
-| `activeOffer.offerInfo.pricing.pricingType` | string | fixed |
-| `activeOffer.offerInfo.pricing.unit` | string | boxes |
-| `activeOffer.offerInfo.pricing.unitPrice` | number | integer | 75000 |
-| `activeOffer.offerInfo.unit` | string | pieces |
-| `activeOffer.validOffer` | boolean | True |
-| `assignTo` | ObjectId |  |
-| `attributes` | array<object> | array (empty) |  |
-| `attributes[].isSuggested` | boolean | False |
-| `attributes[].isValid` | integer | 1 |
-| `attributes[].key` | string | Brand |
-| `attributes[].values` | array<object> |  |
-| `attributes[].values[].isRemoved` | boolean | False |
-| `attributes[].values[].isSelected` | boolean | True |
-| `attributes[].values[].name` | string | Samsung |
-| `brandName` | string | tes brand |
-| `category` | object |  |
-| `category._id` | string | 67f514ee76706f860309ebe9 |
-| `category.name` | string | Electronics |
-| `category.uniqueId` | string | CAee40f0e5be |
-| `categorySuggestion` | object |  |
-| `categorySuggestion.industry` | string | business-services |
-| `categorySuggestion.reason` | string | I cannot find the category. |
-| `categorySuggestion.suggestedCategory` | string | toys |
-| `certificates` | array<object> |  |
-| `certificates[].alt` | string | Employer Survey (1) |
-| `certificates[].exten` | string | pdf |
-| `certificates[].name` | string | iso |
-| `certificates[].size` | integer | 684280 |
-| `certificates[].src` | string | assets/kJVs_JFoIG0Im_CAW4X2C.pdf |
-| `countryOfOrigin` | object |  |
-| `countryOfOrigin.code` | string | IN |
-| `countryOfOrigin.name` | string | India |
-| `createdAt` | date |  |
-| `createdBy` | ObjectId |  |
-| `currency` | string | object | USD |
-| `currency.code` | string | INR |
-| `currency.name` | string | Indian Rupee |
-| `currency.symbol` | string | ₹ |
-| `customization` | array<string> |  |
-| `detailedDescription` | string | Product Description |
-| `dispatchLeadTime` | object |  |
-| `dispatchLeadTime.max_day` | integer | null | 2 |
-| `dispatchLeadTime.min_day` | integer | null | 2 |
-| `faqs` | array<object> |  |
-| `faqs[].answer` | string |  |
-| `faqs[].question` | string | Can I buy an insurance plan for my new iPhone? |
-| `incoTerms` | string | CIF |
-| `internationalShipping` | string | yes |
-| `isArchived` | boolean | False |
-| `isCustomizable` | boolean | True |
-| `isDraft` | boolean | False |
-| `isQuickInsert` | boolean | True |
-| `liveProductId` | ObjectId |  |
-| `minOrderQuantity` | integer | 10 |
-| `moqUnit` | string | pieces |
-| `otherPaymentMethod` | string | UPI |
-| `paymentMethods` | array<string> |  |
-| `paymentTerms` | string | ADVANCE_50_DISPATCH_50 |
-| `portOfDispatch` | string | sea |
-| `pricing` | object |  |
-| `pricing.bulkPrices` | array<object> |  |
-| `pricing.bulkPrices[].maxQty` | integer | 10 |
-| `pricing.bulkPrices[].minQty` | integer | 1 |
-| `pricing.bulkPrices[].price` | integer | 100 |
-| `pricing.maxPrice` | integer | 2000 |
-| `pricing.minPrice` | integer | 300 |
-| `pricing.pricingType` | string | bulk |
-| `pricing.unit` | string | pieces |
-| `pricing.unitPrice` | integer | 10000 |
-| `productApplications` | string | Applications |
-| `productBrochure` | object |  |
-| `productBrochure.alt` | string | Employer Survey |
-| `productBrochure.exten` | string | pdf |
-| `productBrochure.size` | integer | 684280 |
-| `productBrochure.src` | string |  |
-| `productCategory` | object |  |
-| `productCategory._id` | string | 67f5154376706f860309ebf0 |
-| `productCategory.name` | string | Feature Phones |
-| `productDescription` | string | some product description |
-| `productGroup` | ObjectId |  |
-| `productId` | string | PRD-f7696e40b7 |
-| `productImage` | array<object> |  |
-| `productImage[].alt` | string | sdfsdf |
-| `productImage[].exten` | string | jpg |
-| `productImage[].size` | integer | 565632 |
-| `productImage[].src` | string | assets/zuZTCpK0Fng2O6lhdHbou.png |
-| `productKeyword` | array (empty) | array<string> |  |
-| `productName` | string | quick product2 |
-| `productStage` | object |  |
-| `productStage.AdditionalDetails` | string | completed |
-| `productStage.PaymentTerms` | string | completed |
-| `productStage.PricingAndMoq` | string | completed |
-| `productStage.ProductDescription` | string | completed |
-| `productStage.ProductInformation` | string | completed |
-| `productStage.ProductionAndStock` | string | completed |
-| `productStage.ShippingDetails` | string | completed |
-| `productStage.Specification` | string | completed |
-| `productVideo` | object |  |
-| `productVideo.alt` | string |  |
-| `productVideo.exten` | string | mp4 |
-| `productVideo.size` | integer | 3485909 |
-| `productVideo.src` | string |  |
-| `productionCapacity` | object |  |
-| `productionCapacity.duration` | string | weekly |
-| `productionCapacity.quantity` | integer | 445 |
-| `productionCapacity.unit` | string | pieces |
-| `productionLeadTime` | object |  |
-| `productionLeadTime.max_day` | integer | 7 |
-| `productionLeadTime.max_quantity` | integer | 0 |
-| `productionLeadTime.min_day` | integer | 4 |
-| `productionLeadTime.min_quantity` | integer | 0 |
-| `productionLeadTime.unit` | string | unit |
-| `samplesAvailability` | object |  |
-| `samplesAvailability.availabilityType` | string | free |
-| `samplesAvailability.sampleLeadTime` | object |  |
-| `samplesAvailability.sampleLeadTime.max_day` | integer | null | 7 |
-| `samplesAvailability.sampleLeadTime.min_day` | integer | null | 4 |
-| `samplesAvailability.samplePrice` | integer | 10 |
-| `samplesAvailability.sampleUnit` | string | boxes |
-| `shipmentIdentifier` | string | HSN |
-| `shippingMethod` | array<string> |  |
-| `shippingQty` | integer | 34 |
-| `shippingUnit` | string | Pallet |
-| `showInCatalog` | boolean | False |
-| `showcase` | boolean | False |
-| `skuCode` | string | 43256 |
-| `status` | string | pending |
-| `stockAvailability` | string | inStock |
-| `subCategory` | object |  |
-| `subCategory._id` | string | 67f5154376706f860309ebf0 |
-| `subCategory.name` | string | Mobile Phones |
-| `subCategory.uniqueId` | string | SC9577637767 |
-| `updatedAt` | date |  |
-| `variantAttributes` | array<object> | array (empty) |  |
-| `variantAttributes[].key` | string | Brand |
-| `variantAttributes[].values` | array<string> |  |
-| `variants` | array<object> | array (empty) |  |
-| `variants[]._id` | ObjectId |  |
-| `variants[].attributes` | object |  |
-| `variants[].attributes.Brand` | string | Samsung |
-| `variants[].attributes.Color` | string | Red |
-| `variants[].attributes.Color Options` | string | Black |
-| `variants[].attributes.Colour` | string | Red |
-| `variants[].attributes.Connectivity` | string | Wireless |
-| `variants[].attributes.Fabric Type` | string | Silk |
-| `variants[].attributes.Flavor` | string | Chocolate Chip |
-| `variants[].attributes.Material` | string | Cotton |
-| `variants[].attributes.Network Technology` | string | 5G |
-| `variants[].attributes.Screen Size Range` | string | 5 to 6 inches |
-| `variants[].attributes.Size` | string | 8 |
-| `variants[].attributes.color` | string | white |
-| `variants[].attributes.gun` | string | air gun |
-| `variants[].available` | boolean | True |
-| `variants[].isActive` | boolean | True |
-| `variants[].isDeleted` | boolean | False |
-| `variants[].minOrderQuantity` | integer | 321 |
-| `variants[].moqUnit` | string | pieces |
-| `variants[].pricing` | object |  |
-| `variants[].pricing.bulkPrices` | array<object> |  |
-| `variants[].pricing.bulkPrices[].maxQty` | integer | 200 |
-| `variants[].pricing.bulkPrices[].minQty` | integer | 100 |
-| `variants[].pricing.bulkPrices[].price` | integer | 30000 |
-| `variants[].pricing.pricingType` | string | fixed |
-| `variants[].pricing.unit` | string | pieces |
-| `variants[].pricing.unitPrice` | integer | 98 |
-| `variants[].skuCode` | string | 3432 |
-| `variants[].variantImg` | array<object> | array (empty) | array (empty) | array<object> | array (empty) | array<object> | array (empty) |  |
-| `variants[].variantImg[].alt` | string | phone1 |
-| `variants[].variantImg[].exten` | string | jpeg |
-| `variants[].variantImg[].size` | integer | 2508 |
-| `variants[].variantImg[].src` | string |  |
-| `variants[].variantName` | string | Samsung / 5 to 6 inches |
-| `youtubeUrl` | string |  |
+| Field                                               | Type          | Example                                        |
+| --------------------------------------------------- | ------------- | ---------------------------------------------- | ------------- | ------------- | ------------- | ------------- | ------------- | --- |
+| `__v`                                               | integer       | 0                                              |
+| `_id`                                               | ObjectId      |                                                |
+| `activeOffer`                                       | object        |                                                |
+| `activeOffer.expires`                               | date          |                                                |
+| `activeOffer.isApproved`                            | boolean       | False                                          |
+| `activeOffer.offerId`                               | ObjectId      |                                                |
+| `activeOffer.offerInfo`                             | object        |                                                |
+| `activeOffer.offerInfo.buyQty`                      | integer       | 50                                             |
+| `activeOffer.offerInfo.currency`                    | string        | object                                         | INR           |
+| `activeOffer.offerInfo.currency.code`               | string        | INR                                            |
+| `activeOffer.offerInfo.currency.name`               | string        | Indian Rupee                                   |
+| `activeOffer.offerInfo.currency.symbol`             | string        | ₹                                              |
+| `activeOffer.offerInfo.discountPercent`             | integer       | 25                                             |
+| `activeOffer.offerInfo.freeQty`                     | integer       | 50                                             |
+| `activeOffer.offerInfo.maxQty`                      | integer       | 100                                            |
+| `activeOffer.offerInfo.minOrderQuantity`            | integer       | 10                                             |
+| `activeOffer.offerInfo.minQty`                      | integer       | 55                                             |
+| `activeOffer.offerInfo.offerType`                   | string        | fixedDiscount                                  |
+| `activeOffer.offerInfo.pricing`                     | object        |                                                |
+| `activeOffer.offerInfo.pricing.bulkPrices`          | array<object> |                                                |
+| `activeOffer.offerInfo.pricing.bulkPrices[].maxQty` | integer       | 98                                             |
+| `activeOffer.offerInfo.pricing.bulkPrices[].minQty` | integer       | 85                                             |
+| `activeOffer.offerInfo.pricing.bulkPrices[].price`  | number        | integer                                        | 57.75         |
+| `activeOffer.offerInfo.pricing.pricingType`         | string        | fixed                                          |
+| `activeOffer.offerInfo.pricing.unit`                | string        | boxes                                          |
+| `activeOffer.offerInfo.pricing.unitPrice`           | number        | integer                                        | 75000         |
+| `activeOffer.offerInfo.unit`                        | string        | pieces                                         |
+| `activeOffer.validOffer`                            | boolean       | True                                           |
+| `assignTo`                                          | ObjectId      |                                                |
+| `attributes`                                        | array<object> | array (empty)                                  |               |
+| `attributes[].isSuggested`                          | boolean       | False                                          |
+| `attributes[].isValid`                              | integer       | 1                                              |
+| `attributes[].key`                                  | string        | Brand                                          |
+| `attributes[].values`                               | array<object> |                                                |
+| `attributes[].values[].isRemoved`                   | boolean       | False                                          |
+| `attributes[].values[].isSelected`                  | boolean       | True                                           |
+| `attributes[].values[].name`                        | string        | Samsung                                        |
+| `brandName`                                         | string        | tes brand                                      |
+| `category`                                          | object        |                                                |
+| `category._id`                                      | string        | 67f514ee76706f860309ebe9                       |
+| `category.name`                                     | string        | Electronics                                    |
+| `category.uniqueId`                                 | string        | CAee40f0e5be                                   |
+| `categorySuggestion`                                | object        |                                                |
+| `categorySuggestion.industry`                       | string        | business-services                              |
+| `categorySuggestion.reason`                         | string        | I cannot find the category.                    |
+| `categorySuggestion.suggestedCategory`              | string        | toys                                           |
+| `certificates`                                      | array<object> |                                                |
+| `certificates[].alt`                                | string        | Employer Survey (1)                            |
+| `certificates[].exten`                              | string        | pdf                                            |
+| `certificates[].name`                               | string        | iso                                            |
+| `certificates[].size`                               | integer       | 684280                                         |
+| `certificates[].src`                                | string        | assets/kJVs_JFoIG0Im_CAW4X2C.pdf               |
+| `countryOfOrigin`                                   | object        |                                                |
+| `countryOfOrigin.code`                              | string        | IN                                             |
+| `countryOfOrigin.name`                              | string        | India                                          |
+| `createdAt`                                         | date          |                                                |
+| `createdBy`                                         | ObjectId      |                                                |
+| `currency`                                          | string        | object                                         | USD           |
+| `currency.code`                                     | string        | INR                                            |
+| `currency.name`                                     | string        | Indian Rupee                                   |
+| `currency.symbol`                                   | string        | ₹                                              |
+| `customization`                                     | array<string> |                                                |
+| `detailedDescription`                               | string        | Product Description                            |
+| `dispatchLeadTime`                                  | object        |                                                |
+| `dispatchLeadTime.max_day`                          | integer       | null                                           | 2             |
+| `dispatchLeadTime.min_day`                          | integer       | null                                           | 2             |
+| `faqs`                                              | array<object> |                                                |
+| `faqs[].answer`                                     | string        |                                                |
+| `faqs[].question`                                   | string        | Can I buy an insurance plan for my new iPhone? |
+| `incoTerms`                                         | string        | CIF                                            |
+| `internationalShipping`                             | string        | yes                                            |
+| `isArchived`                                        | boolean       | False                                          |
+| `isCustomizable`                                    | boolean       | True                                           |
+| `isDraft`                                           | boolean       | False                                          |
+| `isQuickInsert`                                     | boolean       | True                                           |
+| `liveProductId`                                     | ObjectId      |                                                |
+| `minOrderQuantity`                                  | integer       | 10                                             |
+| `moqUnit`                                           | string        | pieces                                         |
+| `otherPaymentMethod`                                | string        | UPI                                            |
+| `paymentMethods`                                    | array<string> |                                                |
+| `paymentTerms`                                      | string        | ADVANCE_50_DISPATCH_50                         |
+| `portOfDispatch`                                    | string        | sea                                            |
+| `pricing`                                           | object        |                                                |
+| `pricing.bulkPrices`                                | array<object> |                                                |
+| `pricing.bulkPrices[].maxQty`                       | integer       | 10                                             |
+| `pricing.bulkPrices[].minQty`                       | integer       | 1                                              |
+| `pricing.bulkPrices[].price`                        | integer       | 100                                            |
+| `pricing.maxPrice`                                  | integer       | 2000                                           |
+| `pricing.minPrice`                                  | integer       | 300                                            |
+| `pricing.pricingType`                               | string        | bulk                                           |
+| `pricing.unit`                                      | string        | pieces                                         |
+| `pricing.unitPrice`                                 | integer       | 10000                                          |
+| `productApplications`                               | string        | Applications                                   |
+| `productBrochure`                                   | object        |                                                |
+| `productBrochure.alt`                               | string        | Employer Survey                                |
+| `productBrochure.exten`                             | string        | pdf                                            |
+| `productBrochure.size`                              | integer       | 684280                                         |
+| `productBrochure.src`                               | string        |                                                |
+| `productCategory`                                   | object        |                                                |
+| `productCategory._id`                               | string        | 67f5154376706f860309ebf0                       |
+| `productCategory.name`                              | string        | Feature Phones                                 |
+| `productDescription`                                | string        | some product description                       |
+| `productGroup`                                      | ObjectId      |                                                |
+| `productId`                                         | string        | PRD-f7696e40b7                                 |
+| `productImage`                                      | array<object> |                                                |
+| `productImage[].alt`                                | string        | sdfsdf                                         |
+| `productImage[].exten`                              | string        | jpg                                            |
+| `productImage[].size`                               | integer       | 565632                                         |
+| `productImage[].src`                                | string        | assets/zuZTCpK0Fng2O6lhdHbou.png               |
+| `productKeyword`                                    | array (empty) | array<string>                                  |               |
+| `productName`                                       | string        | quick product2                                 |
+| `productStage`                                      | object        |                                                |
+| `productStage.AdditionalDetails`                    | string        | completed                                      |
+| `productStage.PaymentTerms`                         | string        | completed                                      |
+| `productStage.PricingAndMoq`                        | string        | completed                                      |
+| `productStage.ProductDescription`                   | string        | completed                                      |
+| `productStage.ProductInformation`                   | string        | completed                                      |
+| `productStage.ProductionAndStock`                   | string        | completed                                      |
+| `productStage.ShippingDetails`                      | string        | completed                                      |
+| `productStage.Specification`                        | string        | completed                                      |
+| `productVideo`                                      | object        |                                                |
+| `productVideo.alt`                                  | string        |                                                |
+| `productVideo.exten`                                | string        | mp4                                            |
+| `productVideo.size`                                 | integer       | 3485909                                        |
+| `productVideo.src`                                  | string        |                                                |
+| `productionCapacity`                                | object        |                                                |
+| `productionCapacity.duration`                       | string        | weekly                                         |
+| `productionCapacity.quantity`                       | integer       | 445                                            |
+| `productionCapacity.unit`                           | string        | pieces                                         |
+| `productionLeadTime`                                | object        |                                                |
+| `productionLeadTime.max_day`                        | integer       | 7                                              |
+| `productionLeadTime.max_quantity`                   | integer       | 0                                              |
+| `productionLeadTime.min_day`                        | integer       | 4                                              |
+| `productionLeadTime.min_quantity`                   | integer       | 0                                              |
+| `productionLeadTime.unit`                           | string        | unit                                           |
+| `samplesAvailability`                               | object        |                                                |
+| `samplesAvailability.availabilityType`              | string        | free                                           |
+| `samplesAvailability.sampleLeadTime`                | object        |                                                |
+| `samplesAvailability.sampleLeadTime.max_day`        | integer       | null                                           | 7             |
+| `samplesAvailability.sampleLeadTime.min_day`        | integer       | null                                           | 4             |
+| `samplesAvailability.samplePrice`                   | integer       | 10                                             |
+| `samplesAvailability.sampleUnit`                    | string        | boxes                                          |
+| `shipmentIdentifier`                                | string        | HSN                                            |
+| `shippingMethod`                                    | array<string> |                                                |
+| `shippingQty`                                       | integer       | 34                                             |
+| `shippingUnit`                                      | string        | Pallet                                         |
+| `showInCatalog`                                     | boolean       | False                                          |
+| `showcase`                                          | boolean       | False                                          |
+| `skuCode`                                           | string        | 43256                                          |
+| `status`                                            | string        | pending                                        |
+| `stockAvailability`                                 | string        | inStock                                        |
+| `subCategory`                                       | object        |                                                |
+| `subCategory._id`                                   | string        | 67f5154376706f860309ebf0                       |
+| `subCategory.name`                                  | string        | Mobile Phones                                  |
+| `subCategory.uniqueId`                              | string        | SC9577637767                                   |
+| `updatedAt`                                         | date          |                                                |
+| `variantAttributes`                                 | array<object> | array (empty)                                  |               |
+| `variantAttributes[].key`                           | string        | Brand                                          |
+| `variantAttributes[].values`                        | array<string> |                                                |
+| `variants`                                          | array<object> | array (empty)                                  |               |
+| `variants[]._id`                                    | ObjectId      |                                                |
+| `variants[].attributes`                             | object        |                                                |
+| `variants[].attributes.Brand`                       | string        | Samsung                                        |
+| `variants[].attributes.Color`                       | string        | Red                                            |
+| `variants[].attributes.Color Options`               | string        | Black                                          |
+| `variants[].attributes.Colour`                      | string        | Red                                            |
+| `variants[].attributes.Connectivity`                | string        | Wireless                                       |
+| `variants[].attributes.Fabric Type`                 | string        | Silk                                           |
+| `variants[].attributes.Flavor`                      | string        | Chocolate Chip                                 |
+| `variants[].attributes.Material`                    | string        | Cotton                                         |
+| `variants[].attributes.Network Technology`          | string        | 5G                                             |
+| `variants[].attributes.Screen Size Range`           | string        | 5 to 6 inches                                  |
+| `variants[].attributes.Size`                        | string        | 8                                              |
+| `variants[].attributes.color`                       | string        | white                                          |
+| `variants[].attributes.gun`                         | string        | air gun                                        |
+| `variants[].available`                              | boolean       | True                                           |
+| `variants[].isActive`                               | boolean       | True                                           |
+| `variants[].isDeleted`                              | boolean       | False                                          |
+| `variants[].minOrderQuantity`                       | integer       | 321                                            |
+| `variants[].moqUnit`                                | string        | pieces                                         |
+| `variants[].pricing`                                | object        |                                                |
+| `variants[].pricing.bulkPrices`                     | array<object> |                                                |
+| `variants[].pricing.bulkPrices[].maxQty`            | integer       | 200                                            |
+| `variants[].pricing.bulkPrices[].minQty`            | integer       | 100                                            |
+| `variants[].pricing.bulkPrices[].price`             | integer       | 30000                                          |
+| `variants[].pricing.pricingType`                    | string        | fixed                                          |
+| `variants[].pricing.unit`                           | string        | pieces                                         |
+| `variants[].pricing.unitPrice`                      | integer       | 98                                             |
+| `variants[].skuCode`                                | string        | 3432                                           |
+| `variants[].variantImg`                             | array<object> | array (empty)                                  | array (empty) | array<object> | array (empty) | array<object> | array (empty) |     |
+| `variants[].variantImg[].alt`                       | string        | phone1                                         |
+| `variants[].variantImg[].exten`                     | string        | jpeg                                           |
+| `variants[].variantImg[].size`                      | integer       | 2508                                           |
+| `variants[].variantImg[].src`                       | string        |                                                |
+| `variants[].variantName`                            | string        | Samsung / 5 to 6 inches                        |
+| `youtubeUrl`                                        | string        |                                                |
 
 ### First Document (sanitized)
 
@@ -3750,6 +3769,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -3762,67 +3782,67 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `assignTo` | ObjectId |  |
-| `createdAt` | date |  |
-| `createdBy` | ObjectId |  |
-| `customPaymentTerm` | string |  |
-| `dispatchLeadTime` | object |  |
-| `dispatchLeadTime.max_day` | integer | 5 |
-| `dispatchLeadTime.min_day` | integer | 5 |
-| `immediateStart` | boolean | False |
-| `internationalShipping` | string | yes |
-| `isArchived` | boolean | False |
-| `isDraft` | boolean | False |
-| `keyword` | array<string> |  |
-| `marketFocus` | array<object> |  |
-| `marketFocus[].code` | string | BH |
-| `marketFocus[].name` | string | Bahrain |
-| `offerActive` | boolean | False |
-| `offerDescription` | string | based on the order delivery day will change  |
-| `offerEndDate` | date |  |
-| `offerId` | string | OFF-93139f2660 |
-| `offerInfo` | object |  |
-| `offerInfo.buyQty` | integer | 50 |
-| `offerInfo.currency` | string | object | USD |
-| `offerInfo.currency.code` | string | INR |
-| `offerInfo.currency.name` | string | Indian Rupee |
-| `offerInfo.currency.symbol` | string | ₹ |
-| `offerInfo.discountPercent` | integer | 40 |
-| `offerInfo.freeQty` | integer | 50 |
-| `offerInfo.maxQty` | integer | 200 |
-| `offerInfo.minOrderQuantity` | integer | 50 |
-| `offerInfo.minQty` | integer | 20 |
-| `offerInfo.offerType` | string | fixedDiscount |
-| `offerInfo.pricing` | object |  |
-| `offerInfo.pricing.bulkPrices` | array<object> |  |
-| `offerInfo.pricing.bulkPrices[].maxQty` | integer | 500 |
-| `offerInfo.pricing.bulkPrices[].minQty` | integer | 100 |
-| `offerInfo.pricing.bulkPrices[].price` | integer | number | number | integer | 800 |
-| `offerInfo.pricing.maxPrice` | integer | 1940 |
-| `offerInfo.pricing.minPrice` | integer | 291 |
-| `offerInfo.pricing.pricingType` | string | fixed |
-| `offerInfo.pricing.unit` | string | boxes |
-| `offerInfo.pricing.unitPrice` | number | integer | 0.6 |
-| `offerInfo.unit` | string | pieces |
-| `offerStartDate` | date |  |
-| `offerTitle` | string | Short time |
-| `otherPaymentMethod` | string |  |
-| `paymentMethods` | array<string> |  |
-| `paymentTerms` | array<string> |  |
-| `postOnFeed` | boolean | False |
-| `productId` | ObjectId |  |
-| `sellOfferStage` | object |  |
-| `sellOfferStage.OfferDetails` | string | completed |
-| `sellOfferStage.PaymentShipping` | string | completed |
-| `sellOfferStage.ProductDetails` | string | completed |
-| `shippingMethod` | array<string> |  |
-| `showcase` | boolean | False |
-| `status` | string | rejected |
-| `updatedAt` | date |  |
+| Field                                   | Type          | Example                                     |
+| --------------------------------------- | ------------- | ------------------------------------------- | ------ | ------- | --- |
+| `__v`                                   | integer       | 0                                           |
+| `_id`                                   | ObjectId      |                                             |
+| `assignTo`                              | ObjectId      |                                             |
+| `createdAt`                             | date          |                                             |
+| `createdBy`                             | ObjectId      |                                             |
+| `customPaymentTerm`                     | string        |                                             |
+| `dispatchLeadTime`                      | object        |                                             |
+| `dispatchLeadTime.max_day`              | integer       | 5                                           |
+| `dispatchLeadTime.min_day`              | integer       | 5                                           |
+| `immediateStart`                        | boolean       | False                                       |
+| `internationalShipping`                 | string        | yes                                         |
+| `isArchived`                            | boolean       | False                                       |
+| `isDraft`                               | boolean       | False                                       |
+| `keyword`                               | array<string> |                                             |
+| `marketFocus`                           | array<object> |                                             |
+| `marketFocus[].code`                    | string        | BH                                          |
+| `marketFocus[].name`                    | string        | Bahrain                                     |
+| `offerActive`                           | boolean       | False                                       |
+| `offerDescription`                      | string        | based on the order delivery day will change |
+| `offerEndDate`                          | date          |                                             |
+| `offerId`                               | string        | OFF-93139f2660                              |
+| `offerInfo`                             | object        |                                             |
+| `offerInfo.buyQty`                      | integer       | 50                                          |
+| `offerInfo.currency`                    | string        | object                                      | USD    |
+| `offerInfo.currency.code`               | string        | INR                                         |
+| `offerInfo.currency.name`               | string        | Indian Rupee                                |
+| `offerInfo.currency.symbol`             | string        | ₹                                           |
+| `offerInfo.discountPercent`             | integer       | 40                                          |
+| `offerInfo.freeQty`                     | integer       | 50                                          |
+| `offerInfo.maxQty`                      | integer       | 200                                         |
+| `offerInfo.minOrderQuantity`            | integer       | 50                                          |
+| `offerInfo.minQty`                      | integer       | 20                                          |
+| `offerInfo.offerType`                   | string        | fixedDiscount                               |
+| `offerInfo.pricing`                     | object        |                                             |
+| `offerInfo.pricing.bulkPrices`          | array<object> |                                             |
+| `offerInfo.pricing.bulkPrices[].maxQty` | integer       | 500                                         |
+| `offerInfo.pricing.bulkPrices[].minQty` | integer       | 100                                         |
+| `offerInfo.pricing.bulkPrices[].price`  | integer       | number                                      | number | integer | 800 |
+| `offerInfo.pricing.maxPrice`            | integer       | 1940                                        |
+| `offerInfo.pricing.minPrice`            | integer       | 291                                         |
+| `offerInfo.pricing.pricingType`         | string        | fixed                                       |
+| `offerInfo.pricing.unit`                | string        | boxes                                       |
+| `offerInfo.pricing.unitPrice`           | number        | integer                                     | 0.6    |
+| `offerInfo.unit`                        | string        | pieces                                      |
+| `offerStartDate`                        | date          |                                             |
+| `offerTitle`                            | string        | Short time                                  |
+| `otherPaymentMethod`                    | string        |                                             |
+| `paymentMethods`                        | array<string> |                                             |
+| `paymentTerms`                          | array<string> |                                             |
+| `postOnFeed`                            | boolean       | False                                       |
+| `productId`                             | ObjectId      |                                             |
+| `sellOfferStage`                        | object        |                                             |
+| `sellOfferStage.OfferDetails`           | string        | completed                                   |
+| `sellOfferStage.PaymentShipping`        | string        | completed                                   |
+| `sellOfferStage.ProductDetails`         | string        | completed                                   |
+| `shippingMethod`                        | array<string> |                                             |
+| `showcase`                              | boolean       | False                                       |
+| `status`                                | string        | rejected                                    |
+| `updatedAt`                             | date          |                                             |
 
 ### First Document (sanitized)
 
@@ -3850,25 +3870,16 @@
     "max_day": 5
   },
   "internationalShipping": "yes",
-  "paymentMethods": [
-    "credit",
-    "paypal",
-    "cash"
-  ],
-  "paymentTerms": [
-    "ADVANCE_50_DISPATCH_50"
-  ],
-  "shippingMethod": [
-    "Sea",
-    "Air",
-    "Courier"
-  ]
+  "paymentMethods": ["credit", "paypal", "cash"],
+  "paymentTerms": ["ADVANCE_50_DISPATCH_50"],
+  "shippingMethod": ["Sea", "Air", "Courier"]
 }
 ```
 
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -3881,14 +3892,14 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `createdAt` | date |  |
-| `hashedRt` | string |  |
-| `updatedAt` | date |  |
-| `user_id` | string | 6874d1ddd11244886dd2e76a |
+| Field       | Type     | Example                  |
+| ----------- | -------- | ------------------------ |
+| `__v`       | integer  | 0                        |
+| `_id`       | ObjectId |                          |
+| `createdAt` | date     |                          |
+| `hashedRt`  | string   |                          |
+| `updatedAt` | date     |                          |
+| `user_id`   | string   | 6874d1ddd11244886dd2e76a |
 
 ### First Document (sanitized)
 
@@ -3906,6 +3917,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -3918,18 +3930,18 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `_id` | ObjectId |  |
-| `annualGrowth` | string | 15% |
-| `averageMargin` | string | 30%-40% |
-| `image` | string |  |
-| `liveUrl` | string | sports_SC6e16b67695 |
-| `mappedChildren` | array (empty) | array<string> |  |
-| `marketSize` | string | $250B |
-| `name` | string | sports |
-| `parentId` | string | 67f514f976706f860309ebeb |
-| `uniqueId` | string | SC6e16b67695 |
+| Field            | Type          | Example                  |
+| ---------------- | ------------- | ------------------------ | --- |
+| `_id`            | ObjectId      |                          |
+| `annualGrowth`   | string        | 15%                      |
+| `averageMargin`  | string        | 30%-40%                  |
+| `image`          | string        |                          |
+| `liveUrl`        | string        | sports_SC6e16b67695      |
+| `mappedChildren` | array (empty) | array<string>            |     |
+| `marketSize`     | string        | $250B                    |
+| `name`           | string        | sports                   |
+| `parentId`       | string        | 67f514f976706f860309ebeb |
+| `uniqueId`       | string        | SC6e16b67695             |
 
 ### First Document (sanitized)
 
@@ -3939,10 +3951,7 @@
   "uniqueId": "SC9577637767",
   "name": "Mobile Phones",
   "parentId": "67f514ee76706f860309ebe9",
-  "mappedChildren": [
-    "6620c91a1f1c8a9a1b1c1001",
-    "67f5124876706f860309ebd0"
-  ],
+  "mappedChildren": ["6620c91a1f1c8a9a1b1c1001", "67f5124876706f860309ebd0"],
   "liveUrl": "Mobile_Phones_SC9577637767",
   "marketSize": "$250B",
   "annualGrowth": "15%",
@@ -3954,15 +3963,18 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
 **liveUrl_1**
+
 - Type: Unique
 - Keys:
   - `liveUrl`: ascending
 
 **uniqueId_1**
+
 - Type: Unique
 - Keys:
   - `uniqueId`: ascending
@@ -3976,191 +3988,191 @@
 
 ### Fields
 
-| Field | Type | Example |
-|-------|------|---------|
-| `WhatsAppNo` | object |  |
-| `WhatsAppNo.countryCode` | string | +91 |
-| `WhatsAppNo.number` | string | 8525462222 |
-| `__v` | integer | 0 |
-| `_id` | ObjectId |  |
-| `additionalPhoneNo` | array (empty) |  |
-| `assignTo` | ObjectId |  |
-| `businessId` | ObjectId |  |
-| `businessLocation` | string | AM |
-| `businessType` | string | unregister |
-| `buyerStage` | object |  |
-| `buyerStage.businessDetails` | string | completed |
-| `buyerStage.businessOperation` | string | completed |
-| `buyerStage.sourcingDetails` | string | completed |
-| `countryCode` | string | +91 |
-| `createdAt` | date |  |
-| `currentPlan` | object |  |
-| `currentPlan.autoRenewal` | boolean | True |
-| `currentPlan.billingType` | string | monthly |
-| `currentPlan.endDate` | date | object |  |
-| `currentPlan.endDate.$date` | string | 2025-07-16T10:59:43.018Z |
-| `currentPlan.isActive` | boolean | True |
-| `currentPlan.isTrial` | boolean | True |
-| `currentPlan.paymentRefId` | string | 12345 |
-| `currentPlan.planId` | string | P3 |
-| `currentPlan.startDate` | date | object |  |
-| `currentPlan.startDate.$date` | string | 2025-07-16T10:59:43.018Z |
-| `dateOfBirth` | string | 2025-08-07T18:30:00.000Z |
-| `email` | string | test@asd.asd |
-| `firstName` | string | SFgfdgfg |
-| `isBlocked` | boolean | False |
-| `isDeleted` | boolean | False |
-| `isEmailVerified` | boolean | False |
-| `isPhoneNoVerified` | boolean | False |
-| `isVerified` | boolean | True |
-| `jobTitle` | string | ddddddddddd |
-| `lastName` | string | dfgfd |
-| `middleName` | string | weqw |
-| `nationalIdNo` | string | 789456132222 |
-| `nationalIdType` | string | Aadhar |
-| `nonprofit` | object |  |
-| `nonprofit.businessOperation` | object |  |
-| `nonprofit.businessOperation.businessName` | string |  |
-| `nonprofit.businessOperation.industry` | string | technology |
-| `nonprofit.businessOperation.productServiceDescription` | string | hjshjshsjhsjhsjhsjhsjhs |
-| `nonprofit.businessOperation.website` | string |  |
-| `nonprofit.businessRepresentative` | object |  |
-| `nonprofit.businessRepresentative.countryCode` | string | +91 |
-| `nonprofit.businessRepresentative.dateOfBirth` | string | 1956-05-12 |
-| `nonprofit.businessRepresentative.email` | string | jkjksjdk@ksjdksj.com |
-| `nonprofit.businessRepresentative.homeAddress` | object |  |
-| `nonprofit.businessRepresentative.homeAddress.apartmentUnitOrOther` | string | 1212 |
-| `nonprofit.businessRepresentative.homeAddress.cityTown` | string | Erode |
-| `nonprofit.businessRepresentative.homeAddress.country` | string | IN |
-| `nonprofit.businessRepresentative.homeAddress.postalCode` | string | 638107 |
-| `nonprofit.businessRepresentative.homeAddress.streetAddress` | string | Strresd |
-| `nonprofit.businessRepresentative.jobTitle` | string | kjsdkjksdj` |
-| `nonprofit.businessRepresentative.name` | string | John |
-| `nonprofit.businessRepresentative.personalIdNo` | number | 5454545754545454.0 |
-| `nonprofit.businessRepresentative.phoneNo` | string | 8610849174 |
-| `nonprofit.complianceDetail` | object |  |
-| `nonprofit.complianceDetail.VATNumber` | string |  |
-| `nonprofit.complianceDetail.businessName` | string | ABC |
-| `nonprofit.complianceDetail.companyRegisterNumber` | integer | number | 123456789 |
-| `nonprofit.contactInformation` | object |  |
-| `nonprofit.contactInformation.businessAddress` | object |  |
-| `nonprofit.contactInformation.businessAddress.apartmentUnitOrOther` | string | 5656 |
-| `nonprofit.contactInformation.businessAddress.cityTown` | string | Erode |
-| `nonprofit.contactInformation.businessAddress.country` | string | IN |
-| `nonprofit.contactInformation.businessAddress.postalCode` | string | 638107 |
-| `nonprofit.contactInformation.businessAddress.streetAddress` | string | 456 |
-| `nonprofit.contactInformation.email` | string | abc@gmail.com |
-| `nonprofit.contactInformation.phoneNo` | string | 9876433100 |
-| `nonprofit.contactInformation.productServiceDescription` | string | spdlspdlspdlsds |
-| `notificationPreferences` | object |  |
-| `notificationPreferences.dealAlerts` | object |  |
-| `notificationPreferences.dealAlerts.email` | boolean | True |
-| `notificationPreferences.dealAlerts.mobile` | boolean | True |
-| `notificationPreferences.featureUpdate` | object |  |
-| `notificationPreferences.featureUpdate.email` | boolean | False |
-| `notificationPreferences.featureUpdate.mobile` | boolean | False |
-| `notificationPreferences.followUp` | object |  |
-| `notificationPreferences.followUp.email` | boolean | True |
-| `notificationPreferences.followUp.mobile` | boolean | True |
-| `notificationPreferences.insights` | object |  |
-| `notificationPreferences.insights.email` | boolean | False |
-| `notificationPreferences.insights.mobile` | boolean | False |
-| `notificationPreferences.message` | object |  |
-| `notificationPreferences.message.email` | boolean | True |
-| `notificationPreferences.message.mobile` | boolean | True |
-| `notificationPreferences.productUpdates` | object |  |
-| `notificationPreferences.productUpdates.email` | boolean | False |
-| `notificationPreferences.productUpdates.mobile` | boolean | False |
-| `notificationPreferences.promotions` | object |  |
-| `notificationPreferences.promotions.email` | boolean | False |
-| `notificationPreferences.promotions.mobile` | boolean | False |
-| `onBoardingComplete` | boolean | False |
-| `onBoardingSkipped` | boolean | False |
-| `personalAddress` | object |  |
-| `personalAddress.addressLine` | string | dfdfdfdf |
-| `personalAddress.city` | string | Ashkāsham |
-| `personalAddress.country` | object |  |
-| `personalAddress.country.code` | string | AF |
-| `personalAddress.country.name` | string | Afghanistan |
-| `personalAddress.pincode` | string | 44444 |
-| `personalAddress.state` | string | Badakhshan |
-| `phoneNo` | string | 9596565656 |
-| `profilePic` | string |  |
-| `register` | object |  |
-| `register.businessOperation` | object |  |
-| `register.businessOperation.businessName` | string | New business |
-| `register.businessOperation.industry` | string | manufacturing |
-| `register.businessOperation.productServiceDescription` | string | sdfsdf |
-| `register.businessOperation.website` | string | www.sktech.com |
-| `register.businessRepresentative` | object |  |
-| `register.businessRepresentative.countryCode` | string | +91 |
-| `register.businessRepresentative.dateOfBirth` | string | 2025-07-10 |
-| `register.businessRepresentative.email` | string | lafofej180@dxirl.com |
-| `register.businessRepresentative.homeAddress` | object |  |
-| `register.businessRepresentative.homeAddress.apartmentUnitOrOther` | string | fvv |
-| `register.businessRepresentative.homeAddress.cityTown` | string | erode |
-| `register.businessRepresentative.homeAddress.country` | string | IN |
-| `register.businessRepresentative.homeAddress.postalCode` | string | 600001 |
-| `register.businessRepresentative.homeAddress.streetAddress` | string | fff |
-| `register.businessRepresentative.jobTitle` | string | saler |
-| `register.businessRepresentative.name` | string | Arjun sharma |
-| `register.businessRepresentative.personalIdNo` | integer | number | 567 |
-| `register.businessRepresentative.phoneNo` | string | 8754817769 |
-| `register.complianceDetail` | object |  |
-| `register.complianceDetail.VATNumber` | string | dgdfg |
-| `register.complianceDetail.businessName` | string | sdfsdf |
-| `register.complianceDetail.companyRegisterNumber` | integer | number | 3245345 |
-| `register.complienceDetails` | object |  |
-| `register.contactInformation` | object |  |
-| `register.contactInformation.businessAddress` | object |  |
-| `register.contactInformation.businessAddress.apartmentUnitOrOther` | string | sdfsdfsfs |
-| `register.contactInformation.businessAddress.cityTown` | string | Saint David’s |
-| `register.contactInformation.businessAddress.country` | string | GD |
-| `register.contactInformation.businessAddress.postalCode` | string | 4000014 |
-| `register.contactInformation.businessAddress.streetAddress` | string | 456, XYZ Road |
-| `register.contactInformation.email` | string | antoraphael02@gmail.com |
-| `register.contactInformation.phoneNo` | string | 09600976566 |
-| `register.contactInformation.productServiceDescription` | string | sdfsdfsdf |
-| `registerStatus` | object |  |
-| `registerStatus.businessDetails` | string | completed |
-| `registerStatus.businessOperation` | string | completed |
-| `registerStatus.businessRepresentative` | string | active |
-| `registerStatus.contactInformation` | string | completed |
-| `registerStatus.personalInformation` | string | completed |
-| `source` | string | Pepagora Signup Page |
-| `status` | string | rejected |
-| `unRegisterStatus` | object |  |
-| `unRegisterStatus.businessDetails` | string | completed |
-| `unRegisterStatus.businessOperation` | string | completed |
-| `unRegisterStatus.businessRepresentative` | string | completed |
-| `unRegisterStatus.personalInformation` | string | active |
-| `unregister` | object |  |
-| `unregister.businessOperation` | object |  |
-| `unregister.businessOperation.businessName` | string | sdfsdf |
-| `unregister.businessOperation.industry` | string | technology |
-| `unregister.businessOperation.productServiceDescription` | string | sdfsdfsdfsdf |
-| `unregister.businessOperation.website` | string |  |
-| `unregister.contactInformation` | object |  |
-| `unregister.contactInformation.businessAddress` | object |  |
-| `unregister.contactInformation.businessAddress.apartmentUnitOrOther` | string | Puliyakulam Road, Pappanaicken Palayem, |
-| `unregister.contactInformation.businessAddress.cityTown` | string | Coimbatore |
-| `unregister.contactInformation.businessAddress.country` | string | IN |
-| `unregister.contactInformation.businessAddress.postalCode` | string | 641037 |
-| `unregister.contactInformation.businessAddress.streetAddress` | string | #59/2, T2, Soundarya Regency  |
-| `unregister.contactInformation.email` | string | deepak.s@pepagora.com |
-| `unregister.contactInformation.phoneNo` | string | 6362169984 |
-| `unregister.contactInformation.productServiceDescription` | string | we sell hardware components |
-| `unregister.personalInformation` | object |  |
-| `unregister.personalInformation.dateOfBirth` | string | 2024-12-27 |
-| `unregister.personalInformation.email` | string | testuser9999@gmail.com |
-| `unregister.personalInformation.name` | string | UAT changes |
-| `unregister.personalInformation.personalIdNo` | number | integer | 34234234234.0 |
-| `updatedAt` | date |  |
-| `userType` | string | buyer |
-| `workEmail` | string | wqeqwe@gmail.com |
-| `workPhoneNo` | object |  |
-| `workPhoneNo.countryCode` | string | +91 |
-| `workPhoneNo.number` | string | 8525462222 |
+| Field                                                                | Type          | Example                                 |
+| -------------------------------------------------------------------- | ------------- | --------------------------------------- | ------------- |
+| `WhatsAppNo`                                                         | object        |                                         |
+| `WhatsAppNo.countryCode`                                             | string        | +91                                     |
+| `WhatsAppNo.number`                                                  | string        | 8525462222                              |
+| `__v`                                                                | integer       | 0                                       |
+| `_id`                                                                | ObjectId      |                                         |
+| `additionalPhoneNo`                                                  | array (empty) |                                         |
+| `assignTo`                                                           | ObjectId      |                                         |
+| `businessId`                                                         | ObjectId      |                                         |
+| `businessLocation`                                                   | string        | AM                                      |
+| `businessType`                                                       | string        | unregister                              |
+| `buyerStage`                                                         | object        |                                         |
+| `buyerStage.businessDetails`                                         | string        | completed                               |
+| `buyerStage.businessOperation`                                       | string        | completed                               |
+| `buyerStage.sourcingDetails`                                         | string        | completed                               |
+| `countryCode`                                                        | string        | +91                                     |
+| `createdAt`                                                          | date          |                                         |
+| `currentPlan`                                                        | object        |                                         |
+| `currentPlan.autoRenewal`                                            | boolean       | True                                    |
+| `currentPlan.billingType`                                            | string        | monthly                                 |
+| `currentPlan.endDate`                                                | date          | object                                  |               |
+| `currentPlan.endDate.$date`                                          | string        | 2025-07-16T10:59:43.018Z                |
+| `currentPlan.isActive`                                               | boolean       | True                                    |
+| `currentPlan.isTrial`                                                | boolean       | True                                    |
+| `currentPlan.paymentRefId`                                           | string        | 12345                                   |
+| `currentPlan.planId`                                                 | string        | P3                                      |
+| `currentPlan.startDate`                                              | date          | object                                  |               |
+| `currentPlan.startDate.$date`                                        | string        | 2025-07-16T10:59:43.018Z                |
+| `dateOfBirth`                                                        | string        | 2025-08-07T18:30:00.000Z                |
+| `email`                                                              | string        | test@asd.asd                            |
+| `firstName`                                                          | string        | SFgfdgfg                                |
+| `isBlocked`                                                          | boolean       | False                                   |
+| `isDeleted`                                                          | boolean       | False                                   |
+| `isEmailVerified`                                                    | boolean       | False                                   |
+| `isPhoneNoVerified`                                                  | boolean       | False                                   |
+| `isVerified`                                                         | boolean       | True                                    |
+| `jobTitle`                                                           | string        | ddddddddddd                             |
+| `lastName`                                                           | string        | dfgfd                                   |
+| `middleName`                                                         | string        | weqw                                    |
+| `nationalIdNo`                                                       | string        | 789456132222                            |
+| `nationalIdType`                                                     | string        | Aadhar                                  |
+| `nonprofit`                                                          | object        |                                         |
+| `nonprofit.businessOperation`                                        | object        |                                         |
+| `nonprofit.businessOperation.businessName`                           | string        |                                         |
+| `nonprofit.businessOperation.industry`                               | string        | technology                              |
+| `nonprofit.businessOperation.productServiceDescription`              | string        | hjshjshsjhsjhsjhsjhsjhs                 |
+| `nonprofit.businessOperation.website`                                | string        |                                         |
+| `nonprofit.businessRepresentative`                                   | object        |                                         |
+| `nonprofit.businessRepresentative.countryCode`                       | string        | +91                                     |
+| `nonprofit.businessRepresentative.dateOfBirth`                       | string        | 1956-05-12                              |
+| `nonprofit.businessRepresentative.email`                             | string        | jkjksjdk@ksjdksj.com                    |
+| `nonprofit.businessRepresentative.homeAddress`                       | object        |                                         |
+| `nonprofit.businessRepresentative.homeAddress.apartmentUnitOrOther`  | string        | 1212                                    |
+| `nonprofit.businessRepresentative.homeAddress.cityTown`              | string        | Erode                                   |
+| `nonprofit.businessRepresentative.homeAddress.country`               | string        | IN                                      |
+| `nonprofit.businessRepresentative.homeAddress.postalCode`            | string        | 638107                                  |
+| `nonprofit.businessRepresentative.homeAddress.streetAddress`         | string        | Strresd                                 |
+| `nonprofit.businessRepresentative.jobTitle`                          | string        | kjsdkjksdj`                             |
+| `nonprofit.businessRepresentative.name`                              | string        | John                                    |
+| `nonprofit.businessRepresentative.personalIdNo`                      | number        | 5454545754545454.0                      |
+| `nonprofit.businessRepresentative.phoneNo`                           | string        | 8610849174                              |
+| `nonprofit.complianceDetail`                                         | object        |                                         |
+| `nonprofit.complianceDetail.VATNumber`                               | string        |                                         |
+| `nonprofit.complianceDetail.businessName`                            | string        | ABC                                     |
+| `nonprofit.complianceDetail.companyRegisterNumber`                   | integer       | number                                  | 123456789     |
+| `nonprofit.contactInformation`                                       | object        |                                         |
+| `nonprofit.contactInformation.businessAddress`                       | object        |                                         |
+| `nonprofit.contactInformation.businessAddress.apartmentUnitOrOther`  | string        | 5656                                    |
+| `nonprofit.contactInformation.businessAddress.cityTown`              | string        | Erode                                   |
+| `nonprofit.contactInformation.businessAddress.country`               | string        | IN                                      |
+| `nonprofit.contactInformation.businessAddress.postalCode`            | string        | 638107                                  |
+| `nonprofit.contactInformation.businessAddress.streetAddress`         | string        | 456                                     |
+| `nonprofit.contactInformation.email`                                 | string        | abc@gmail.com                           |
+| `nonprofit.contactInformation.phoneNo`                               | string        | 9876433100                              |
+| `nonprofit.contactInformation.productServiceDescription`             | string        | spdlspdlspdlsds                         |
+| `notificationPreferences`                                            | object        |                                         |
+| `notificationPreferences.dealAlerts`                                 | object        |                                         |
+| `notificationPreferences.dealAlerts.email`                           | boolean       | True                                    |
+| `notificationPreferences.dealAlerts.mobile`                          | boolean       | True                                    |
+| `notificationPreferences.featureUpdate`                              | object        |                                         |
+| `notificationPreferences.featureUpdate.email`                        | boolean       | False                                   |
+| `notificationPreferences.featureUpdate.mobile`                       | boolean       | False                                   |
+| `notificationPreferences.followUp`                                   | object        |                                         |
+| `notificationPreferences.followUp.email`                             | boolean       | True                                    |
+| `notificationPreferences.followUp.mobile`                            | boolean       | True                                    |
+| `notificationPreferences.insights`                                   | object        |                                         |
+| `notificationPreferences.insights.email`                             | boolean       | False                                   |
+| `notificationPreferences.insights.mobile`                            | boolean       | False                                   |
+| `notificationPreferences.message`                                    | object        |                                         |
+| `notificationPreferences.message.email`                              | boolean       | True                                    |
+| `notificationPreferences.message.mobile`                             | boolean       | True                                    |
+| `notificationPreferences.productUpdates`                             | object        |                                         |
+| `notificationPreferences.productUpdates.email`                       | boolean       | False                                   |
+| `notificationPreferences.productUpdates.mobile`                      | boolean       | False                                   |
+| `notificationPreferences.promotions`                                 | object        |                                         |
+| `notificationPreferences.promotions.email`                           | boolean       | False                                   |
+| `notificationPreferences.promotions.mobile`                          | boolean       | False                                   |
+| `onBoardingComplete`                                                 | boolean       | False                                   |
+| `onBoardingSkipped`                                                  | boolean       | False                                   |
+| `personalAddress`                                                    | object        |                                         |
+| `personalAddress.addressLine`                                        | string        | dfdfdfdf                                |
+| `personalAddress.city`                                               | string        | Ashkāsham                               |
+| `personalAddress.country`                                            | object        |                                         |
+| `personalAddress.country.code`                                       | string        | AF                                      |
+| `personalAddress.country.name`                                       | string        | Afghanistan                             |
+| `personalAddress.pincode`                                            | string        | 44444                                   |
+| `personalAddress.state`                                              | string        | Badakhshan                              |
+| `phoneNo`                                                            | string        | 9596565656                              |
+| `profilePic`                                                         | string        |                                         |
+| `register`                                                           | object        |                                         |
+| `register.businessOperation`                                         | object        |                                         |
+| `register.businessOperation.businessName`                            | string        | New business                            |
+| `register.businessOperation.industry`                                | string        | manufacturing                           |
+| `register.businessOperation.productServiceDescription`               | string        | sdfsdf                                  |
+| `register.businessOperation.website`                                 | string        | www.sktech.com                          |
+| `register.businessRepresentative`                                    | object        |                                         |
+| `register.businessRepresentative.countryCode`                        | string        | +91                                     |
+| `register.businessRepresentative.dateOfBirth`                        | string        | 2025-07-10                              |
+| `register.businessRepresentative.email`                              | string        | lafofej180@dxirl.com                    |
+| `register.businessRepresentative.homeAddress`                        | object        |                                         |
+| `register.businessRepresentative.homeAddress.apartmentUnitOrOther`   | string        | fvv                                     |
+| `register.businessRepresentative.homeAddress.cityTown`               | string        | erode                                   |
+| `register.businessRepresentative.homeAddress.country`                | string        | IN                                      |
+| `register.businessRepresentative.homeAddress.postalCode`             | string        | 600001                                  |
+| `register.businessRepresentative.homeAddress.streetAddress`          | string        | fff                                     |
+| `register.businessRepresentative.jobTitle`                           | string        | saler                                   |
+| `register.businessRepresentative.name`                               | string        | Arjun sharma                            |
+| `register.businessRepresentative.personalIdNo`                       | integer       | number                                  | 567           |
+| `register.businessRepresentative.phoneNo`                            | string        | 8754817769                              |
+| `register.complianceDetail`                                          | object        |                                         |
+| `register.complianceDetail.VATNumber`                                | string        | dgdfg                                   |
+| `register.complianceDetail.businessName`                             | string        | sdfsdf                                  |
+| `register.complianceDetail.companyRegisterNumber`                    | integer       | number                                  | 3245345       |
+| `register.complienceDetails`                                         | object        |                                         |
+| `register.contactInformation`                                        | object        |                                         |
+| `register.contactInformation.businessAddress`                        | object        |                                         |
+| `register.contactInformation.businessAddress.apartmentUnitOrOther`   | string        | sdfsdfsfs                               |
+| `register.contactInformation.businessAddress.cityTown`               | string        | Saint David’s                           |
+| `register.contactInformation.businessAddress.country`                | string        | GD                                      |
+| `register.contactInformation.businessAddress.postalCode`             | string        | 4000014                                 |
+| `register.contactInformation.businessAddress.streetAddress`          | string        | 456, XYZ Road                           |
+| `register.contactInformation.email`                                  | string        | antoraphael02@gmail.com                 |
+| `register.contactInformation.phoneNo`                                | string        | 09600976566                             |
+| `register.contactInformation.productServiceDescription`              | string        | sdfsdfsdf                               |
+| `registerStatus`                                                     | object        |                                         |
+| `registerStatus.businessDetails`                                     | string        | completed                               |
+| `registerStatus.businessOperation`                                   | string        | completed                               |
+| `registerStatus.businessRepresentative`                              | string        | active                                  |
+| `registerStatus.contactInformation`                                  | string        | completed                               |
+| `registerStatus.personalInformation`                                 | string        | completed                               |
+| `source`                                                             | string        | Pepagora Signup Page                    |
+| `status`                                                             | string        | rejected                                |
+| `unRegisterStatus`                                                   | object        |                                         |
+| `unRegisterStatus.businessDetails`                                   | string        | completed                               |
+| `unRegisterStatus.businessOperation`                                 | string        | completed                               |
+| `unRegisterStatus.businessRepresentative`                            | string        | completed                               |
+| `unRegisterStatus.personalInformation`                               | string        | active                                  |
+| `unregister`                                                         | object        |                                         |
+| `unregister.businessOperation`                                       | object        |                                         |
+| `unregister.businessOperation.businessName`                          | string        | sdfsdf                                  |
+| `unregister.businessOperation.industry`                              | string        | technology                              |
+| `unregister.businessOperation.productServiceDescription`             | string        | sdfsdfsdfsdf                            |
+| `unregister.businessOperation.website`                               | string        |                                         |
+| `unregister.contactInformation`                                      | object        |                                         |
+| `unregister.contactInformation.businessAddress`                      | object        |                                         |
+| `unregister.contactInformation.businessAddress.apartmentUnitOrOther` | string        | Puliyakulam Road, Pappanaicken Palayem, |
+| `unregister.contactInformation.businessAddress.cityTown`             | string        | Coimbatore                              |
+| `unregister.contactInformation.businessAddress.country`              | string        | IN                                      |
+| `unregister.contactInformation.businessAddress.postalCode`           | string        | 641037                                  |
+| `unregister.contactInformation.businessAddress.streetAddress`        | string        | #59/2, T2, Soundarya Regency            |
+| `unregister.contactInformation.email`                                | string        | deepak.s@pepagora.com                   |
+| `unregister.contactInformation.phoneNo`                              | string        | 6362169984                              |
+| `unregister.contactInformation.productServiceDescription`            | string        | we sell hardware components             |
+| `unregister.personalInformation`                                     | object        |                                         |
+| `unregister.personalInformation.dateOfBirth`                         | string        | 2024-12-27                              |
+| `unregister.personalInformation.email`                               | string        | testuser9999@gmail.com                  |
+| `unregister.personalInformation.name`                                | string        | UAT changes                             |
+| `unregister.personalInformation.personalIdNo`                        | number        | integer                                 | 34234234234.0 |
+| `updatedAt`                                                          | date          |                                         |
+| `userType`                                                           | string        | buyer                                   |
+| `workEmail`                                                          | string        | wqeqwe@gmail.com                        |
+| `workPhoneNo`                                                        | object        |                                         |
+| `workPhoneNo.countryCode`                                            | string        | +91                                     |
+| `workPhoneNo.number`                                                 | string        | 8525462222                              |
 
 ### First Document (sanitized)
 
@@ -4275,6 +4287,7 @@
 ### Indexes
 
 **_id_**
+
 - Keys:
   - `_id`: ascending
 
@@ -4282,6 +4295,6 @@
 
 ## Generation Info
 
-- **MongoDB URI:** `mongodb+srv://vineet:vineet@pepagoradev.eyuctu3.mongodb.net/?retryWrites=true&w=majority&appName=pepagoraDev`
+- **MongoDB URI:** `URI`
 - **Sample Size per Collection:** 100
 - **Generated by:** MongoDB Schema Extractor
